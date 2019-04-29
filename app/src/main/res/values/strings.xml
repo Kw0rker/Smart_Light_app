@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Умный свет</string>
+    <string name="title_activity_scenaries">Сценарии</string>
+    <string name="_1">лампа №1</string>
+    <string name="Сценарии">Сценарии</string>
+    <string name="title_activity_lamps">Lamps</string>
+    <string name="_100">Яркость=100%</string>
+</resources>
