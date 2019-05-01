@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-32:12
+ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-33:12
+INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-33:12
+INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-33:12
+INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-33:12
 MERGED from [com.android.support:design:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\d88f0b81f18d0ce37b33ea47b90c72b6\AndroidManifest.xml:17:1-24:12
 MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\aa2c9be316d6528695642bafaebed03f\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\d180780709e8c6e483e5a42044e5d74e\AndroidManifest.xml:2:1-11:12
@@ -35,20 +35,20 @@ MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Руслан\.gradle\ca
 MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\280316f39aa8a1366b3c8b4e42cec260\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\d925e71c6255c44dede5b0d295280421\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\52d2cbc2f4b2d0b413ea41a8c47d37be\AndroidManifest.xml:17:1-22:12
-INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-32:12
-INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-33:12
+INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-33:12
+INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-33:12
 	package
 		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:3:5-50
 		INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
 		INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-32:12
+		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-33:12
 		INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-32:12
+		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-33:12
 		INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:11-69
@@ -70,8 +70,12 @@ uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
 ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:9:5-80
 	android:name
 		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:9:22-78
+uses-permission#android.permission.VIBRATE
+ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:10:5-65
+	android:name
+		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:10:22-63
 application
-ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:11:5-30:19
+ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:12:5-31:19
 MERGED from [com.android.support:design:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\d88f0b81f18d0ce37b33ea47b90c72b6\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support:design:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\d88f0b81f18d0ce37b33ea47b90c72b6\AndroidManifest.xml:22:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\d180780709e8c6e483e5a42044e5d74e\AndroidManifest.xml:9:5-20
@@ -83,35 +87,35 @@ MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Руслан\.gr
 	android:appComponentFactory
 		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\617351bbc692d595a419ce4cb24a5ad1\AndroidManifest.xml:22:18-91
 	android:supportsRtl
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:17:9-35
+		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:18:9-35
 	android:label
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:15:9-41
+		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:16:9-41
 	android:roundIcon
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:16:9-54
+		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:17:9-54
 	android:largeHeap
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:13:9-33
+		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:14:9-33
 	android:icon
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:14:9-43
+		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:15:9-41
 	android:allowBackup
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:12:9-35
+		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:13:9-35
 	android:theme
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:18:9-53
+		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:19:9-53
 activity#com.example.student.smartlighttest1.MainActivity
-ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:19:9-25:11
+ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:20:9-26:11
 	android:screenOrientation
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:22:13-50
+		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:23:13-50
 	android:exported
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:21:13-36
+		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:22:13-36
 	android:name
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:20:13-41
+		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:21:13-41
 activity#com.example.student.smartlighttest1.Scenarios
-ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:26:9-29:81
+ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:27:9-30:81
 	android:label
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:28:13-57
+		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:29:13-57
 	android:theme
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:29:13-69
+		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:30:13-69
 	android:name
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:27:13-38
+		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:28:13-38
 uses-sdk
 INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml

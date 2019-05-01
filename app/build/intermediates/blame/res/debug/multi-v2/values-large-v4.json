@@ -4,7 +4,7 @@
             "outputFile": "D:\\android\\smartLighttest1(alpha 1)\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Руслан\\.gradle\\caches\\transforms-1\\files-1.1\\design-28.0.0.aar\\7a9d3cc4137ff75945821dd19bde2f8d\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\Руслан\\.gradle\\caches\\transforms-2\\files-2.1\\d88f0b81f18d0ce37b33ea47b90c72b6\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\Руслан\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-28.0.0.aar\\ea50199d65dad9c6520057b93c1f3f04\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\Руслан\\.gradle\\caches\\transforms-2\\files-2.1\\aa2c9be316d6528695642bafaebed03f\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",

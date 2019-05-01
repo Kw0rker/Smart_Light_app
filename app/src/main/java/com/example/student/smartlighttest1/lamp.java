@@ -41,6 +41,7 @@ public class lamp {
         bt.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
+                MainActivity.vibrate(500);
                 selected=!selected;
                 return true;
             }
@@ -58,9 +59,9 @@ public class lamp {
         }
         else {on_off= 1;  new multithread().execute("send",(getId() +"," + 255));bt.setBackgroundResource(R.drawable.lamp_on);udp.brignes[id]=255;}
     }
-    public String getId(){
-        String result=""+id;
-        return result;
+    public int getId(){
+
+        return id+1;
     }
 }
 

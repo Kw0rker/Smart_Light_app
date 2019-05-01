@@ -1131,7 +1131,6 @@ id line1
 id line3
 id listMode
 id list_item
-id main
 id masked
 id message
 id middle
@@ -1374,7 +1373,7 @@ string search_menu_title
 string status_bar_notification_info_overflow
 string title_activity_lamps
 string title_activity_scenaries
-string Сценарии
+string РЎС†РµРЅР°СЂРёРё
 style AlertDialog_AppCompat
 style AlertDialog_AppCompat_Light
 style Animation_AppCompat_Dialog

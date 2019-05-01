@@ -2,16 +2,18 @@ package com.example.student.smartlighttest1;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentActivity;
-//import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
-import android.content.Intent;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -19,6 +21,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+//import android.support.v7.app.AppCompatActivity;
 
 
 public class MainActivity extends FragmentActivity {
@@ -30,6 +34,7 @@ public class MainActivity extends FragmentActivity {
     static int value;
     static lamp[] lamps;
     static SeekBar bar;
+    static Vibrator v;
     static arduino[] ard;
     TextView brighness;
     String text;
@@ -43,7 +48,8 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         this.context_g = getApplicationContext();
         brighness = new TextView(this);
-
+        udp.setup();
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         brighness = findViewById(R.id.text);
         try {
             File.createTempFile("scenarios", "txt");
@@ -83,7 +89,7 @@ public class MainActivity extends FragmentActivity {
         Log.d("context", context_g.toString());//@string/_100
 
         setContentView(R.layout.activity_main);
-        new multithread().execute("send", "refresh");
+       // new multithread().execute("send", "refresh");
         new multithread().execute("send", "status");
         new multithread().execute("start");
         Button scenario = (Button) findViewById(R.id.button3);
@@ -107,8 +113,8 @@ public class MainActivity extends FragmentActivity {
     public void builui() {
         lamps = new lamp[udp.colvo];
         buttons = new Button[udp.colvo];
-        ard = new arduino[udp.colvo];// /x
-        ConstraintLayout layout = findViewById(R.id.main);
+        //ard = new arduino[udp.colvo];// /x
+        ConstraintLayout layout = findViewById(R.id.Main);
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -119,7 +125,6 @@ public class MainActivity extends FragmentActivity {
             int id_ = buttons[i].getId();
             layout.addView(buttons[i], params);
             buttons[i] = findViewById(id_);
-            id = i;
             lamps[i] = new lamp(buttons[i], udp.brignes[i], i);
         }
     }
@@ -152,20 +157,15 @@ public class MainActivity extends FragmentActivity {
         }
 
     }
+    static void vibrate(int miliis)
+    {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            v.vibrate(VibrationEffect.createOneShot(miliis, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            //deprecated in API 26
+            v.vibrate(miliis);
+        }
+    }
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
