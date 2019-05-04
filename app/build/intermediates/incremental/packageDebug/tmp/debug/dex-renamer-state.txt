@@ -1,4 +1,4 @@
-#Wed May 01 09:40:41 GET 2019
+#Thu May 02 16:29:29 GET 2019
 base.0=D\:\\android\\smartLighttest1(alpha 1)\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
 path.0=classes.dex
 renamed.0=classes.dex

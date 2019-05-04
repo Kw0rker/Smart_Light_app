@@ -13,7 +13,7 @@ public class udp
 
 {
     public static int colvo;
-    static int port = 13013;
+    static int port = 64044;
     private static byte[] buf = new byte[1024];
     // public static byte[] reciveData = new byte[1024];
     public static byte[] Data = new byte[1024];
@@ -27,8 +27,8 @@ public class udp
     public static void setup() {
 
         try {
-            serverAddr = InetAddress.getByName("172.16.1.133");
-            servSock = new DatagramSocket(13013);
+            serverAddr = InetAddress.getByName("192.168.0.207");
+            servSock = new DatagramSocket(port);
         } catch (IOException e) {
             Log.e("udp",e.getMessage());
         }
@@ -43,12 +43,13 @@ public class udp
             servSock.send(pkt);
             Log.e("udp",sendmsg);
         } catch (IOException e) {
-            e.printStackTrace();
+            Log.e("udp",e.getMessage());
         }
     }
 
     public void start() {
-        int b=0;
+        int brighness=0;
+        int number=0;
         int i = 0;
         do {
             if (i != 0) {
@@ -56,11 +57,13 @@ public class udp
                 try {
 
                     servSock.receive(pk);
-                    int a=Integer.parseInt(new String(pk.getData()).split("#")[0]);
-                    brignes[i-1]=a;
+                    String s=new String(pk.getData());
+                    String [] es=s.split("#")[0].split(" ");
+                     brighness=Integer.parseInt(es[1]);
+                     number=Integer.parseInt(es[0]);
+                    brignes[number-1]=brighness;
+                    Log.e("udp",number+" "+brighness );
                     i++;
-                    Log.d("udp",""+a);
-                    b=a;
 
                 } catch (IOException e) {
                    Log.e("udp",e.getMessage());
@@ -85,8 +88,8 @@ public class udp
                 }
                     }
 
-        }while (i < colvo) ;
-        brignes[brignes.length-1]=b;
+        }while (i <= colvo) ;
+        brignes[number-1]=brighness;
         Log.d("lamp", Arrays.toString(brignes));
         multithread.finished=true;
     }

@@ -27,6 +27,7 @@
         android:supportsRtl="true"
         android:testOnly="true"
         android:theme="@style/Theme.AppCompat.Light" >
+        <activity android:name="com.example.student.smartlighttest1.Settings" />
         <activity
             android:name="com.example.student.smartlighttest1.MainActivity"
             android:exported="true"

@@ -15,16 +15,17 @@
     tools:layout_editor_absoluteY="73dp">
 
     <SeekBar
-        android:id="@+id/seekBar3"
-        android:layout_width="569dp"
-        android:layout_height="0dp"
+        android:id="@+id/BRIGNESS"
+        android:layout_width="0dp"
+        android:layout_height="37dp"
         android:layout_marginBottom="286dp"
         android:max="255"
         android:progress="255"
         android:thumb="@drawable/thumb"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/SCENARIO"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/text"
@@ -37,28 +38,25 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/SCENARIO"
         android:layout_width="29dp"
         android:layout_height="34dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginBottom="26dp"
         android:background="@drawable/scenario"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/SETTINGS"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekBar3" />
+        app:layout_constraintTop_toBottomOf="@+id/BRIGNESS" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="0dp"
-        android:layout_height="30dp"
+        android:id="@+id/SETTINGS"
+        android:layout_width="29dp"
+        android:layout_height="34dp"
         android:layout_marginEnd="641dp"
         android:layout_marginRight="641dp"
         android:background="@drawable/settings"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button3"
+        app:layout_constraintBaseline_toBaselineOf="@+id/SCENARIO"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button3" />
+        app:layout_constraintStart_toEndOf="@+id/SCENARIO" />
 
 </android.support.constraint.ConstraintLayout>
 

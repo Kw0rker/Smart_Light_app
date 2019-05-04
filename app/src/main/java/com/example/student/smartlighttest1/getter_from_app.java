@@ -1,12 +1,10 @@
 package com.example.student.smartlighttest1;
 
 import android.content.Context;
-import android.os.AsyncTask;
 import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -113,7 +111,7 @@ public class getter_from_app  implements Runnable {
            BufferedWriter writer = new BufferedWriter(new FileWriter("scenarios.txt"));
            while ((str = br.readLine())!= null)
            {
-               if (str.contains(sx))continue;
+               if (str.contains(sx))return true;
                writer.write(str + System.getProperty("line.separator"));
            }
        }

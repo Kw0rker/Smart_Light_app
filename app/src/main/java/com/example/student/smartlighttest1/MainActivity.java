@@ -58,7 +58,7 @@ public class MainActivity extends FragmentActivity {
         }
         activity = this;
         bar = new SeekBar(this);
-        bar.findViewById(R.id.seekBar3);
+        bar.findViewById(R.id.BRIGNESS);
         int max = 255;
         bar.setMax(max);
         bar.setProgress(max);
@@ -89,10 +89,10 @@ public class MainActivity extends FragmentActivity {
         Log.d("context", context_g.toString());//@string/_100
 
         setContentView(R.layout.activity_main);
-       // new multithread().execute("send", "refresh");
+        new multithread().execute("send", "refresh");
         new multithread().execute("send", "status");
         new multithread().execute("start");
-        Button scenario = (Button) findViewById(R.id.button3);
+        Button scenario = (Button) findViewById(R.id.SCENARIO);
         //builui();
         while (!multithread.isFinished()) {
         }
@@ -106,9 +106,18 @@ public class MainActivity extends FragmentActivity {
                 startActivity(intent);
             }
         });
+        Button settings = (Button)findViewById(R.id.SETTINGS);
+        final Intent intent=new Intent(this,Settings.class);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(intent);
+            }
+        });
 
 
     }
+
 
     public void builui() {
         lamps = new lamp[udp.colvo];
