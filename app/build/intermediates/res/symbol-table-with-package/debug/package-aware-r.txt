@@ -1040,6 +1040,8 @@ id FUNCTION
 id Firts_ard
 id META
 id Main
+id NEW_GROUP
+id NEW_SCENARIO
 id RENAME
 id SCENARIO
 id SETTINGS

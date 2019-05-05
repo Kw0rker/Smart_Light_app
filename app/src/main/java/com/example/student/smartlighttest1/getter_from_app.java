@@ -72,7 +72,7 @@ public class getter_from_app  implements Runnable {
         MainActivity.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                MainActivity.read("buttons.txt");
+                MainActivity.read("buttons.txt",udp.colvo);
             }
         });
     }

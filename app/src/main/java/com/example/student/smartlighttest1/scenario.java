@@ -10,11 +10,10 @@ public class scenario {
         String [] brighness=brg.split(",");
        ArrayList<String> messadge=new ArrayList<>();
         int counter=0;
-        int a=0;
         for(int lamp_n=2;lamp_n<udp.colvo;lamp_n++)
         {
            try {
-               a=Integer.parseInt(brighness[lamp_n]);
+               int  a=Integer.parseInt(brighness[lamp_n]);
                if(a>=0){
                    Log.d("udp",""+a);
                    counter++;

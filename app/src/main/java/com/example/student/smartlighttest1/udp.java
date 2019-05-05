@@ -6,29 +6,32 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.nio.ByteBuffer;
 import java.util.Arrays;
 
 public class udp
 
 {
     public static int colvo;
-    static int port = 64044;
+    static int port =13013 ;
     private static byte[] buf = new byte[1024];
     // public static byte[] reciveData = new byte[1024];
     public static byte[] Data = new byte[1024];
     static DatagramSocket servSock;
     static DatagramSocket skt;
     static InetAddress serverAddr;
-    DatagramPacket[] packets;
+   static DatagramPacket[] packets;
     static public int brignes[];
-    private static ByteBuffer buffer;
 
     public static void setup() {
+        try {
+            servSock = new DatagramSocket(port);
+            servSock.setReuseAddress(true);
+            //servSock.bind(address);
+        }
+        catch (IOException e){Log.e("udp",e.getMessage());}
 
         try {
             serverAddr = InetAddress.getByName("192.168.0.207");
-            servSock = new DatagramSocket(port);
         } catch (IOException e) {
             Log.e("udp",e.getMessage());
         }
@@ -38,6 +41,7 @@ public class udp
     public static void sender(String sendmsg) {
         buf = sendmsg.getBytes();
         DatagramPacket pkt;
+
         pkt = new DatagramPacket(buf, buf.length, serverAddr, port);
         try {
             servSock.send(pkt);
@@ -47,7 +51,7 @@ public class udp
         }
     }
 
-    public void start() {
+  static   public void start() {
         int brighness=0;
         int number=0;
         int i = 0;

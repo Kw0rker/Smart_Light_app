@@ -2,6 +2,7 @@ package com.example.student.smartlighttest1;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,15 +10,16 @@ import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -25,70 +27,35 @@ import java.util.ArrayList;
 //import android.support.v7.app.AppCompatActivity;
 
 
-public class MainActivity extends FragmentActivity {
-    static Intent intent;
-    static int id;
+public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarChangeListener,Button.OnClickListener{
     static ArrayList<String> selected = new ArrayList<String>();
-    static byte[] info = new byte[1024];
     static Button[] buttons;
-    static int value;
     static lamp[] lamps;
-    static SeekBar bar;
     static Vibrator v;
-    static arduino[] ard;
     TextView brighness;
-    String text;
+    static SeekBar bar;
     int i;
     static Context context_g;
     static MainActivity activity;
+    static Button new_scenario;
+    static Button new_group;
+    static int last_grup_n=0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.context_g = getApplicationContext();
-        brighness = new TextView(this);
-        udp.setup();
-        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        brighness = findViewById(R.id.text);
-        try {
-            File.createTempFile("scenarios", "txt");
-        } catch (IOException e) {
-            Log.e("Write", e.getMessage());
-        }
-        activity = this;
-        bar = new SeekBar(this);
-        bar.findViewById(R.id.BRIGNESS);
-        int max = 255;
-        bar.setMax(max);
-        bar.setProgress(max);
-        bar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, final int progress, boolean fromUser) {
-                new Runnable() {
-                    public void run() {
-                        for (String s : selected) {
-                            new multithread().execute("send", s + "," + progress);
-                        }
-
-                    }
-                }.run();
-
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });
-        Log.d("context", context_g.toString());//@string/_100
-
         setContentView(R.layout.activity_main);
+        this.context_g = getApplicationContext();
+        brighness =(TextView) findViewById(R.id.text);
+        new_group=(Button) findViewById(R.id.NEW_GROUP);
+        new_group.setOnClickListener(this);
+        new_scenario=(Button)findViewById(R.id.NEW_SCENARIO);
+        if(udp.servSock==null) udp.setup();
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        activity = this;
+        bar =(SeekBar)findViewById(R.id.BRIGNESS) ;
+        bar.setOnSeekBarChangeListener(this);
         new multithread().execute("send", "refresh");
         new multithread().execute("send", "status");
         new multithread().execute("start");
@@ -99,21 +66,14 @@ public class MainActivity extends FragmentActivity {
         ///checked////
         builui();
         new Thread(new getter_from_app()).start();
-        read("buttons.txt");
-        scenario.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(intent);
-            }
-        });
+        read("buttons.txt",udp.colvo);
+        read("groups");
+
+        scenario.setOnClickListener(this);
         Button settings = (Button)findViewById(R.id.SETTINGS);
-        final Intent intent=new Intent(this,Settings.class);
-        settings.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(intent);
-            }
-        });
+        settings.setOnClickListener(this);
+        new_group.setOnClickListener(this);
+        new_scenario.setOnClickListener(this);
 
 
     }
@@ -127,7 +87,6 @@ public class MainActivity extends FragmentActivity {
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
-        intent = new Intent(this, Scenarios.class);
         for (i = 0; i < udp.colvo; i++) {
             buttons[i] = new Button(this);
             buttons[i].setId(i);
@@ -138,10 +97,31 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
-    public void start() {
-        startActivity(intent);
-    }/*Calls to open lamps group*/
+    public static void read(String name,int int_max) {
+        try {
+            // открываем поток для чтения
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                    activity.openFileInput(name)));
+            String str = "";
+            // читаем содержимое
 
+            Log.e("Read", str);
+            for (int x = 0; x <int_max && ((str = br.readLine()) != null); x++) {
+
+                String[] x_y = str.split("/");
+                buttons[x].setTranslationX(Integer.parseInt(x_y[0]));
+                buttons[x].setTranslationY(Integer.parseInt(x_y[1]));
+
+                Log.d("Buttons", "Setted");
+            }
+
+
+        } catch (IOException e) {
+            Log.e("Read", e.getMessage());
+
+        }
+
+    }
     public static void read(String name) {
         try {
             // открываем поток для чтения
@@ -151,14 +131,14 @@ public class MainActivity extends FragmentActivity {
             // читаем содержимое
 
             Log.e("Read", str);
-            for (int x = 0; x < udp.colvo && ((str = br.readLine()) != null); x++) {
+           while ((str = br.readLine()) != null) {
+               last_grup_n++;
+               /*
+               create temp_data
+                */
 
-                String[] x_y = str.split("/");
-                buttons[x].setTranslationX(Integer.parseInt(x_y[0]));
-                buttons[x].setTranslationY(Integer.parseInt(x_y[1]));
-
-                Log.d("Buttons", "Setted");
             }
+
 
         } catch (IOException e) {
             Log.e("Read", e.getMessage());
@@ -176,5 +156,124 @@ public class MainActivity extends FragmentActivity {
         }
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        new_scenario.setText("Добавить новый сценарий");
+        new_scenario.setOnClickListener(this);
+        new_group.setText("Добавить новую группу");
+        new_group.setOnClickListener(this);
+        for (lamp l:lamps)l.setMODE("DEFAULT");
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, final int progress, boolean fromUser) {
+        new Runnable() {
+            public void run() {
+                for (String s : selected) {
+                    new multithread().execute("send", s + "," + progress);
+                }
+                brighness.setText("Яркость :"+progress);
+            }
+        }.run();
+
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.SCENARIO:
+                final Intent intent = new Intent(this, Scenarios.class);
+                startActivity(intent);
+                break;
+            case R.id.NEW_GROUP:
+                new_scenario.setVisibility(View.INVISIBLE);
+                for(lamp l:lamps)l.setMODE("GROUP");
+                new_group.setText("Сохранить");
+                new_group.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int n=0;
+                        new multithread().execute("send","setgroup");
+                        new multithread().execute("send",""+(++last_grup_n));
+                        String group=""+last_grup_n+"-";
+                        for(lamp l:lamps)
+                        {
+                            if(l.in_mode_active){
+                                n++;
+                                group+=l.getId()+" ";
+                            }
+                        }
+                        new multithread().execute("send",""+n);
+                        for(lamp l:lamps)
+                        {
+                            if(l.in_mode_active)new multithread().execute("send",""+l.getId());
+                            l.in_mode_active=false;
+                            l.setMODE("DEFAULT");
+                        }
+                        getter_from_app.writeToFile(group,"groups",MODE_APPEND);
+                        v.setOnClickListener(MainActivity.this);
+                    }
+                });
+                break;
+            case R.id.NEW_SCENARIO:
+                new_group.setVisibility(View.INVISIBLE);
+                for(lamp l:lamps)l.setMODE("SCENARIO");
+                new_scenario.setText("Сохранить");
+                new_scenario.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int n=0;
+                        for(lamp l:lamps)
+                        {
+                            if(l.in_new_scen_brigness>=0)n++;
+                        }
+                        new multithread().execute("send","new");
+                        new multithread().execute("send",""+n);
+                        for (lamp l:lamps)
+                        {
+                            if(l.in_new_scen_brigness>=0)new multithread().execute("send",l.getId()+","+l.in_new_scen_brigness);
+                            l.in_new_scen_brigness=-2;
+                            l.in_mode_active=false;
+                            l.setMODE("DEFAULT");
+                        }
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+                        alertDialog.setTitle("Новый сценарий");
+                        alertDialog.setMessage("Введите название сценария ");
+
+                        final EditText input = new EditText(MainActivity.this);
+                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.MATCH_PARENT);
+                        input.setLayoutParams(lp);
+                        alertDialog.setView(input).setIcon(R.drawable.lamp)
+                                .setCancelable(false).setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                getter_from_app.writeToFile("\n"+input.getText().toString(),"scenarios.txt",Context.MODE_APPEND);
+                            }
+                        });
+                        alertDialog.show();
+
+                    }
+                });
+                break;
+            case R.id.SETTINGS:
+                final Intent intent_=new Intent(this,Settings.class);
+                startActivity(intent_);
+                break;
+        }
+    }
 
 }
