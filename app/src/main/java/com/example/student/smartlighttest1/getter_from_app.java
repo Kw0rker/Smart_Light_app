@@ -14,7 +14,7 @@ import java.net.DatagramSocket;
 import java.util.Arrays;
 
 public class getter_from_app  implements Runnable {
-@Override
+    @Override
     public void run(){
         boolean working = true;
         DatagramSocket serverSocket = null;
@@ -33,9 +33,9 @@ public class getter_from_app  implements Runnable {
                     for (int a = 1; a <= str.length- 1; a++) {
                         final String x_y[] = str[a].split("/");
                         Log.d("udp", str[a]);
-                       try {
-                           data[a - 1] =str[a]+"\n";
-                       }catch (Exception e){}
+                        try {
+                            data[a - 1] =str[a]+"\n";
+                        }catch (Exception e){}
                         final int id = a;
                         MainActivity.activity.runOnUiThread(new Runnable() {
                             @Override
@@ -66,7 +66,7 @@ public class getter_from_app  implements Runnable {
                 }
 
             } catch (IOException e) {
-               // Log.e("udp", e.getMessage());
+                // Log.e("udp", e.getMessage());
             }
         }
         MainActivity.activity.runOnUiThread(new Runnable() {
@@ -102,20 +102,20 @@ public class getter_from_app  implements Runnable {
     static boolean isExist(String sx)
     {
         boolean result=false;
-          BufferedReader br=null;
+        BufferedReader br=null;
         try{ br = new BufferedReader(new InputStreamReader(MainActivity.activity.openFileInput("scenarios.txt")));}
         catch (Exception e){Log.e("Write",e.getMessage());}
         String str="";
 
-       try{
-           BufferedWriter writer = new BufferedWriter(new FileWriter("scenarios.txt"));
-           while ((str = br.readLine())!= null)
-           {
-               if (str.contains(sx))return true;
-               writer.write(str + System.getProperty("line.separator"));
-           }
-       }
-       catch (Exception e){Log.e("Read",e.getMessage());}
+        try{
+            BufferedWriter writer = new BufferedWriter(new FileWriter("scenarios.txt"));
+            while ((str = br.readLine())!= null)
+            {
+                if (str.contains(sx))return true;
+                writer.write(str + System.getProperty("line.separator"));
+            }
+        }
+        catch (Exception e){Log.e("Read",e.getMessage());}
 
         return result;
     }

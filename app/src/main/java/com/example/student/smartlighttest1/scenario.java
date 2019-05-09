@@ -6,19 +6,19 @@ import java.util.ArrayList;
 
 public class scenario {
 
-   static void set_new(String brg){
+    static void set_new(String brg){
         String [] brighness=brg.split(",");
-       ArrayList<String> messadge=new ArrayList<>();
+        ArrayList<String> messadge=new ArrayList<>();
         int counter=0;
         for(int lamp_n=2;lamp_n<udp.colvo;lamp_n++)
         {
-           try {
-               int  a=Integer.parseInt(brighness[lamp_n]);
-               if(a>=0){
-                   Log.d("udp",""+a);
-                   counter++;
-                   messadge.add(lamp_n+","+a*2.55);}
-           }catch (NumberFormatException e){Log.e("scenario",e.getMessage());}
+            try {
+                int  a=Integer.parseInt(brighness[lamp_n]);
+                if(a>=0){
+                    Log.d("udp",""+a);
+                    counter++;
+                    messadge.add(lamp_n+","+a*2.55);}
+            }catch (NumberFormatException e){Log.e("scenario",e.getMessage());}
         }
         new multithread().execute("send","new");
         new multithread().execute("send",(""+counter));

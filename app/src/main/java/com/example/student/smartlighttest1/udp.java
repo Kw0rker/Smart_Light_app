@@ -19,7 +19,7 @@ public class udp
     static DatagramSocket servSock;
     static DatagramSocket skt;
     static InetAddress serverAddr;
-   static DatagramPacket[] packets;
+    static DatagramPacket[] packets;
     static public int brignes[];
 
     public static void setup() {
@@ -51,7 +51,7 @@ public class udp
         }
     }
 
-  static   public void start() {
+    static   public void start() {
         int brighness=0;
         int number=0;
         int i = 0;
@@ -63,19 +63,19 @@ public class udp
                     servSock.receive(pk);
                     String s=new String(pk.getData());
                     String [] es=s.split("#")[0].split(" ");
-                     brighness=Integer.parseInt(es[1]);
-                     number=Integer.parseInt(es[0]);
+                    brighness=Integer.parseInt(es[1]);
+                    number=Integer.parseInt(es[0]);
                     brignes[number-1]=brighness;
                     Log.e("udp",number+" "+brighness );
                     i++;
 
                 } catch (IOException e) {
-                   Log.e("udp",e.getMessage());
+                    Log.e("udp",e.getMessage());
                 }
 
-                }
-                else {
-                    DatagramPacket pk =new DatagramPacket(Data, Data.length);
+            }
+            else {
+                DatagramPacket pk =new DatagramPacket(Data, Data.length);
                 try {
 
                     servSock.receive(pk);
@@ -90,7 +90,7 @@ public class udp
                 } catch (IOException e) {
                     Log.e("udp",e.getMessage());
                 }
-                    }
+            }
 
         }while (i <= colvo) ;
         brignes[number-1]=brighness;

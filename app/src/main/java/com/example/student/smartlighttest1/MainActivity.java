@@ -51,14 +51,18 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         new_group=(Button) findViewById(R.id.NEW_GROUP);
         new_group.setOnClickListener(this);
         new_scenario=(Button)findViewById(R.id.NEW_SCENARIO);
-        if(udp.servSock==null) udp.setup();
         v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         activity = this;
         bar =(SeekBar)findViewById(R.id.BRIGNESS) ;
         bar.setOnSeekBarChangeListener(this);
-        new multithread().execute("send", "refresh");
+        try {
+            savedInstanceState.getBoolean("ss");
+        }
+        catch (Exception e){
+            udp.setup();
+        //new multithread().execute("send", "refresh");
         new multithread().execute("send", "status");
-        new multithread().execute("start");
+        new multithread().execute("start");}
         Button scenario = (Button) findViewById(R.id.SCENARIO);
         //builui();
         while (!multithread.isFinished()) {
@@ -131,8 +135,8 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             // читаем содержимое
 
             Log.e("Read", str);
-           while ((str = br.readLine()) != null) {
-               last_grup_n++;
+            while ((str = br.readLine()) != null) {
+                last_grup_n++;
                /*
                create temp_data
                 */

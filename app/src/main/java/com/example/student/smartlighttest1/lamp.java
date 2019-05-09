@@ -6,12 +6,13 @@ import android.widget.Button;
 
 public class lamp {
 
-    int on_off;
-    protected int id;
+    private int id;
     static boolean selected=false;
+    private String ID;
     int brigh;
-    Button button;
+    public Button button;
     boolean is_active;
+    static MainActivity main=new MainActivity();
     boolean in_mode_active=false;
     int in_new_scen_brigness=-2;
     private String MODE="DEFAULT";
@@ -19,7 +20,16 @@ public class lamp {
         button =bt;
         button.setText(String.valueOf(brigh_));
         id=id_;
+        id_++;
         brigh=brigh_;
+        if (id_<10)ID="000"+id_;
+        else if (id_>=10&&id<100)ID="00"+id_;
+        else if(id_>=100&&id<1000)ID="0"+id_;
+        else ID=""+id_;
+
+
+
+
         if (brigh>0){bt.setBackgroundResource(R.drawable.lamp_on);is_active=true;}
         else {bt.setBackgroundResource(R.drawable.lamp_off);is_active=false;}
         bt.setOnClickListener(new View.OnClickListener() {
@@ -37,26 +47,26 @@ public class lamp {
                             button.setBackgroundResource(R.drawable.lamp_off);
                         }
                         else
-                            {
-                                new multithread().execute("send",(getId() +"," + 255));
-                                button.setBackgroundResource(R.drawable.lamp_on);
-                                udp.brignes[id]=255;
-                            }
+                        {
+                            new multithread().execute("send",(getId() +"," + 255));
+                            button.setBackgroundResource(R.drawable.lamp_on);
+                            udp.brignes[id]=255;
+                        }
                         break;
                     case "GROUP":
                         in_mode_active=!in_mode_active;
                         Log.d("Button_mode","GROUP");
                         if(in_mode_active)
-                            {
-                                MainActivity.selected.add(""+getId());
-                                button.setBackgroundResource(R.drawable.lamp_on_s);
+                        {
+                            MainActivity.selected.add(""+getId());
+                            button.setBackgroundResource(R.drawable.lamp_on_s);
 
-                            }
+                        }
                         else
-                            {
-                                MainActivity.selected.remove(""+getId());
-                                button.setBackgroundResource(R.drawable.lamp_off);
-                            }
+                        {
+                            MainActivity.selected.remove(""+getId());
+                            button.setBackgroundResource(R.drawable.lamp_off);
+                        }
 
                         break;
                     case "SCENARIO":
@@ -115,9 +125,8 @@ public class lamp {
 
     }
 
-
-    public int getId(){
-        return id+1;
+    public String getId(){
+        return ID;
     }
     public void setMODE(String Mode){this.MODE=Mode;}
 }
