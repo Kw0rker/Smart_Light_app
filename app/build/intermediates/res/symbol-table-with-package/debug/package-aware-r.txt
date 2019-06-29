@@ -1036,6 +1036,7 @@ id ALT
 id BRIGNESS
 id CTRL
 id DELETE
+id DELETE2
 id FUNCTION
 id Firts_ard
 id GROUPS
@@ -1119,7 +1120,6 @@ id fill_horizontal
 id fill_vertical
 id filled
 id fixed
-id fores
 id forever
 id ghost_view
 id gone
@@ -1140,7 +1140,6 @@ id largeLabel
 id left
 id line1
 id line3
-id linearLayout
 id listMode
 id list_item
 id masked
@@ -1213,7 +1212,6 @@ id start
 id stretch
 id submenuarrow
 id submit_area
-id sukc
 id tabMode
 id tag_transition_group
 id tag_unhandled_key_event_manager
@@ -1224,6 +1222,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textView
+id textView3
 id text_input_password_toggle
 id textinput_counter
 id textinput_error

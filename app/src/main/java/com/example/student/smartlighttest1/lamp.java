@@ -26,10 +26,7 @@ public class lamp {
         else if (id_>=10&&id<100)ID="00"+id_;
         else if(id_>=100&&id<1000)ID="0"+id_;
         else ID=""+id_;
-
-
-
-
+        brigh_=brigh_;
         if (brigh>0){bt.setBackgroundResource(R.drawable.lamp_on);is_active=true;}
         else {bt.setBackgroundResource(R.drawable.lamp_off);is_active=false;}
         bt.setOnClickListener(new View.OnClickListener() {
@@ -58,6 +55,7 @@ public class lamp {
                         Log.d("Button_mode","GROUP");
                         if(in_mode_active)
                         {
+                            if (!MainActivity.selected.contains(""+getId()));
                             MainActivity.selected.add(""+getId());
                             button.setBackgroundResource(R.drawable.lamp_on_s);
 
@@ -86,21 +84,6 @@ public class lamp {
                         break;
 
                 }
-                /*
-                if (selected)
-                {
-                    if(is_active){
-                    button.setBackgroundResource(R.drawable.lamp_on_s);
-                    MainActivity.selected.add(""+id);
-                    is_active=false;}
-                    else
-                        {
-                            button.setBackgroundResource(R.drawable.lamp_on);
-                            MainActivity.selected.remove(""+id);
-                            is_active=true;
-                        }
-                }
-             // else{  tuped(button);}*/
             }
         });
         bt.setOnLongClickListener(new View.OnLongClickListener() {
@@ -109,13 +92,13 @@ public class lamp {
                 MainActivity.vibrate(500);
                 selected=!selected;
                 if (selected) {
-                    for (lamp l : MainActivity.lamps) l.setMODE("GROUP");
+                    for (lamp l : MainActivity.lamps) {l.setMODE("GROUP");}
                     MainActivity.new_scenario.setVisibility(View.VISIBLE);
                     MainActivity.new_group.setVisibility(View.VISIBLE);
                 }
 
                 else{
-                    for(lamp l:MainActivity.lamps)l.setMODE("DEFAULT");
+                    for(lamp l:MainActivity.lamps){l.setMODE("DEFAULT");MainActivity.selected.remove(""+l.getId());}
                     MainActivity.new_group.setVisibility(View.INVISIBLE);
                     MainActivity.new_scenario.setVisibility(View.INVISIBLE);
                 }

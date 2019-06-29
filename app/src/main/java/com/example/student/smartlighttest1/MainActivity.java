@@ -60,7 +60,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         }
         catch (Exception e){
             udp.setup();
-        //new multithread().execute("send", "refresh");
+        new multithread().execute("send", "refresh");
         new multithread().execute("send", "status");
         new multithread().execute("start");}
         Button scenario = (Button) findViewById(R.id.SCENARIO);
@@ -226,8 +226,24 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                             l.in_mode_active=false;
                             l.setMODE("DEFAULT");
                         }
-                        getter_from_app.writeToFile(group,"groups",MODE_APPEND);
                         v.setOnClickListener(MainActivity.this);
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+                        alertDialog.setTitle("Новая группа");
+                        alertDialog.setMessage("Введите название группы ");
+
+                        final EditText input = new EditText(MainActivity.this);
+                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.MATCH_PARENT);
+                        input.setLayoutParams(lp);
+                        alertDialog.setView(input).setIcon(R.drawable.lamp)
+                                .setCancelable(false).setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                getter_from_app.writeToFile(input.getText().toString()+"\n","groups.txt",Context.MODE_APPEND);
+                            }
+                        });
+                        alertDialog.show();
                     }
                 });
                 break;
@@ -265,7 +281,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                                 .setCancelable(false).setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                getter_from_app.writeToFile("\n"+input.getText().toString(),"scenarios.txt",Context.MODE_APPEND);
+                                getter_from_app.writeToFile(input.getText().toString()+"\n","scenarios.txt",Context.MODE_APPEND);
                             }
                         });
                         alertDialog.show();

@@ -1,11 +1,13 @@
 package com.example.student.smartlighttest1;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 
 import java.io.BufferedReader;
@@ -14,15 +16,17 @@ import java.util.Arrays;
 
 public class Scenarios extends FragmentActivity {
     String Name;
-    TableLayout layout1;
+    LinearLayout layout1;
+    LinearLayout layout;
     static  BufferedReader br;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lamps);
-        layout1= new TableLayout(this); layout1.findViewById(R.id.box);
+        layout1=(LinearLayout) findViewById(R.id.box);
         layout1.setOrientation(TableLayout.VERTICAL);
-
+        layout=(LinearLayout) findViewById(R.id.groups);
+        layout.setOrientation(TableLayout.VERTICAL);
     }
 
 
@@ -52,6 +56,44 @@ public class Scenarios extends FragmentActivity {
                     @Override
                     public void onClick(View v) {
                         new multithread().execute("send",mes);
+                    }
+                });
+            }
+        }catch (Exception e){}
+        try{ br = new BufferedReader(new InputStreamReader(MainActivity.activity.openFileInput("groups.txt")));}
+        catch (Exception e){Log.e("Write",e.getMessage());}
+
+
+        // читаем содержимое
+        int ID=0;
+        try{
+            while ((str = br.readLine()) != null) {
+                Button button =new Button(this);
+                TableLayout.LayoutParams params=new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.MATCH_PARENT);
+                final String mes;
+                if (ID<=9)mes="00"+ID;
+                    else if (ID>9&&ID<=99)mes="0"+ID;
+                        else mes=""+ID;
+                button.setId(ID++);
+                final int id_=button.getId();
+                button.findViewById(id_);
+                MainActivity.selected.remove(mes);
+                layout.addView(button);
+                button.setText(str);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                       if(!MainActivity.selected.contains(mes))MainActivity.selected.add(mes);
+                       v.setBackgroundColor(Color.BLUE);
+                    }
+                });
+                button.setOnLongClickListener(new View.OnLongClickListener() {
+                    @Override
+                    public boolean onLongClick(View v) {
+                        MainActivity.vibrate(500);
+                        v.setBackgroundColor(Color.TRANSPARENT);
+                        MainActivity.selected.remove(mes);
+                        return false;
                     }
                 });
             }
