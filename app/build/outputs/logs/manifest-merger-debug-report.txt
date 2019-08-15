@@ -1,208 +1,210 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-38:12
-MERGED from [com.android.support:design:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\d88f0b81f18d0ce37b33ea47b90c72b6\AndroidManifest.xml:17:1-24:12
-MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\aa2c9be316d6528695642bafaebed03f\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\637dbfefc4059c49ec97f7103a3052d0\AndroidManifest.xml:2:1-11:12
-MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\5351c7bfd8c5827cbaef883ef204892d\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\aff1500f72e98b20b294a4cb1a145929\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\ffd37fc2899e43aca045c3b7db6009d0\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\7060e0635300fa7b016e89eb76ae004a\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\fd6f20e9388b7dc951532a2b32ab3e63\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\f83c46dc06d4607eb27149e7dd313417\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:transition:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\1fd3cab04544903855220091ec474519\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:loader:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\6ae4d829fc08a81e87864286c12835b8\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:viewpager:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\6497eba9ec8247b137f294620bddda3d\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\01c6f6f0e5b25e1eed995f12b768eada\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\77961d4df26d0b1cca435a7abfdfc806\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\c1fda61168b9405a6fc004384c947cae\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:customview:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\bbb141b01444b2b2d68f7cfa67922f17\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\2a8354ea3cf06c6290c4748228c53c1d\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\84b431a857a32e17840fd1cc9631d8e2\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\617351bbc692d595a419ce4cb24a5ad1\AndroidManifest.xml:17:1-24:12
-MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\90a9798848eefa0e8ffbacc39606b384\AndroidManifest.xml:17:1-25:12
-MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\b6d958f5390934c8247e479134dc67a4\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\0d1c7748b9e76d04c15a8c004d171f64\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\c8dea3e9847d299f1d63e31266c1b4da\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:documentfile:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\f793a96501442fc7d334e2cdfc88f4f4\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\dda03720ebf9a30bd060a9735946318c\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:print:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\5a7e6e2ccd49e1e6cdadab37fa4f898c\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\ccb3c6e4f0b13d9d4401a9c0b0d04ad2\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\bf39e132ff981c3005587173d2467a52\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\280316f39aa8a1366b3c8b4e42cec260\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\d925e71c6255c44dede5b0d295280421\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\52d2cbc2f4b2d0b413ea41a8c47d37be\AndroidManifest.xml:17:1-22:12
-INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-38:12
+ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:2:1-38:12
+MERGED from [com.android.support:design:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6d70a7e0d1a75ee3fe1561eeff0eabc4\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\2bca15e071761fff34510cd3305ef8e8\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\84c0207b5b99d4d4767631b95834e7d5\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6cbbbd9d7cb6af72624b94a1e94c14bd\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\b8a415558f07da6cdbca7d4d03d4cb08\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\d46badca0ec51cf48acea4a15235cff0\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\717d6695dffaaebda64b62046f6f2d53\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\9c17fa583b792471eb3dad67ae237158\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\a058fce3b3e32e7721fb25e7d50d124e\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:transition:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\64b23b650f0e5abe38b7c9838ca79e66\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:loader:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\19fecc5dcc6f64757d0e6074091ac013\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\bd7b12ee09d0aa6a712dcb4b4f716a46\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e3d3df840019c77ba1e3071d8a7d23c\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8f88b5ead789612a4b004db934302508\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\1828b9cf834f80070627df12b390a31f\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:customview:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6081603aca35c1c9105a2bf19fdfd756\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\a21d09cd772b99af175052939f0a0125\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\ac9b8247028cec11fe1a6f3f42a37ec3\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5fc1df9259ac79ff60060eb779ff8799\AndroidManifest.xml:17:1-24:12
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\0e53d22d91ea95fc8753254180ce8587\AndroidManifest.xml:17:1-25:12
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8b890276f6ee7090fa191332611ca05e\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8c92d44c52bdddf269e1869446061be9\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\1501cfce539dbfe62c797e535e8cc56a\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\f26997c7cebb735059d8961238b5c7b3\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\60ddef7bdf6801c1c6b5ef8118084a2d\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:print:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5243b66cb3535986c7685a48bc84d0d4\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8960b71c9b410c5f2d20b7a6439234cf\AndroidManifest.xml:17:1-22:12
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\ca7a82c0654c1e731be878a460a4b88f\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\98bda6f9792e102f0d2f6caeaee0ca4e\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\9fa032041c7872abb914873f992b8fdd\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\14adf89f8adfbfaa7830aa52cff48c8c\AndroidManifest.xml:17:1-22:12
+INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:2:1-38:12
+INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:2:1-38:12
 	package
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:4:5-50
-		INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
-		INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:3:5-50
+		INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-38:12
-		INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
-	xmlns:tools
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:3:5-51
+		INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:2:1-38:12
+		INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:1-38:12
-		INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:2:1-38:12
+		INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:2:11-69
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:2:11-69
 uses-permission#android.permission.ACCESS_NETWORK_STATE
-ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:6:5-79
+ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:5:5-79
 	android:name
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:6:22-76
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:5:22-76
 uses-permission#android.permission.ACCESS_WIFI_STATE
-ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:7:5-76
+ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:6:5-76
 	android:name
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:7:22-73
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:6:22-73
 uses-permission#android.permission.INTERNET
-ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:8:5-67
+ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:7:5-67
 	android:name
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:8:22-64
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:7:22-64
 uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
-ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:9:5-81
+ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:8:5-81
 	android:name
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:9:22-78
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:8:22-78
 uses-permission#android.permission.VIBRATE
-ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:10:5-66
+ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:9:5-66
 	android:name
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:10:22-63
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:9:22-63
 application
-ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:12:5-36:19
-MERGED from [com.android.support:design:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\d88f0b81f18d0ce37b33ea47b90c72b6\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support:design:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\d88f0b81f18d0ce37b33ea47b90c72b6\AndroidManifest.xml:22:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\637dbfefc4059c49ec97f7103a3052d0\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\637dbfefc4059c49ec97f7103a3052d0\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\617351bbc692d595a419ce4cb24a5ad1\AndroidManifest.xml:22:5-94
-MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\617351bbc692d595a419ce4cb24a5ad1\AndroidManifest.xml:22:5-94
-MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\90a9798848eefa0e8ffbacc39606b384\AndroidManifest.xml:22:5-23:19
-MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\90a9798848eefa0e8ffbacc39606b384\AndroidManifest.xml:22:5-23:19
+ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:11:5-36:19
+MERGED from [com.android.support:design:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6d70a7e0d1a75ee3fe1561eeff0eabc4\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support:design:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6d70a7e0d1a75ee3fe1561eeff0eabc4\AndroidManifest.xml:22:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\84c0207b5b99d4d4767631b95834e7d5\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\84c0207b5b99d4d4767631b95834e7d5\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5fc1df9259ac79ff60060eb779ff8799\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5fc1df9259ac79ff60060eb779ff8799\AndroidManifest.xml:22:5-94
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\0e53d22d91ea95fc8753254180ce8587\AndroidManifest.xml:22:5-23:19
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\0e53d22d91ea95fc8753254180ce8587\AndroidManifest.xml:22:5-23:19
 	android:appComponentFactory
-		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\617351bbc692d595a419ce4cb24a5ad1\AndroidManifest.xml:22:18-91
+		ADDED from [com.android.support:support-compat:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5fc1df9259ac79ff60060eb779ff8799\AndroidManifest.xml:22:18-91
 	android:supportsRtl
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:17:9-35
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:16:9-35
 	android:label
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:15:9-41
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:14:9-41
 	android:roundIcon
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:16:9-47
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:15:9-47
 	android:icon
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:14:9-42
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:13:9-42
 	android:allowBackup
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:13:9-35
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:12:9-35
+activity#com.example.student.smartlighttest1.Settimgs
+ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:17:9-55
+	android:name
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:17:19-43
 activity#com.example.student.smartlighttest1.Settings
-ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:18:9-21:15
+ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:18:9-21:72
 	android:screenOrientation
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:20:13-49
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:20:13-49
 	android:theme
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:19:13-69
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:21:13-69
 	android:name
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:18:19-43
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:19:13-37
 activity#com.example.student.smartlighttest1.MainActivity
-ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:22:9-31:20
+ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:22:9-31:20
 	android:screenOrientation
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:24:13-50
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:24:13-50
 	android:theme
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:25:13-69
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:25:13-69
 	android:name
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:23:13-41
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:23:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:26:9-30:25
+ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:26:13-30:29
 action#android.intent.action.MAIN
-ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:27:13-65
+ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:27:17-69
 	android:name
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:27:21-62
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:27:25-66
 category#android.intent.category.LAUNCHER
-ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:29:13-73
+ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:29:17-77
 	android:name
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:29:23-70
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:29:27-74
 activity#com.example.student.smartlighttest1.Scenarios
-ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:32:9-35:72
+ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:32:9-35:72
 	android:label
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:34:13-57
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:34:13-57
 	android:theme
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:35:13-69
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:35:13-69
 	android:name
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml:33:13-38
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml:33:13-38
 uses-sdk
-INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
-INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
-MERGED from [com.android.support:design:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\d88f0b81f18d0ce37b33ea47b90c72b6\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:design:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\d88f0b81f18d0ce37b33ea47b90c72b6\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\aa2c9be316d6528695642bafaebed03f\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\aa2c9be316d6528695642bafaebed03f\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\637dbfefc4059c49ec97f7103a3052d0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\637dbfefc4059c49ec97f7103a3052d0\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\5351c7bfd8c5827cbaef883ef204892d\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\5351c7bfd8c5827cbaef883ef204892d\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\aff1500f72e98b20b294a4cb1a145929\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\aff1500f72e98b20b294a4cb1a145929\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\ffd37fc2899e43aca045c3b7db6009d0\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\ffd37fc2899e43aca045c3b7db6009d0\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\7060e0635300fa7b016e89eb76ae004a\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\7060e0635300fa7b016e89eb76ae004a\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\fd6f20e9388b7dc951532a2b32ab3e63\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\fd6f20e9388b7dc951532a2b32ab3e63\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\f83c46dc06d4607eb27149e7dd313417\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\f83c46dc06d4607eb27149e7dd313417\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:transition:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\1fd3cab04544903855220091ec474519\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:transition:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\1fd3cab04544903855220091ec474519\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:loader:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\6ae4d829fc08a81e87864286c12835b8\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:loader:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\6ae4d829fc08a81e87864286c12835b8\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:viewpager:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\6497eba9ec8247b137f294620bddda3d\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:viewpager:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\6497eba9ec8247b137f294620bddda3d\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\01c6f6f0e5b25e1eed995f12b768eada\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\01c6f6f0e5b25e1eed995f12b768eada\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\77961d4df26d0b1cca435a7abfdfc806\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\77961d4df26d0b1cca435a7abfdfc806\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\c1fda61168b9405a6fc004384c947cae\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\c1fda61168b9405a6fc004384c947cae\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:customview:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\bbb141b01444b2b2d68f7cfa67922f17\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:customview:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\bbb141b01444b2b2d68f7cfa67922f17\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\2a8354ea3cf06c6290c4748228c53c1d\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\2a8354ea3cf06c6290c4748228c53c1d\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\84b431a857a32e17840fd1cc9631d8e2\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\84b431a857a32e17840fd1cc9631d8e2\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\617351bbc692d595a419ce4cb24a5ad1\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:support-compat:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\617351bbc692d595a419ce4cb24a5ad1\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\90a9798848eefa0e8ffbacc39606b384\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\90a9798848eefa0e8ffbacc39606b384\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\b6d958f5390934c8247e479134dc67a4\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\b6d958f5390934c8247e479134dc67a4\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\0d1c7748b9e76d04c15a8c004d171f64\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\0d1c7748b9e76d04c15a8c004d171f64\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\c8dea3e9847d299f1d63e31266c1b4da\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\c8dea3e9847d299f1d63e31266c1b4da\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:documentfile:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\f793a96501442fc7d334e2cdfc88f4f4\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:documentfile:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\f793a96501442fc7d334e2cdfc88f4f4\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\dda03720ebf9a30bd060a9735946318c\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\dda03720ebf9a30bd060a9735946318c\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:print:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\5a7e6e2ccd49e1e6cdadab37fa4f898c\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:print:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\5a7e6e2ccd49e1e6cdadab37fa4f898c\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\ccb3c6e4f0b13d9d4401a9c0b0d04ad2\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\ccb3c6e4f0b13d9d4401a9c0b0d04ad2\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\bf39e132ff981c3005587173d2467a52\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support:interpolator:28.0.0] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\bf39e132ff981c3005587173d2467a52\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\280316f39aa8a1366b3c8b4e42cec260\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\280316f39aa8a1366b3c8b4e42cec260\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\d925e71c6255c44dede5b0d295280421\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\d925e71c6255c44dede5b0d295280421\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\52d2cbc2f4b2d0b413ea41a8c47d37be\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.core:runtime:1.1.1] C:\Users\Руслан\.gradle\caches\transforms-2\files-2.1\52d2cbc2f4b2d0b413ea41a8c47d37be\AndroidManifest.xml:20:5-44
-INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
-INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support:design:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6d70a7e0d1a75ee3fe1561eeff0eabc4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:design:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6d70a7e0d1a75ee3fe1561eeff0eabc4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\2bca15e071761fff34510cd3305ef8e8\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:appcompat-v7:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\2bca15e071761fff34510cd3305ef8e8\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\84c0207b5b99d4d4767631b95834e7d5\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\User\.gradle\caches\transforms-2\files-2.1\84c0207b5b99d4d4767631b95834e7d5\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6cbbbd9d7cb6af72624b94a1e94c14bd\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-fragment:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6cbbbd9d7cb6af72624b94a1e94c14bd\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\b8a415558f07da6cdbca7d4d03d4cb08\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:animated-vector-drawable:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\b8a415558f07da6cdbca7d4d03d4cb08\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\d46badca0ec51cf48acea4a15235cff0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\d46badca0ec51cf48acea4a15235cff0\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\717d6695dffaaebda64b62046f6f2d53\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-ui:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\717d6695dffaaebda64b62046f6f2d53\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\9c17fa583b792471eb3dad67ae237158\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-core-utils:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\9c17fa583b792471eb3dad67ae237158\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\a058fce3b3e32e7721fb25e7d50d124e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-vector-drawable:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\a058fce3b3e32e7721fb25e7d50d124e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\64b23b650f0e5abe38b7c9838ca79e66\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:transition:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\64b23b650f0e5abe38b7c9838ca79e66\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\19fecc5dcc6f64757d0e6074091ac013\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:loader:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\19fecc5dcc6f64757d0e6074091ac013\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\bd7b12ee09d0aa6a712dcb4b4f716a46\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:viewpager:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\bd7b12ee09d0aa6a712dcb4b4f716a46\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e3d3df840019c77ba1e3071d8a7d23c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:coordinatorlayout:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6e3d3df840019c77ba1e3071d8a7d23c\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8f88b5ead789612a4b004db934302508\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:drawerlayout:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8f88b5ead789612a4b004db934302508\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\1828b9cf834f80070627df12b390a31f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:slidingpanelayout:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\1828b9cf834f80070627df12b390a31f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6081603aca35c1c9105a2bf19fdfd756\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:customview:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\6081603aca35c1c9105a2bf19fdfd756\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\a21d09cd772b99af175052939f0a0125\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:swiperefreshlayout:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\a21d09cd772b99af175052939f0a0125\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\ac9b8247028cec11fe1a6f3f42a37ec3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:asynclayoutinflater:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\ac9b8247028cec11fe1a6f3f42a37ec3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5fc1df9259ac79ff60060eb779ff8799\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:support-compat:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5fc1df9259ac79ff60060eb779ff8799\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\0e53d22d91ea95fc8753254180ce8587\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:versionedparcelable:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\0e53d22d91ea95fc8753254180ce8587\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8b890276f6ee7090fa191332611ca05e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cursoradapter:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8b890276f6ee7090fa191332611ca05e\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8c92d44c52bdddf269e1869446061be9\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:cardview-v7:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8c92d44c52bdddf269e1869446061be9\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\1501cfce539dbfe62c797e535e8cc56a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:runtime:1.1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\1501cfce539dbfe62c797e535e8cc56a\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\f26997c7cebb735059d8961238b5c7b3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:documentfile:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\f26997c7cebb735059d8961238b5c7b3\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\60ddef7bdf6801c1c6b5ef8118084a2d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:localbroadcastmanager:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\60ddef7bdf6801c1c6b5ef8118084a2d\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5243b66cb3535986c7685a48bc84d0d4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:print:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\5243b66cb3535986c7685a48bc84d0d4\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8960b71c9b410c5f2d20b7a6439234cf\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\8960b71c9b410c5f2d20b7a6439234cf\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\ca7a82c0654c1e731be878a460a4b88f\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:interpolator:28.0.0] C:\Users\User\.gradle\caches\transforms-2\files-2.1\ca7a82c0654c1e731be878a460a4b88f\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\98bda6f9792e102f0d2f6caeaee0ca4e\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata:1.1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\98bda6f9792e102f0d2f6caeaee0ca4e\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\9fa032041c7872abb914873f992b8fdd\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\9fa032041c7872abb914873f992b8fdd\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\14adf89f8adfbfaa7830aa52cff48c8c\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.core:runtime:1.1.1] C:\Users\User\.gradle\caches\transforms-2\files-2.1\14adf89f8adfbfaa7830aa52cff48c8c\AndroidManifest.xml:20:5-44
+INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml
+INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
-		INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
-		ADDED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
-		INJECTED from D:\android\smartLighttest1(alpha 1)\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml
+		ADDED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\User\StudioProjects\Smart_Light_app\app\src\main\AndroidManifest.xml

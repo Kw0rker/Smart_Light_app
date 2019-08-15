@@ -3,6 +3,7 @@ package com.example.student.smartlighttest1;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 public class lamp {
 
@@ -18,7 +19,7 @@ public class lamp {
     private String MODE="DEFAULT";
     lamp(Button bt,int brigh_,int id_){
         button =bt;
-        button.setText(String.valueOf(brigh_));
+       // button.setText(String.valueOf(brigh_));
         id=id_;
         id_++;
         brigh=brigh_;
@@ -29,6 +30,7 @@ public class lamp {
         brigh_=brigh_;
         if (brigh>0){bt.setBackgroundResource(R.drawable.lamp_on);is_active=true;}
         else {bt.setBackgroundResource(R.drawable.lamp_off);is_active=false;}
+        button.setLayoutParams(new LinearLayout.LayoutParams(15,15));
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

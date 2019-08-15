@@ -31,7 +31,7 @@ public class udp
         catch (IOException e){Log.e("udp",e.getMessage());}
 
         try {
-            serverAddr = InetAddress.getByName("10.17.123.249");
+            serverAddr = InetAddress.getByName("10.17.0.1");
         } catch (IOException e) {
             Log.e("udp",e.getMessage());
         }

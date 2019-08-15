@@ -20,6 +20,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -55,10 +56,8 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         activity = this;
         bar =(SeekBar)findViewById(R.id.BRIGNESS) ;
         bar.setOnSeekBarChangeListener(this);
-        try {
-            savedInstanceState.getBoolean("ss");
-        }
-        catch (Exception e){
+
+        if (savedInstanceState==null){
             udp.setup();
         new multithread().execute("send", "refresh");
         new multithread().execute("send", "status");
@@ -70,8 +69,9 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         ///checked////
         builui();
         new Thread(new getter_from_app()).start();
-        read("buttons.txt",udp.colvo);
-        read("groups");
+        if (new File(getApplicationContext().getFilesDir(),"buttons.txt").exists()&&new File(getApplicationContext().getFilesDir(),"groups.txt").exists())
+        {read("buttons.txt",udp.colvo);
+        read("groups.txt");}
 
         scenario.setOnClickListener(this);
         Button settings = (Button)findViewById(R.id.SETTINGS);
@@ -282,6 +282,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 getter_from_app.writeToFile(input.getText().toString()+"\n","scenarios.txt",Context.MODE_APPEND);
+                                new_scenario.setOnClickListener(MainActivity.this);
                             }
                         });
                         alertDialog.show();
@@ -290,7 +291,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                 });
                 break;
             case R.id.SETTINGS:
-                final Intent intent_=new Intent(this,Settings.class);
+               final Intent intent_=new Intent(this,Settimgs.class);
                 startActivity(intent_);
                 break;
         }
