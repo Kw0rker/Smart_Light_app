@@ -812,6 +812,10 @@
         "source": "C:\\Users\\User\\.gradle\\caches\\transforms-2\\files-2.1\\2bca15e071761fff34510cd3305ef8e8\\res\\drawable\\abc_spinner_textfield_background_material.xml"
     },
     {
+        "merged": "C:\\Users\\User\\StudioProjects\\Smart_Light_app\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_settimgs.xml.flat",
+        "source": "C:\\Users\\User\\StudioProjects\\Smart_Light_app\\app\\src\\main\\res\\layout\\activity_settimgs.xml"
+    },
+    {
         "merged": "C:\\Users\\User\\StudioProjects\\Smart_Light_app\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_btn_check_to_on_mtrl_015.png.flat",
         "source": "C:\\Users\\User\\.gradle\\caches\\transforms-2\\files-2.1\\2bca15e071761fff34510cd3305ef8e8\\res\\drawable-xxxhdpi-v4\\abc_btn_check_to_on_mtrl_015.png"
     },

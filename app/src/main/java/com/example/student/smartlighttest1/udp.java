@@ -11,7 +11,7 @@ import java.util.Arrays;
 public class udp
 
 {
-    public static int colvo;
+    public static int colvo =2 ;
     static int port =13013 ;
     private static byte[] buf = new byte[1024];
     // public static byte[] reciveData = new byte[1024];

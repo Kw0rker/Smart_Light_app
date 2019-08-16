@@ -24,6 +24,8 @@ public class Settimgs extends AppCompatActivity implements Button.OnClickListene
         DEL_G.setOnClickListener(this);
         past_ard = (EditText) findViewById(R.id.past_ard);
         new_ard =(EditText) findViewById(R.id.new_ard);
+        CHANGE =(Button)findViewById(R.id.CHANGE);
+        CHANGE.setOnClickListener(this);
 
 
 
@@ -43,7 +45,7 @@ public class Settimgs extends AppCompatActivity implements Button.OnClickListene
 
                 break;
             case R.id.CHANGE:
-                if(past_ard!=null&&new_ard!=null){
+                if(past_ard.getText()!=null&&new_ard.getText()!=null){
                     new multithread().execute("send","rename");
                     new multithread().execute("send",past_ard.getText()+" "+new_ard.getText());
         }

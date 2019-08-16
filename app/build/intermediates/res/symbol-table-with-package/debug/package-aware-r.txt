@@ -1034,7 +1034,10 @@ drawable tooltip_frame_dark
 drawable tooltip_frame_light
 id ALT
 id BRIGNESS
+id CHANGE
 id CTRL
+id DEL_G
+id DEL_SCEN
 id FUNCTION
 id GROUPS
 id META
@@ -1120,6 +1123,7 @@ id ghost_view
 id gone
 id group_divider
 id groups
+id guideline
 id home
 id homeAsUp
 id icon
@@ -1146,6 +1150,7 @@ id mtrl_internal_children_alpha_tag
 id multiply
 id navigation_header_container
 id never
+id new_ard
 id none
 id normal
 id notification_background
@@ -1157,6 +1162,7 @@ id parallax
 id parent
 id parentPanel
 id parent_matrix
+id past_ard
 id percent
 id pin
 id progress_circular
@@ -1216,6 +1222,8 @@ id text2
 id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
+id textView
+id textView2
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
@@ -1290,6 +1298,7 @@ layout abc_select_dialog_material
 layout abc_tooltip
 layout activity_lamps
 layout activity_main
+layout activity_settimgs
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar

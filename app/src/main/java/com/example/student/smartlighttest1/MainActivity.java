@@ -42,7 +42,6 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
     static Button new_group;
     static int last_grup_n=0;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,9 +60,9 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             udp.setup();
         new multithread().execute("send", "refresh");
         new multithread().execute("send", "status");
-        new multithread().execute("start");}
+        //new multithread().execute("start");
+            }
         Button scenario = (Button) findViewById(R.id.SCENARIO);
-        //builui();
         while (!multithread.isFinished()) {
         }
         ///checked////
@@ -97,7 +96,10 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             int id_ = buttons[i].getId();
             layout.addView(buttons[i], params);
             buttons[i] = findViewById(id_);
+            buttons[i].setLayoutParams(new ConstraintLayout.LayoutParams(87,87));
+
             lamps[i] = new lamp(buttons[i], udp.brignes[i], i);
+
         }
     }
 
@@ -241,6 +243,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 getter_from_app.writeToFile(input.getText().toString()+"\n","groups.txt",Context.MODE_APPEND);
+                                selected.clear();
                             }
                         });
                         alertDialog.show();

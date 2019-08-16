@@ -14,9 +14,8 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/scenario"
         android:supportsRtl="true">
-        <activity android:name=".Settimgs"></activity>
         <activity
-            android:name=".Settings"
+            android:name=".Settimgs"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity

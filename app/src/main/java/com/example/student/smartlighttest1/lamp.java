@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 public class lamp {
 
@@ -30,7 +31,6 @@ public class lamp {
         brigh_=brigh_;
         if (brigh>0){bt.setBackgroundResource(R.drawable.lamp_on);is_active=true;}
         else {bt.setBackgroundResource(R.drawable.lamp_off);is_active=false;}
-        button.setLayoutParams(new LinearLayout.LayoutParams(15,15));
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
