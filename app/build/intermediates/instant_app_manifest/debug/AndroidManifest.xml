@@ -42,11 +42,6 @@
             android:name="com.example.student.smartlighttest1.Scenarios"
             android:label="@string/title_activity_lamps"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-
-        <provider
-            android:name="com.android.tools.ir.server.InstantRunContentProvider"
-            android:authorities="com.example.student.smartlighttest1.com.android.tools.ir.server.InstantRunContentProvider"
-            android:multiprocess="true" />
     </application>
 
 </manifest>

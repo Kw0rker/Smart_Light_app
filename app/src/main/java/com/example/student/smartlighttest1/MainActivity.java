@@ -55,12 +55,14 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         activity = this;
         bar =(SeekBar)findViewById(R.id.BRIGNESS) ;
         bar.setOnSeekBarChangeListener(this);
-
-        if (savedInstanceState==null){
+        try {
+            savedInstanceState.getBoolean("null");
+        }
+        catch(Exception e){
             udp.setup();
         new multithread().execute("send", "refresh");
         new multithread().execute("send", "status");
-        //new multithread().execute("start");
+        new multithread().execute("start");
             }
         Button scenario = (Button) findViewById(R.id.SCENARIO);
         while (!multithread.isFinished()) {

@@ -34,7 +34,6 @@ public class lamp {
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                is_active=!is_active;
                 switch (MODE)
                 {
                     case "DEFAULT":
@@ -86,6 +85,7 @@ public class lamp {
                         break;
 
                 }
+                is_active=!is_active;
             }
         });
         bt.setOnLongClickListener(new View.OnLongClickListener() {
