@@ -18,7 +18,7 @@ public class getter_from_app  implements Runnable {
     public void run(){
         boolean working = true;
         DatagramSocket serverSocket = null;
-        byte[] receiveData = new byte[1024];
+        byte[] receiveData = new byte[10000];
         while (working) {
             try {
                 if (serverSocket == null) serverSocket = new DatagramSocket(50002);
@@ -33,6 +33,7 @@ public class getter_from_app  implements Runnable {
                     for (int a = 1; a <= str.length- 1; a++) {
                         final String x_y[] = str[a].split("/");
                         Log.d("udp", str[a]);
+                        Log.d("udp",a+"");
                         try {
                             data[a - 1] =str[a]+"\n";
                         }catch (Exception e){}

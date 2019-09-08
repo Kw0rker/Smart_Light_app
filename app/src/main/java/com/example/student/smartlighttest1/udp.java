@@ -21,6 +21,8 @@ public class udp
     static InetAddress serverAddr;
     static DatagramPacket[] packets;
     static public int brignes[];
+    static int i=0;
+    static String s;
 
     public static void setup() {
         try {
@@ -54,20 +56,25 @@ public class udp
     static   public void start() {
         int brighness=0;
         int number=0;
-        int i = 0;
         do {
             if (i != 0) {
                 DatagramPacket pk = new DatagramPacket(Data, Data.length);
                 try {
 
                     servSock.receive(pk);
-                    String s=new String(pk.getData());
-                    String [] es=s.split("#")[0].split(" ");
-                    brighness=Integer.parseInt(es[1]);
-                    number=Integer.parseInt(es[0]);
-                    brignes[number-1]=brighness;
-                    Log.e("udp",number+" "+brighness );
-                    i++;
+                    s=new String(pk.getData());
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            String [] es=s.split("#")[0].split(" ");
+                            int brighness=Integer.parseInt(es[1]);
+                            int number=Integer.parseInt(es[0]);
+                            brignes[number-1]=brighness;
+                            Log.e("udp",number+" "+brighness );
+                            i++;
+                        }
+                    }).start();
+                    if (i==colvo)break;
 
                 } catch (IOException e) {
                     Log.e("udp",e.getMessage());
@@ -93,7 +100,7 @@ public class udp
             }
 
         }while (i <= colvo) ;
-        brignes[number-1]=brighness;
+        //brignes[number-1]=brighness;
         Log.d("lamp", Arrays.toString(brignes));
         multithread.finished=true;
     }

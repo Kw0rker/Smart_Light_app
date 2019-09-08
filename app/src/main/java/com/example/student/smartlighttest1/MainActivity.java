@@ -12,12 +12,14 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -47,6 +49,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.context_g = getApplicationContext();
+
         brighness =(TextView) findViewById(R.id.text);
         new_group=(Button) findViewById(R.id.NEW_GROUP);
         new_group.setOnClickListener(this);
@@ -65,10 +68,20 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         new multithread().execute("start");
             }
         Button scenario = (Button) findViewById(R.id.SCENARIO);
+        int timer=0;
         while (!multithread.isFinished()) {
+
+            timer++;
+            delay(500);
+            if (timer>=10)
+            {
+               udp.colvo=0;
+               break;
+            }
         }
         ///checked////
         builui();
+        if (timer>=10)Toast.makeText(this,"ОЩИБКА!!!\n Проверьте соединение с сервером",Toast.LENGTH_LONG).show();
         new Thread(new getter_from_app()).start();
         if (new File(getApplicationContext().getFilesDir(),"buttons.txt").exists()&&new File(getApplicationContext().getFilesDir(),"groups.txt").exists())
         {read("buttons.txt",udp.colvo);
@@ -82,12 +95,18 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
 
 
     }
+    public static void delay(int milis)
+    {
+        try {
+            Thread.sleep(milis);
+        }
+        catch (Exception e){Log.e("timer","error");}
+    }
 
 
     public void builui() {
         lamps = new lamp[udp.colvo];
         buttons = new Button[udp.colvo];
-        //ard = new arduino[udp.colvo];// /x
         ConstraintLayout layout = findViewById(R.id.Main);
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
@@ -98,7 +117,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             int id_ = buttons[i].getId();
             layout.addView(buttons[i], params);
             buttons[i] = findViewById(id_);
-            buttons[i].setLayoutParams(new ConstraintLayout.LayoutParams(87,87));
+            buttons[i].setLayoutParams(new ConstraintLayout.LayoutParams(67,67));
 
             lamps[i] = new lamp(buttons[i], udp.brignes[i], i);
 
