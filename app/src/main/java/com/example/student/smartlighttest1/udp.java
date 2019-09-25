@@ -58,6 +58,7 @@ public class udp
         int number=0;
         do {
             if (i != 0) {
+                if (i==colvo)break;
                 DatagramPacket pk = new DatagramPacket(Data, Data.length);
                 try {
 
@@ -74,6 +75,7 @@ public class udp
                                   brignes[number-1]=brighness;
                                   Log.e("udp",number+" "+brighness );
                                   i++;
+
                               }
                               catch (Exception e){}
                           }
