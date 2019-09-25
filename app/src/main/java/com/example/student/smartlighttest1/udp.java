@@ -66,12 +66,19 @@ public class udp
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
-                            String [] es=s.split("#")[0].split(" ");
-                            int brighness=Integer.parseInt(es[1]);
-                            int number=Integer.parseInt(es[0]);
-                            brignes[number-1]=brighness;
-                            Log.e("udp",number+" "+brighness );
-                            i++;
+                          try {
+                              String [] es=s.split("#")[0].split(" ");
+                              try {
+                                  int brighness=Integer.parseInt(es[1]);
+                                  int number=Integer.parseInt(es[0]);
+                                  brignes[number-1]=brighness;
+                                  Log.e("udp",number+" "+brighness );
+                                  i++;
+                              }
+                              catch (Exception e){}
+                          }
+                          catch (NumberFormatException e){}
+
                         }
                     }).start();
                     if (i==colvo)break;
@@ -89,7 +96,8 @@ public class udp
                     Log.d("udp","recived");
                     Data = pk.getData();
                     String s=new String(pk.getData());
-                    colvo=Integer.parseInt(s.split("#")[0]);
+                    try{colvo=Integer.parseInt(s.split("#")[0]);}
+                    catch (NumberFormatException e){colvo=1;continue;}
                     brignes =new int[colvo];
                     packets=new DatagramPacket[colvo];
                     i++;

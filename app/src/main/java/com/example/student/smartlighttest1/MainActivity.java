@@ -73,15 +73,14 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
 
             timer++;
             delay(500);
-            if (timer>=10)
+            if (timer>=30)
             {
                udp.colvo=0;
                break;
             }
         }
-        ///checked////
         builui();
-        if (timer>=10)Toast.makeText(this,"ОЩИБКА!!!\n Проверьте соединение с сервером",Toast.LENGTH_LONG).show();
+        if (timer>=30)Toast.makeText(this,"ОЩИБКА!!!\n Проверьте соединение с сервером",Toast.LENGTH_LONG).show();
         new Thread(new getter_from_app()).start();
         if (new File(getApplicationContext().getFilesDir(),"buttons.txt").exists()&&new File(getApplicationContext().getFilesDir(),"groups.txt").exists())
         {read("buttons.txt",udp.colvo);
