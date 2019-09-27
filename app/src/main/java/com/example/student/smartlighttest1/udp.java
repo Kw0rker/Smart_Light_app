@@ -1,11 +1,13 @@
 package com.example.student.smartlighttest1;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class udp
@@ -52,8 +54,36 @@ public class udp
             Log.e("udp",e.getMessage());
         }
     }
+    public static void start(){
+        ArrayList<String> mes=new ArrayList<>();
+        DatagramPacket packet=new DatagramPacket(Data,Data.length);
+        try {
+            servSock.receive(packet);
+        }
+        catch (IOException e){ Toast.makeText(MainActivity.context_g,e.getMessage()+"\n Ошибка подключения",Toast.LENGTH_LONG).show();}
+        colvo=Integer.parseInt(new String(packet.getData()).split("#")[0]);
+        brignes=new int[colvo];
+        while (mes.size()<colvo){
+            packet=new DatagramPacket(Data,Data.length);
+           try {
+               servSock.receive(packet);
+           } catch (IOException e){ Toast.makeText(MainActivity.context_g,e.getMessage()+"\n Ошибка подключения",Toast.LENGTH_LONG).show();}
+            mes.add(new String(packet.getData()));
+        }
+        for (String Mess:mes) {
+            String [] es=Mess.split("#")[0].split(" ");
+            try {
+                int brighness=Integer.parseInt(es[1]);
+                int number=Integer.parseInt(es[0]);
+                brignes[number-1]=brighness;
+                Log.e("udp",number+" "+brighness );
+            }
+            catch (Exception e){}
+        }
+        multithread.finished=true;
+    }
 
-    static   public void start() {
+    /*static   public void start() {
         int brighness=0;
         int number=0;
         do {
@@ -70,12 +100,11 @@ public class udp
                           try {
                               String [] es=s.split("#")[0].split(" ");
                               try {
-                                  int brighness=Integer.parseInt(es[1]);
+                                  int brighness=Integer.parseInt(es[1]);        
                                   int number=Integer.parseInt(es[0]);
                                   brignes[number-1]=brighness;
                                   Log.e("udp",number+" "+brighness );
                                   i++;
-
                               }
                               catch (Exception e){}
                           }
@@ -113,5 +142,5 @@ public class udp
         //brignes[number-1]=brighness;
         Log.d("lamp", Arrays.toString(brignes));
         multithread.finished=true;
-    }
+    }*/
 }
