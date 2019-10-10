@@ -100,7 +100,7 @@ public class udp
                           try {
                               String [] es=s.split("#")[0].split(" ");
                               try {
-                                  int brighness=Integer.parseInt(es[1]);        
+                                  int brighness=Integer.parseInt(es[1]);
                                   int number=Integer.parseInt(es[0]);
                                   brignes[number-1]=brighness;
                                   Log.e("udp",number+" "+brighness );

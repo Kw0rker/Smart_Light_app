@@ -29,14 +29,14 @@ public class getter_from_app  implements Runnable {
                 if (mesg.contains("buttons")) {
                     String[] str = mesg.split("#");
                     Log.d("Buttons", Arrays.toString(str));
-                    String[] data = new String[str.length - 2];
+                    String[] data = new String[str.length - 1];
                     for (int a = 1; a <= str.length- 1; a++) {
                         final String x_y[] = str[a].split("/");
                         Log.d("udp", str[a]);
                         Log.d("udp",a+"");
                         try {
                             data[a - 1] =str[a]+"\n";
-                        }catch (Exception e){}
+                        }catch (Exception e){Log.e("fixxxx","oi duraaak");}
                         final int id = a;
                         MainActivity.activity.runOnUiThread(new Runnable() {
                             @Override
@@ -50,6 +50,7 @@ public class getter_from_app  implements Runnable {
                             }
                         });
                         Log.d("Write", "sucssess");
+                        data[data.length-1]=str[str.length-1];
                     }
                     writeToFile(data, "buttons.txt", Context.MODE_PRIVATE);
                 } else if (mesg.contains("scenario")) {

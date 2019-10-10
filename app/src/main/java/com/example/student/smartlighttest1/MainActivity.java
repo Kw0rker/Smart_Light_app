@@ -82,9 +82,9 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         builui();
         if (timer>=30)Toast.makeText(this,"ОЩИБКА!!!\n Проверьте соединение с сервером",Toast.LENGTH_LONG).show();
         new Thread(new getter_from_app()).start();
-        if (new File(getApplicationContext().getFilesDir(),"buttons.txt").exists()&&new File(getApplicationContext().getFilesDir(),"groups.txt").exists())
-        {read("buttons.txt",udp.colvo);
+        try {read("buttons.txt",udp.colvo);
         read("groups.txt");}
+        catch (Exception e){Log.e("files","dont exist");}
 
         scenario.setOnClickListener(this);
         Button settings = (Button)findViewById(R.id.SETTINGS);
