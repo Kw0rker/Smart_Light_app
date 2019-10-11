@@ -82,9 +82,12 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         builui();
         if (timer>=30)Toast.makeText(this,"ОЩИБКА!!!\n Проверьте соединение с сервером",Toast.LENGTH_LONG).show();
         new Thread(new getter_from_app()).start();
-        try {read("buttons.txt",udp.colvo);
-        read("groups.txt");}
+        try {read("buttons.txt",udp.colvo); }
         catch (Exception e){Log.e("files","dont exist");}
+       try {
+           get_number_of_groups();
+       }
+       catch (Exception e){Log.e("file","doesnt exist");}
 
         scenario.setOnClickListener(this);
         Button settings = (Button)findViewById(R.id.SETTINGS);
@@ -148,28 +151,16 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         }
 
     }
-    public static void read(String name) {
-        try {
-            // открываем поток для чтения
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                    activity.openFileInput(name)));
-            String str = "";
-            // читаем содержимое
-
-            Log.e("Read", str);
+    public static void get_number_of_groups() {
+        BufferedReader br=null;
+        String str;
+        try{ br = new BufferedReader(new InputStreamReader(MainActivity.activity.openFileInput("groups.txt")));}
+        catch (Exception e){Log.e("Write",e.getMessage());}
+        try{
             while ((str = br.readLine()) != null) {
-                last_grup_n++;
-               /*
-               create temp_data
-                */
-
+               last_grup_n++;
             }
-
-
-        } catch (IOException e) {
-            Log.e("Read", e.getMessage());
-
-        }
+        }catch (Exception e){}
 
     }
     static void vibrate(int miliis)
@@ -196,8 +187,11 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
     public void onProgressChanged(SeekBar seekBar, final int progress, boolean fromUser) {
         new Runnable() {
             public void run() {
+                String brighnes=""+progress;
+                if (progress<10)brighnes="00"+progress;
+                else if (progress<100)brighnes="0"+progress;
                 for (String s : selected) {
-                    new multithread().execute("send", s + "," + progress);
+                    new multithread().execute("send", s+brighnes);
                 }
                 brighness.setText("Яркость :"+progress);
             }
@@ -233,12 +227,10 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                         int n=0;
                         new multithread().execute("send","setgroup");
                         new multithread().execute("send",""+(++last_grup_n));
-                        String group=""+last_grup_n+"-";
                         for(lamp l:lamps)
                         {
                             if(l.in_mode_active){
                                 n++;
-                                group+=l.getId()+" ";
                             }
                         }
                         new multithread().execute("send",""+n);
@@ -247,6 +239,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                             if(l.in_mode_active)new multithread().execute("send",""+l.getId());
                             l.in_mode_active=false;
                             l.setMODE("DEFAULT");
+                            l.set_priv_img();
                         }
                         v.setOnClickListener(MainActivity.this);
                         AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
@@ -264,6 +257,9 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                             public void onClick(DialogInterface dialog, int which) {
                                 getter_from_app.writeToFile(input.getText().toString()+"\n","groups.txt",Context.MODE_APPEND);
                                 selected.clear();
+                                new_group.setText("ДОБАВИТЬ НОВУЮ ГРУППУ");
+                                new_group.setOnClickListener(MainActivity.this);
+                                new_group.setVisibility(View.INVISIBLE);
                             }
                         });
                         alertDialog.show();
@@ -286,10 +282,18 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                         new multithread().execute("send",""+n);
                         for (lamp l:lamps)
                         {
-                            if(l.in_new_scen_brigness>=0)new multithread().execute("send",l.getId()+","+l.in_new_scen_brigness);
+                            if(l.in_new_scen_brigness>=0){
+                                String  br=""+l.in_new_scen_brigness;
+                                if (l.in_new_scen_brigness<10)br="00"+l.in_new_scen_brigness;
+                                    else if (l.in_new_scen_brigness<100)br="0"+l.in_new_scen_brigness;
+
+
+                                new multithread().execute("send",l.getId()+br);
+                            }
                             l.in_new_scen_brigness=-2;
                             l.in_mode_active=false;
                             l.setMODE("DEFAULT");
+                            l.set_priv_img();
                         }
                         AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
                         alertDialog.setTitle("Новый сценарий");
@@ -309,6 +313,9 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                             }
                         });
                         alertDialog.show();
+                        new_scenario.setText("ДОБАВИТЬ НОВЫЙ СЦЕНАРИЙ");
+                        new_scenario.setOnClickListener(MainActivity.this);
+                        new_scenario.setVisibility(View.INVISIBLE);
 
                     }
                 });

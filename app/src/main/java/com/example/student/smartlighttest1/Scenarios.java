@@ -71,9 +71,9 @@ public class Scenarios extends FragmentActivity {
                 Button button =new Button(this);
                 TableLayout.LayoutParams params=new TableLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.MATCH_PARENT);
                 final String mes;
-                if (ID<=9)mes="00"+ID;
-                    else if (ID>9&&ID<=99)mes="0"+ID;
-                        else mes=""+ID;
+                if (ID<=9)mes="*00"+ID;
+                    else if (ID<=99)mes="*0"+ID;
+                        else mes="*"+ID;
                 button.setId(ID++);
                 final int id_=button.getId();
                 button.findViewById(id_);

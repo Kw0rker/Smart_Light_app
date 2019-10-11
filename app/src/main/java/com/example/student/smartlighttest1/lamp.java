@@ -18,6 +18,11 @@ public class lamp {
     boolean in_mode_active=false;
     int in_new_scen_brigness=-2;
     private String MODE="DEFAULT";
+    boolean isTurned=false;
+    void set_priv_img(){
+        if (isTurned)this.button.setBackgroundResource(R.drawable.lamp_on);
+        else this.button.setBackgroundResource(R.drawable.lamp_off);
+    }
     lamp(Button bt,int brigh_,int id_){
         button =bt;
        // button.setText(String.valueOf(brigh_));
@@ -29,8 +34,8 @@ public class lamp {
         else if(id_>=100&&id<1000)ID="0"+id_;
         else ID=""+id_;
         brigh_=brigh_;
-        if (brigh>0){bt.setBackgroundResource(R.drawable.lamp_on);is_active=true;}
-        else {bt.setBackgroundResource(R.drawable.lamp_off);is_active=false;}
+        if (brigh>0){bt.setBackgroundResource(R.drawable.lamp_on);is_active=true;isTurned=true;}
+        else {bt.setBackgroundResource(R.drawable.lamp_off);is_active=false;isTurned=false;}
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,13 +45,15 @@ public class lamp {
                         Log.d("Button_mode","DEFAULT");
                         if(is_active)
                         {
-                            new multithread().execute("send",(getId()+","+ 0));
+                            new multithread().execute("send",(getId()+"000"));
+                            isTurned=false;
                             udp.brignes[id]=0;
                             button.setBackgroundResource(R.drawable.lamp_off);
                         }
                         else
                         {
-                            new multithread().execute("send",(getId() +"," + 255));
+                            new multithread().execute("send",(getId()+"255"));
+                            isTurned=true;
                             button.setBackgroundResource(R.drawable.lamp_on);
                             udp.brignes[id]=255;
                         }
@@ -64,7 +71,7 @@ public class lamp {
                         else
                         {
                             MainActivity.selected.remove(""+getId());
-                            button.setBackgroundResource(R.drawable.lamp_off);
+                            set_priv_img();
                         }
 
                         break;
