@@ -121,7 +121,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             buttons[i] = findViewById(id_);
             buttons[i].setLayoutParams(new ConstraintLayout.LayoutParams(67,67));
 
-            lamps[i] = new lamp(buttons[i], udp.brignes[i], i);
+            lamps[i] = new lamp(buttons[i], udp.brignes[i], i+1);
 
         }
     }
