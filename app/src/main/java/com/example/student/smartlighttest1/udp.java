@@ -1,6 +1,9 @@
 package com.example.student.smartlighttest1;
 
+import android.app.Activity;
+import android.support.constraint.ConstraintLayout;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -9,6 +12,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
 public class udp
 
@@ -23,6 +27,8 @@ public class udp
     static InetAddress serverAddr;
     static DatagramPacket[] packets;
     static public int brignes[];
+    static public int id[];
+    static private int brighness,ID;
     static int i=0;
     static String s;
 
@@ -63,6 +69,7 @@ public class udp
         catch (IOException e){ Toast.makeText(MainActivity.context_g,e.getMessage()+"\n Ошибка подключения",Toast.LENGTH_LONG).show();}
         colvo=Integer.parseInt(new String(packet.getData()).split("#")[0]);
         brignes=new int[colvo];
+        id=new int[colvo];
         while (mes.size()<colvo){
             packet=new DatagramPacket(Data,Data.length);
            try {
@@ -70,16 +77,18 @@ public class udp
            } catch (IOException e){ Toast.makeText(MainActivity.context_g,e.getMessage()+"\n Ошибка подключения",Toast.LENGTH_LONG).show();}
             mes.add(new String(packet.getData()));
         }
+        int xxx=0;
         for (String Mess:mes) {
             String [] es=Mess.split("#")[0].split(" ");
             try {
-                int brighness=Integer.parseInt(es[1]);
-                int number=Integer.parseInt(es[0]);
-                brignes[number-1]=brighness;
-                Log.e("udp",number+" "+brighness );
+                id[xxx]=Integer.parseInt(es[0]);
+                brignes[xxx++]=Integer.parseInt(es[1]);
+
+                Log.e("udp",ID+" "+brighness );
             }
-            catch (Exception e){}
+            catch (Exception e){Log.e("Button "+Mess,"error");}
         }
+
         multithread.finished=true;
     }
 

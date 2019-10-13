@@ -42,8 +42,8 @@ public class getter_from_app  implements Runnable {
                             @Override
                             public void run() {
                                 try {
-                                    MainActivity.buttons[id - 1].setTranslationX(Float.parseFloat(x_y[0]));
-                                    MainActivity.buttons[id - 1].setTranslationY(Float.parseFloat(x_y[1]));
+                                    MainActivity.lamps[id - 1].button.setTranslationX(Float.parseFloat(x_y[0]));
+                                    MainActivity.lamps[id - 1].button.setTranslationY(Float.parseFloat(x_y[1]));
                                 } catch (Exception e) {
                                 }
 

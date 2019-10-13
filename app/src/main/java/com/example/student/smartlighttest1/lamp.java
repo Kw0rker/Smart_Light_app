@@ -14,26 +14,21 @@ public class lamp {
     int brigh;
     public Button button;
     boolean is_active;
-    static MainActivity main=new MainActivity();
     boolean in_mode_active=false;
     int in_new_scen_brigness=-2;
     private String MODE="DEFAULT";
     boolean isTurned=false;
+    int ID_;
     void set_priv_img(){
         if (isTurned)this.button.setBackgroundResource(R.drawable.lamp_on);
         else this.button.setBackgroundResource(R.drawable.lamp_off);
     }
     lamp(Button bt,int brigh_,int id_){
         button =bt;
-       // button.setText(String.valueOf(brigh_));
         id=id_;
         id_++;
         brigh=brigh_;
-        if (id_<10)ID="000"+id_;
-        else if (id_>=10&&id<100)ID="00"+id_;
-        else if(id_>=100&&id<1000)ID="0"+id_;
-        else ID=""+id_;
-        brigh_=brigh_;
+        ID=String.valueOf(id_);
         if (brigh>0){bt.setBackgroundResource(R.drawable.lamp_on);is_active=true;isTurned=true;}
         else {bt.setBackgroundResource(R.drawable.lamp_off);is_active=false;isTurned=false;}
         bt.setOnClickListener(new View.OnClickListener() {
