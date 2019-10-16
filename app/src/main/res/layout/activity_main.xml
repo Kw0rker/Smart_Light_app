@@ -18,7 +18,7 @@
         android:id="@+id/BRIGNESS"
         android:layout_width="731dp"
         android:layout_height="44dp"
-        android:max="255"
+        android:max="254"
         android:progress="255"
         android:thumb="@drawable/thumb"
         app:layout_constraintStart_toStartOf="parent"

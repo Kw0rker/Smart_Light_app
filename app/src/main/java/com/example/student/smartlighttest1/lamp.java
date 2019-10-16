@@ -45,7 +45,7 @@ public class lamp {
                         }
                         else
                         {
-                            new multithread().execute("send",(getId()+"255"));
+                            new multithread().execute("send",(getId()+"254"));
                             isTurned=true;
                             button.setBackgroundResource(R.drawable.lamp_on);
                         }
