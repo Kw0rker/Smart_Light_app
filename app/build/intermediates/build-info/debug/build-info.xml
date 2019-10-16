@@ -5,28 +5,31 @@
     build-mode="COLD"
     density="420dpi"
     format="10"
-    ir-eligibility="COMPATIBLE"
+    ir-eligibility="METHOD_DELETED"
     plugin-version="3.4.2"
-    timestamp="1571200249096"
+    timestamp="1571200991476"
     token="-4095786180010566308"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="716" />
+        duration="763" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="50" />
+        duration="30" />
     <task
         name="verifier"
-        duration="18" />
+        duration="7" />
 
     <artifact
         location="C:\Users\User\StudioProjects\Smart_Light_app\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
         type="SPLIT" />
+    <artifact
+        location="C:\Users\User\StudioProjects\Smart_Light_app\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
+        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
@@ -74,12 +77,15 @@
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="COMPATIBLE"
-        timestamp="1571200249096"
+        ir-eligibility="METHOD_DELETED"
+        timestamp="1571200991476"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\User\StudioProjects\Smart_Light_app\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
+        <artifact
+            location="C:\Users\User\StudioProjects\Smart_Light_app\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
+            type="SPLIT_MAIN" />
     </build>
 
 </instant-run>

@@ -41,7 +41,6 @@ public class lamp {
                         {
                             new multithread().execute("send",(getId()+"000"));
                             isTurned=false;
-                            udp.brignes[id]=0;
                             button.setBackgroundResource(R.drawable.lamp_off);
                         }
                         else
@@ -49,7 +48,6 @@ public class lamp {
                             new multithread().execute("send",(getId()+"255"));
                             isTurned=true;
                             button.setBackgroundResource(R.drawable.lamp_on);
-                            udp.brignes[id]=255;
                         }
                         break;
                     case "GROUP":
