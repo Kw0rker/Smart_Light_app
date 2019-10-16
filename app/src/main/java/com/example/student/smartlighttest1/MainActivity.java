@@ -63,7 +63,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         }
         catch(Exception e){
             udp.setup();
-        new multithread().execute("send", "refresh");
+        //new multithread().execute("send", "refresh");
         new multithread().execute("send", "status");
         new multithread().execute("start");
             }
@@ -71,13 +71,13 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         int timer=0;
         while (!multithread.isFinished()) {
 
-            timer++;
+            /*timer++;
             delay(500);
             if (timer>=30)
             {
                udp.colvo=0;
                break;
-            }
+            }*/
         }
         builui();
         if (timer>=30)Toast.makeText(this,"ОЩИБКА!!!\n Проверьте соединение с сервером",Toast.LENGTH_LONG).show();
@@ -226,7 +226,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                     public void onClick(View v) {
                         int n=0;
                         new multithread().execute("send","setgroup");
-                        new multithread().execute("send",""+(++last_grup_n));
+                        new multithread().execute("send",""+(last_grup_n++));
                         for(lamp l:lamps)
                         {
                             if(l.in_mode_active){

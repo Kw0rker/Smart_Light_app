@@ -26,9 +26,8 @@ public class lamp {
     lamp(Button bt,int brigh_,int id_){
         button =bt;
         id=id_;
-        id_++;
         brigh=brigh_;
-        ID=String.valueOf(id_);
+        ID=""+id_;
         if (brigh>0){bt.setBackgroundResource(R.drawable.lamp_on);is_active=true;isTurned=true;}
         else {bt.setBackgroundResource(R.drawable.lamp_off);is_active=false;isTurned=false;}
         bt.setOnClickListener(new View.OnClickListener() {
