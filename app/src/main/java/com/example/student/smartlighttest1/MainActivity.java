@@ -191,6 +191,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                 if (progress<10)brighnes="00"+progress;
                 else if (progress<100)brighnes="0"+progress;
                 for (String s : selected) {
+                    delay(75);
                     new multithread().execute("send", s+brighnes);
                 }
                 brighness.setText("Яркость :"+progress);
