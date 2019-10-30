@@ -28,6 +28,9 @@ public class lamp {
         id=id_;
         brigh=brigh_;
         ID=""+id_;
+        if (id_<10)ID="000"+id_;
+        else if (id<100)ID="00"+id_;
+        else if (id<1000)ID="0"+id_;
         if (brigh>0){bt.setBackgroundResource(R.drawable.lamp_on);is_active=true;isTurned=true;}
         else {bt.setBackgroundResource(R.drawable.lamp_off);is_active=false;isTurned=false;}
         bt.setOnClickListener(new View.OnClickListener() {

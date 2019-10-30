@@ -1044,6 +1044,7 @@ id META
 id Main
 id NEW_GROUP
 id NEW_SCENARIO
+id Refresh
 id SCEN
 id SCENARIO
 id SETTINGS
@@ -1224,6 +1225,7 @@ id textSpacerNoTitle
 id textStart
 id textView
 id textView2
+id textView3
 id text_input_password_toggle
 id textinput_counter
 id textinput_error
