@@ -1073,6 +1073,10 @@ id add
 id alertTitle
 id all
 id always
+id arduino_info
+id arduino_info_layout
+id arduino_init
+id arduino_init_layout
 id async
 id auto
 id barrier
@@ -1098,6 +1102,10 @@ id custom
 id customPanel
 id decor_content_parent
 id default_activity_button
+id deleate_ard1
+id deleate_ard1_layout
+id deleate_lamp
+id deleate_lamp_layout
 id design_bottom_sheet
 id design_menu_item_action_area
 id design_menu_item_action_area_stub
@@ -1157,12 +1165,15 @@ id normal
 id notification_background
 id notification_main_column
 id notification_main_column_container
+id off
+id off_layout
 id outline
 id packed
 id parallax
 id parent
 id parentPanel
 id parent_matrix
+id password
 id past_ard
 id percent
 id pin

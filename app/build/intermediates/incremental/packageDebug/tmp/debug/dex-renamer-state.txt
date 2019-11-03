@@ -1,4 +1,4 @@
-#Wed Oct 30 16:18:17 ChST 2019
+#Sun Nov 03 22:34:38 ChST 2019
 base.0=C\:\\Users\\User\\StudioProjects\\Smart_Light_app\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\out
 path.0=classes.dex
 renamed.0=classes.dex

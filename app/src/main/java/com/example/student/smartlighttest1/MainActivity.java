@@ -185,6 +185,18 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
 
     @Override
     public void onProgressChanged(SeekBar seekBar, final int progress, boolean fromUser) {
+
+        brighness.setText("Яркость :"+progress);
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+        final int progress=seekBar.getProgress();
         new Runnable() {
             public void run() {
                 String brighnes=""+progress;
@@ -201,16 +213,6 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
     }
 
     @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-
-    }
-
-    @Override
     public void onClick(View v) {
         switch (v.getId())
         {
@@ -219,57 +221,53 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                 startActivity(intent);
                 break;
             case R.id.NEW_GROUP:
-                new_scenario.setVisibility(View.INVISIBLE);
-                for(lamp l:lamps)l.setMODE("GROUP");
-                new_group.setText("Сохранить");
-                new_group.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int n=0;
-                        new multithread().execute("send","setgroup");
-                        new multithread().execute("send",""+(last_grup_n++));
-                        for(lamp l:lamps)
-                        {
-                            if(l.in_mode_active){
-                                n++;
-                            }
-                        }
-                        new multithread().execute("send",""+n);
-                        for(lamp l:lamps)
-                        {
-                            if(l.in_mode_active)new multithread().execute("send",""+l.getId());
-                            l.in_mode_active=false;
-                            l.setMODE("DEFAULT");
-                            l.set_priv_img();
-                        }
-                        v.setOnClickListener(MainActivity.this);
-                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
-                        alertDialog.setTitle("Новая группа");
-                        alertDialog.setMessage("Введите название группы ");
+                int n=0;
+                for(lamp l:lamps)
+                {
+                    if(l.in_mode_active){
+                        n++;
+                    }
+                }
+                if (n<=0)break;
+                new multithread().execute("send","setgroup");
+                    new multithread().execute("send",""+(last_grup_n++));
 
-                        final EditText input = new EditText(MainActivity.this);
-                        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                                LinearLayout.LayoutParams.MATCH_PARENT,
-                                LinearLayout.LayoutParams.MATCH_PARENT);
-                        input.setLayoutParams(lp);
-                        alertDialog.setView(input).setIcon(R.drawable.lamp)
-                                .setCancelable(false).setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                getter_from_app.writeToFile(input.getText().toString()+"\n","groups.txt",Context.MODE_APPEND);
-                                selected.clear();
-                                new_group.setText("ДОБАВИТЬ НОВУЮ ГРУППУ");
-                                new_group.setOnClickListener(MainActivity.this);
-                                new_group.setVisibility(View.INVISIBLE);
-                            }
-                        });
-                        alertDialog.show();
+                    new multithread().execute("send",""+n);
+                for(lamp l:lamps)
+                {
+                    if(l.in_mode_active)new multithread().execute("send",""+l.getId());
+                    l.in_mode_active=false;
+                    l.setMODE("DEFAULT");
+                    l.set_priv_img();
+                }
+                v.setOnClickListener(MainActivity.this);
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+                alertDialog.setTitle("Новая группа");
+                alertDialog.setMessage("Введите название группы ");
+
+                final EditText input = new EditText(MainActivity.this);
+                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.MATCH_PARENT,
+                        LinearLayout.LayoutParams.MATCH_PARENT);
+                input.setLayoutParams(lp);
+                alertDialog.setView(input).setIcon(R.drawable.lamp)
+                        .setCancelable(false).setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        getter_from_app.writeToFile(input.getText().toString()+"\n","groups.txt",Context.MODE_APPEND);
+                        selected.clear();
+                        new_group.setText("ДОБАВИТЬ НОВУЮ ГРУППУ");
+                        new_group.setOnClickListener(MainActivity.this);
+                        new_group.setVisibility(View.INVISIBLE);
                     }
                 });
+                new_scenario.setVisibility(View.INVISIBLE);
+                alertDialog.show();
+
                 break;
             case R.id.NEW_SCENARIO:
                 new_group.setVisibility(View.INVISIBLE);
-                for(lamp l:lamps)l.setMODE("SCENARIO");
+                for(lamp l:lamps){l.setMODE("SCENARIO");l.set_priv_img();}
                 new_scenario.setText("Сохранить");
                 new_scenario.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -279,6 +277,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                         {
                             if(l.in_new_scen_brigness>=0)n++;
                         }
+                        if (n<=0)return;
                         new multithread().execute("send","new");
                         new multithread().execute("send",""+n);
                         for (lamp l:lamps)

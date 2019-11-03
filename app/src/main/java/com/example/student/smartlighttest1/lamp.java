@@ -18,7 +18,6 @@ public class lamp {
     int in_new_scen_brigness=-2;
     private String MODE="DEFAULT";
     boolean isTurned=false;
-    int ID_;
     void set_priv_img(){
         if (isTurned)this.button.setBackgroundResource(R.drawable.lamp_on);
         else this.button.setBackgroundResource(R.drawable.lamp_off);
@@ -102,9 +101,10 @@ public class lamp {
                 }
 
                 else{
-                    for(lamp l:MainActivity.lamps){l.setMODE("DEFAULT");MainActivity.selected.remove(""+l.getId());}
+                    for(lamp l:MainActivity.lamps){l.setMODE("DEFAULT");MainActivity.selected.remove(""+l.getId());l.set_priv_img();}
                     MainActivity.new_group.setVisibility(View.INVISIBLE);
                     MainActivity.new_scenario.setVisibility(View.INVISIBLE);
+
                 }
                 return true;
             }
