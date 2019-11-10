@@ -55,8 +55,12 @@ public class Settimgs extends AppCompatActivity implements Button.OnClickListene
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                new multithread().execute("send","delete_l");
-                new multithread().execute("send",String.valueOf(charSequence));
+                if (!charSequence.toString().equals("")&&charSequence.toString().contains("\n"))
+                {
+                    new multithread().execute("send", "delete_l");
+                    new multithread().execute("send", String.valueOf(charSequence));
+                    delete_lamp.setText("");
+                }
             }
 
             @Override
@@ -73,8 +77,12 @@ public class Settimgs extends AppCompatActivity implements Button.OnClickListene
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (!charSequence.toString().equals("")&&charSequence.toString().contains("\n")){
                 new multithread().execute("send","delete_a");
                 new multithread().execute("send",String.valueOf(charSequence));
+                delete_ard.setText("");
+                }
+
             }
 
             @Override
@@ -91,8 +99,11 @@ public class Settimgs extends AppCompatActivity implements Button.OnClickListene
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                new multithread().execute("send","init");
-                new multithread().execute("send",String.valueOf(charSequence));
+                if (!charSequence.toString().equals("")&&charSequence.toString().contains("\n")) {
+                    new multithread().execute("send", "init");
+                    new multithread().execute("send", String.valueOf(charSequence));
+                    init.setText("");
+                }
             }
 
             @Override
@@ -110,8 +121,11 @@ public class Settimgs extends AppCompatActivity implements Button.OnClickListene
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                new multithread().execute("send","arduino_info");
-                new multithread().execute("send",String.valueOf(charSequence));
+                if (!charSequence.toString().equals("")&&charSequence.toString().contains("\n")) {
+                    new multithread().execute("send", "arduino_info");
+                    new multithread().execute("send", String.valueOf(charSequence));
+                    arduino_info.setText("");
+                }
             }
 
             @Override
@@ -127,8 +141,10 @@ public class Settimgs extends AppCompatActivity implements Button.OnClickListene
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (!charSequence.toString().equals("")&&charSequence.toString().contains("\n")){
                 new multithread().execute("send","off");
                 new multithread().execute("send",String.valueOf(charSequence));
+                    off.setText("");}
             }
 
             @Override
@@ -138,15 +154,11 @@ public class Settimgs extends AppCompatActivity implements Button.OnClickListene
 
             }
         });
-        password_field.addTextChangedListener(new TextWatcher() {
+        Button pass=(Button)findViewById(R.id.Pass);
+        pass.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (charSequence.equals(password))
+            public void onClick(View view) {
+                if (password_field.getText().toString().equals(password))
                 {
                     off.setVisibility(View.VISIBLE);
                     arduino_info.setVisibility(View.VISIBLE);
@@ -160,17 +172,10 @@ public class Settimgs extends AppCompatActivity implements Button.OnClickListene
                     findViewById(R.id.arduino_init_layout).setVisibility(View.VISIBLE);
                 }
             }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
         });
 
-
-
     }
-    public static void confirmation_alert(String measedge, Context context, final View v){
+    private void confirmation_alert(String measedge, Context context, final View v){
         from_setings=false;
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
         alertDialog.setTitle("ВНИМАНИЕ!!!");
@@ -214,7 +219,6 @@ public class Settimgs extends AppCompatActivity implements Button.OnClickListene
                 if (Settimgs.confirm){
                     new multithread().execute("send","delete_g");
                 new multithread().execute("send","all");
-                MainActivity.last_grup_n=0;
                 from_setings=false;
                     Settimgs.confirm =false;
 

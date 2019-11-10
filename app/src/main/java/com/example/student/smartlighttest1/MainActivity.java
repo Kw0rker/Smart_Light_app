@@ -42,8 +42,6 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
     static MainActivity activity;
     static Button new_scenario;
     static Button new_group;
-    static int last_grup_n=0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,10 +82,6 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         new Thread(new getter_from_app()).start();
         try {read("buttons.txt",udp.colvo); }
         catch (Exception e){Log.e("files","dont exist");}
-       try {
-           get_number_of_groups();
-       }
-       catch (Exception e){Log.e("file","doesnt exist");}
 
         scenario.setOnClickListener(this);
         Button settings = (Button)findViewById(R.id.SETTINGS);
@@ -106,7 +100,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
     }
 
 
-    public void builui() {
+    private void builui() {
         lamps = new lamp[udp.colvo];
         buttons = new Button[udp.colvo];
         ConstraintLayout layout = findViewById(R.id.Main);
@@ -127,9 +121,10 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
     }
 
     public static void read(String name,int int_max) {
+        BufferedReader br=null;
         try {
             // открываем поток для чтения
-            BufferedReader br = new BufferedReader(new InputStreamReader(
+            br = new BufferedReader(new InputStreamReader(
                     activity.openFileInput(name)));
             String str = "";
             // читаем содержимое
@@ -137,11 +132,14 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             Log.e("Read", str);
             for (int x = 0; x <int_max && ((str = br.readLine()) != null); x++) {
 
-                String[] x_y = str.split("/");
+                try {
+                    String[] x_y = str.split("/");
                 buttons[x].setTranslationX(Integer.parseInt(x_y[0]));
                 buttons[x].setTranslationY(Integer.parseInt(x_y[1]));
 
-                Log.d("Buttons", "Setted");
+                Log.d("Buttons", "Setted");}
+                catch (Exception e){Log.e("read",e.getLocalizedMessage());}
+
             }
 
 
@@ -149,20 +147,16 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             Log.e("Read", e.getMessage());
 
         }
-
-    }
-    public static void get_number_of_groups() {
-        BufferedReader br=null;
-        String str;
-        try{ br = new BufferedReader(new InputStreamReader(MainActivity.activity.openFileInput("groups.txt")));}
-        catch (Exception e){Log.e("Write",e.getMessage());}
-        try{
-            while ((str = br.readLine()) != null) {
-               last_grup_n++;
+        finally {
+            try {
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        }catch (Exception e){}
+        }
 
     }
+
     static void vibrate(int miliis)
     {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -230,8 +224,6 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                 }
                 if (n<=0)break;
                 new multithread().execute("send","setgroup");
-                    new multithread().execute("send",""+(last_grup_n++));
-
                     new multithread().execute("send",""+n);
                 for(lamp l:lamps)
                 {

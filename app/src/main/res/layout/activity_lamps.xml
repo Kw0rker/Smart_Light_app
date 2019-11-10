@@ -57,6 +57,14 @@
                 android:textColor="@android:color/background_dark"
                 android:textSize="24sp"
                 android:textStyle="italic" />
+
+            <SeekBar
+                android:id="@+id/group_brig"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:max="254"
+                android:thumb="@drawable/thumb" />
         </LinearLayout>
     </ScrollView>
 

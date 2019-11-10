@@ -1044,6 +1044,7 @@ id META
 id Main
 id NEW_GROUP
 id NEW_SCENARIO
+id Pass
 id Refresh
 id SCEN
 id SCENARIO
@@ -1130,6 +1131,7 @@ id fixed
 id forever
 id ghost_view
 id gone
+id group_brig
 id group_divider
 id groups
 id guideline
