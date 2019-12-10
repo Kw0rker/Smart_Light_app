@@ -40,6 +40,7 @@ public class activity_group extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         BufferedReader br = null;
+        for(selectable str:MainActivity.selected){if (str instanceof group)MainActivity.selected.remove(str);}
         String str;
         try {
             br = new BufferedReader(new InputStreamReader(MainActivity.activity.openFileInput("groups.txt")));

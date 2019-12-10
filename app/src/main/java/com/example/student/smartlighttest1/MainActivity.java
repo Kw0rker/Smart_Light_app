@@ -149,8 +149,22 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             final File file = new File(Environment.getExternalStorageDirectory()
                     .getAbsolutePath(), "pairs.txt");
 
-            //reader = new BufferedReader(new FileReader(file));
-            reader = new BufferedReader(new InputStreamReader(activity.openFileInput("pairs.txt")));
+            try {
+                reader = new BufferedReader(new FileReader(file));
+            }catch (FileNotFoundException e){
+                try {
+                    reader = new BufferedReader(new InputStreamReader(activity.openFileInput("pairs.txt")));
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                }
+                Toast.makeText(this,"Отсутсвует конфигурацыонный фаил pairs.txt\nПо расположение "+Environment.getExternalStorageDirectory()
+                        .getAbsolutePath(),Toast.LENGTH_LONG).show();}
+
+            try {
+                reader = new BufferedReader(new InputStreamReader(activity.openFileInput("pairs.txt")));
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
             for (i = 0; i < udp.colvo/2; i++) {
                 buttons[i] = new Button(this);
                 buttons[i].setId(i);
@@ -166,11 +180,9 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                 }
 
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } finally {
             try {
-                reader.close();
+                if (reader!=null)reader.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
