@@ -1,9 +1,6 @@
 package com.example.student.smartlighttest1;
 
-import android.app.Activity;
-import android.support.constraint.ConstraintLayout;
 import android.util.Log;
-import android.widget.Button;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -11,14 +8,10 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
 
-public class udp
-
-{
-    public static int colvo =2 ;
-    static int port =13013 ;
+public class udp {
+    public static int colvo = 2;
+    static int port = 13013;
     private static byte[] buf = new byte[1024];
     // public static byte[] reciveData = new byte[1024];
     public static byte[] Data = new byte[1024];
@@ -26,10 +19,10 @@ public class udp
     static DatagramSocket skt;
     static InetAddress serverAddr;
     static DatagramPacket[] packets;
-    static public int brignes[];
-    static public int id[];
-    static private int brighness,ID;
-    static int i=0;
+    static public int[] brignes;
+    static public int[] id;
+    static private int brighness, ID;
+    static int i = 0;
     static String s;
 
     public static void setup() {
@@ -37,13 +30,14 @@ public class udp
             servSock = new DatagramSocket(port);
             servSock.setReuseAddress(true);
             //servSock.bind(address);
+        } catch (IOException e) {
+            Log.e("udp", e.getMessage());
         }
-        catch (IOException e){Log.e("udp",e.getMessage());}
 
         try {
             serverAddr = InetAddress.getByName("10.17.0.1");
         } catch (IOException e) {
-            Log.e("udp",e.getMessage());
+            Log.e("udp", e.getMessage());
         }
     }
 
@@ -55,41 +49,46 @@ public class udp
         pkt = new DatagramPacket(buf, buf.length, serverAddr, port);
         try {
             servSock.send(pkt);
-            Log.e("udp",sendmsg);
+            Log.e("udp", sendmsg);
         } catch (IOException e) {
-            Log.e("udp",e.getMessage());
+            Log.e("udp", e.getMessage());
         }
     }
-    public static void start(){
-        ArrayList<String> mes=new ArrayList<>();
-        DatagramPacket packet=new DatagramPacket(Data,Data.length);
+
+    public static void start() {
+        ArrayList<String> mes = new ArrayList<>();
+        DatagramPacket packet = new DatagramPacket(Data, Data.length);
         try {
             servSock.receive(packet);
+        } catch (IOException e) {
+            Toast.makeText(MainActivity.context_g, e.getMessage() + "\n Ошибка подключения", Toast.LENGTH_LONG).show();
         }
-        catch (IOException e){ Toast.makeText(MainActivity.context_g,e.getMessage()+"\n Ошибка подключения",Toast.LENGTH_LONG).show();}
-        colvo=Integer.parseInt(new String(packet.getData()).split("#")[0]);
-        brignes=new int[colvo];
-        id=new int[colvo];
-        while (mes.size()<colvo){
-            packet=new DatagramPacket(Data,Data.length);
-           try {
-               servSock.receive(packet);
-           } catch (IOException e){ Toast.makeText(MainActivity.context_g,e.getMessage()+"\n Ошибка подключения",Toast.LENGTH_LONG).show();}
+        colvo = Integer.parseInt(new String(packet.getData()).split("#")[0]);
+        brignes = new int[colvo];
+        id = new int[colvo];
+        while (mes.size() < colvo) {
+            packet = new DatagramPacket(Data, Data.length);
+            try {
+                servSock.receive(packet);
+            } catch (IOException e) {
+                Toast.makeText(MainActivity.context_g, e.getMessage() + "\n Ошибка подключения", Toast.LENGTH_LONG).show();
+            }
             mes.add(new String(packet.getData()));
         }
-        int xxx=0;
-        for (String Mess:mes) {
-            String [] es=Mess.split("#")[0].split(" ");
+        int xxx = 0;
+        for (String Mess : mes) {
+            String[] es = Mess.split("#")[0].split(" ");
             try {
-                id[xxx]=Integer.parseInt(es[0]);
-                brignes[xxx++]=Integer.parseInt(es[1]);
+                id[xxx] = Integer.parseInt(es[0]);
+                brignes[xxx++] = Integer.parseInt(es[1]);
 
-                Log.e("udp",ID+" "+brighness );
+                Log.e("udp", ID + " " + brighness);
+            } catch (Exception e) {
+                Log.e("Button " + Mess, "error");
             }
-            catch (Exception e){Log.e("Button "+Mess,"error");}
         }
 
-        multithread.finished=true;
+        multithread.finished = true;
     }
 
     /*static   public void start() {

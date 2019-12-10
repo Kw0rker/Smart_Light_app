@@ -5,4 +5,5 @@
     <string name="Сценарии">Сценарии</string>
     <string name="title_activity_lamps">Lamps</string>
     <string name="_100">Яркость=100%</string>
+    <string name="title_activity_group">activity_group</string>
 </resources>

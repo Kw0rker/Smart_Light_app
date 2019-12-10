@@ -13,9 +13,9 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.util.Arrays;
 
-public class getter_from_app  implements Runnable {
+public class getter_from_app implements Runnable {
     @Override
-    public void run(){
+    public void run() {
         boolean working = true;
         DatagramSocket serverSocket = null;
         byte[] receiveData = new byte[10000];
@@ -30,13 +30,15 @@ public class getter_from_app  implements Runnable {
                     String[] str = mesg.split("#");
                     Log.d("Buttons", Arrays.toString(str));
                     String[] data = new String[str.length - 1];
-                    for (int a = 1; a < str.length- 1; a++) {
-                        final String x_y[] = str[a].split("/");
+                    for (int a = 1; a < str.length - 1; a++) {
+                        final String[] x_y = str[a].split("/");
                         Log.d("udp", str[a]);
-                        Log.d("udp",a+"");
+                        Log.d("udp", a + "");
                         try {
-                            data[a - 1] =str[a]+"\n";
-                        }catch (Exception e){Log.e("fixxxx","oi duraaak");}
+                            data[a - 1] = str[a] + "\n";
+                        } catch (Exception e) {
+                            Log.e("fixxxx", "oi duraaak");
+                        }
                         final int id = a;
                         MainActivity.activity.runOnUiThread(new Runnable() {
                             @Override
@@ -50,18 +52,17 @@ public class getter_from_app  implements Runnable {
                             }
                         });
                         Log.d("Write", "sucssess");
-                       data[data.length-1]=str[str.length-1];
+                        data[data.length - 1] = str[str.length - 1];
                     }
                     writeToFile(data, "buttons.txt", Context.MODE_PRIVATE);
                 } else if (mesg.contains("scenario")) {
                     String[] str = mesg.split("#");
                     Log.d("udp", str[1]);
-                    if(!isExist(str[1]))
-                    {
+                    if (!isExist(str[1])) {
                         String[] fs = str[1].split("-");
                         scenario.set_new(fs[1]);
                     }
-                    writeToFile((str[1] + "\n"), "scenarios.txt",Context.MODE_APPEND);
+                    writeToFile((str[1] + "\n"), "scenarios.txt", Context.MODE_APPEND);
 
                 } else if (mesg.contains("end")) {
                     working = false;
@@ -74,15 +75,17 @@ public class getter_from_app  implements Runnable {
         MainActivity.activity.runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                MainActivity.read("buttons.txt",udp.colvo);
+                MainActivity.read("buttons.txt", udp.colvo);
             }
         });
     }
 
-    static void writeToFile(String data[], String file_name, int mode) {
+    static void writeToFile(String[] data, String file_name, int mode) {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(MainActivity.context_g.openFileOutput(file_name, mode));
-            for (String ms : data) {if (ms!=null)outputStreamWriter.write(ms);}
+            for (String ms : data) {
+                if (ms != null) outputStreamWriter.write(ms);
+            }
             outputStreamWriter.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
@@ -101,23 +104,26 @@ public class getter_from_app  implements Runnable {
 
 
     }
-    static boolean isExist(String sx)
-    {
-        boolean result=false;
-        BufferedReader br=null;
-        try{ br = new BufferedReader(new InputStreamReader(MainActivity.activity.openFileInput("scenarios.txt")));}
-        catch (Exception e){Log.e("Write",e.getMessage());}
-        String str="";
 
-        try{
+    static boolean isExist(String sx) {
+        boolean result = false;
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new InputStreamReader(MainActivity.activity.openFileInput("scenarios.txt")));
+        } catch (Exception e) {
+            Log.e("Write", e.getMessage());
+        }
+        String str = "";
+
+        try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("scenarios.txt"));
-            while ((str = br.readLine())!= null)
-            {
-                if (str.contains(sx))return true;
+            while ((str = br.readLine()) != null) {
+                if (str.contains(sx)) return true;
                 writer.write(str + System.getProperty("line.separator"));
             }
+        } catch (Exception e) {
+            Log.e("Read", e.getMessage());
         }
-        catch (Exception e){Log.e("Read",e.getMessage());}
 
         return result;
     }
