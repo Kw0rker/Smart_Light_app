@@ -27,6 +27,7 @@
         <activity
             android:name="com.example.student.smartlighttest1.activity_group"
             android:label="@string/title_activity_group"
+            android:screenOrientation="landscape"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="com.example.student.smartlighttest1.Settimgs"
@@ -46,10 +47,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.example.student.smartlighttest1.group"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 
 </manifest>

@@ -3,15 +3,18 @@ package com.example.student.smartlighttest1;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.Space;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
@@ -23,23 +26,30 @@ import java.util.Arrays;
 
 class scenar {
     boolean focused = false;
-
-    scenar(final String s2, final int id, final Scenarios sc, LinearLayout names, LinearLayout descr, LinearLayout ids_l, LinearLayout button_l,final Context c) {
+    scenar(final String s2, final int id, LinearLayout layout,final Context c) {
         Button button = new Button(c);
         String[] scen = s2.split("-");
         Log.d("Read", Arrays.toString(scen));
         final String mes = "*" + id;
         TextView ids=new TextView(c),name=new TextView(c),des=new TextView(c);
         name.setText(scen[0]);
+        name.setTextColor(Color.BLACK);
+        des.setTextColor(Color.GRAY);
+        ids.setTextColor(Color.LTGRAY);
         des.setText(scen[1]);
         ids.setText(scen[2]);
+        name.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height-67)/3,1f));
+        des.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height-67)/3, 1f));
+        //button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, Scenarios.height/3, 1f));
+        ids.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height-67)/3, 1f));
         button.setId(id);
         final int id_ = button.getId();
         button.findViewById(id_);
-        names.addView(name);
-        descr.addView(des);
-        ids_l.addView(ids);
-        button_l.addView(button);
+        layout.addView(name);
+        layout.addView(des);
+        layout.addView(ids);
+        button.setLayoutParams(new LinearLayout.LayoutParams(67,67));
+        layout.addView(button);
         button.setBackgroundResource(R.drawable.lamp_on);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,7 +61,7 @@ class scenar {
             @Override
             public boolean onLongClick(View view) {
                 if (Scenarios.from_setings)
-                    sc.confirmation_alert("Вы действительно собираетесь удалить данный сценарии?", c, view);
+                    //sc.confirmation_alert("Вы действительно собираетесь удалить данный сценарии?", c, view);
                 if (Scenarios.confirm) {
                     BufferedReader br = null;
                     ArrayList<String> override_scan = new ArrayList<>();
@@ -93,22 +103,15 @@ public class Scenarios extends AppCompatActivity {
     static public ArrayList<String> selected;
     static boolean from_setings;
     static boolean confirm;
-    LinearLayout names,descr,ids,button_l,gNames,gDescrp,gIds,gButtonL;
-
+    LinearLayout scroll;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scenarios);
         layout1 = findViewById(R.id.box);
         selected = new ArrayList<String>();
-        names=findViewById(R.id.sName);
-        descr=findViewById(R.id.sDescription);
-        ids=findViewById(R.id.sIds);
-        button_l=findViewById(R.id.sButton);
-        gNames=findViewById(R.id.groupName);
-        gDescrp=findViewById(R.id.groupDescription);
-        gIds=findViewById(R.id.groupIds);
-        gButtonL=findViewById(R.id.groupButton);
+        scroll=findViewById(R.id.box);
+
     }
 
     @Override
@@ -126,7 +129,11 @@ public class Scenarios extends AppCompatActivity {
         try {
             while ((str = br.readLine()) != null) {
                 if (!str.equals("DELETED")) {
-                    new scenar(str, id++, this,names,descr,ids,button_l,this);
+                    LinearLayout layout=new LinearLayout(this);
+                   //layout.setWeightSum(4);
+                    layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                    this.scroll.addView(layout);
+                    new scenar(str, id++,layout,this);
                 } else id++;
             }
         } catch (Exception e) {
@@ -164,6 +171,15 @@ public class Scenarios extends AppCompatActivity {
         });
         alertDialog.show();
         return;
+    }
+    public static void sortByHeight(View...arc){
+        View result=arc[0];
+        for(View v:arc){
+            Log.d("view", "sortByHeight: "+v.getHeight());
+            if (v.getTranslationY()>result.getTranslationY())result=v;
+        }
+        //Log.d("View",result.getMeasuredHeight()+"");
+        for (View v:arc)v.setTranslationY(result.getTranslationY()+v.getMeasuredHeight());
     }
 
 

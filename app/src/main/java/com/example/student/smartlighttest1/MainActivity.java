@@ -4,6 +4,7 @@ package com.example.student.smartlighttest1;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Point;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -13,12 +14,15 @@ import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +54,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
     static Button new_scenario;
     static Button new_group;
     LinearLayout buttonPanel;
+    static int width,height;
     static boolean inScenMode =false;
 
     @Override
@@ -66,8 +71,53 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         buttonPanel=(LinearLayout)findViewById(R.id.buttonPanel);
         bar = findViewById(R.id.BRIGNESS);
         Button group=findViewById(R.id.GROUP);
+        Display display = getWindowManager(). getDefaultDisplay();
+        Point size = new Point();
+        display. getSize(size);
+        width = size. x;
+        height = size. y;
         group.setOnClickListener(this);
         bar.setOnSeekBarChangeListener(this);
+        final Switch swich=findViewById(R.id.switch1);
+        swich.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                String br;
+                if (b){br="254";}
+
+                else {br="000";}
+                for (selectable s:selected){
+                    if (s instanceof  lamp&&((lamp)s).iterator<2)
+                    {
+                        new multithread().execute("send",s.getId()+br);
+                    }else if (s instanceof group) new multithread().execute("send",s.getId()+br);
+                    else {
+                        String []ss=s.getId().split(",");
+                        new multithread().execute("send",ss[0]+br);
+                        new multithread().execute("send",ss[1]+br);
+                        lamp l=(lamp)s;
+
+                    }
+                    if (s instanceof lamp){
+                        lamp l=(lamp)s;
+                        switch (l.iterator){
+                        case 0:
+                            l.setBright(Integer.parseInt(br));
+                            break;
+
+                        case 1:
+                            l.setBright2(Integer.parseInt(br));
+                            break;
+                        case 2:
+                            l.setBright(Integer.parseInt(br));
+                            l.setBright2(Integer.parseInt(br));
+                            break;
+                    }
+                    l.changeBackground();
+                    }
+                }
+            }
+        });
         getter_from_app.writeToFile("1,2 100#200 1\n" +
                 "3,4 300#400 0\n" +
                 "5,6 500#600 1\n" +
@@ -105,6 +155,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         settings.setOnClickListener(this);
         new_group.setOnClickListener(this);
         new_scenario.setOnClickListener(this);
+        initDefaultG_S();
 
 
 
@@ -121,8 +172,8 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
 
 
     private void builui() {
-        lamps = new lamp[udp.colvo];
-        buttons = new Button[udp.colvo];
+        lamps = new lamp[udp.colvo/2];
+        buttons = new Button[udp.colvo/2];
         ConstraintLayout layout = findViewById(R.id.Main);
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.WRAP_CONTENT,
@@ -452,7 +503,69 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         }
     }
     public static void initDefaultG_S(){
+        try {
+            BufferedReader vr=new BufferedReader(new InputStreamReader(activity.openFileInput("groups.txt")));
+            int line=0;
+            String br;
+            while ((br=vr.readLine())!=null)line++;
+            if (line<=1){
+                new multithread().execute("send","new");
+                new multithread().execute("send",String.valueOf(udp.colvo));
+                for (lamp l:lamps){
+                    String []ids =l.getId().split(",");
+                    new multithread().execute("send",ids[1]+254);
+                    new multithread().execute("send",ids[0]+254);
+                }
+                getter_from_app.writeToFile("Включить все" + "-" + "Включает все светильники на максимум" + "-" + "Все" + "\n", "scenarios.txt", Context.MODE_APPEND);
 
+                new multithread().execute("send","new");
+                new multithread().execute("send",String.valueOf(udp.colvo));
+                for (lamp l:lamps){
+                    String []ids =l.getId().split(",");
+                    new multithread().execute("send",ids[1]+"000");
+                    new multithread().execute("send",ids[0]+"000");
+                }
+                getter_from_app.writeToFile("Выключит все" + "-" + "Выключает все светильники " + "-" + "Все" + "\n", "scenarios.txt", Context.MODE_APPEND);
+
+                new multithread().execute("send","setgroup");
+                new multithread().execute("send",String.valueOf(udp.colvo));
+                for (lamp l:lamps){
+                    String []ids =l.getId().split(",");
+                    new multithread().execute("send",ids[1]+254);
+                    new multithread().execute("send",ids[0]+254);
+                }
+                getter_from_app.writeToFile("Все светильники" + "-" + "" +
+                        "Регулирует все светильники" + "-" + "Все" + "\n", "groups.txt", Context.MODE_APPEND);
+
+                new multithread().execute("send","setgroup");
+                new multithread().execute("send",String.valueOf(udp.colvo/2));
+                for (int i = 0; i < lamps.length/2; i++) {
+                    String []ids =lamps[i].getId().split(",");
+                    new multithread().execute("send",ids[1]);
+                    new multithread().execute("send",ids[0]);
+
+                }
+                getter_from_app.writeToFile("Половина свитиликов" + "-" + "" +
+                        "Регулирует половину" + "-" + 1+"..."+udp.colvo/2 + "\n", "groups.txt", Context.MODE_APPEND);
+
+                new multithread().execute("send","setgroup");
+                new multithread().execute("send",String.valueOf(udp.colvo/2));
+
+                for (int i = lamps.length/2; i < lamps.length; i++) {
+                    String []ids =lamps[i].getId().split(",");
+                    new multithread().execute("send",ids[1]);
+                    new multithread().execute("send",ids[0]);
+
+                }
+                getter_from_app.writeToFile("Половина свитиликов" + "-" + "" +
+                        "Регулирует половину" + "-" + 1+udp.colvo/2+"..."+udp.colvo + "\n", "groups.txt", Context.MODE_APPEND);
+
+
+            }
+        } catch (FileNotFoundException e) {
+            Log.d("file", "initDefaultG_S: groups.txr doesnt exists");
+        } catch (IOException e) {
+        }
     }
 
 }

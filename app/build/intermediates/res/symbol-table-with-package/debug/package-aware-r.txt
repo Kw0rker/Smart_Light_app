@@ -1042,6 +1042,7 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable scenarbg
 drawable scenario
 drawable second_on_selected
 drawable settings
@@ -1060,7 +1061,6 @@ id META
 id Main
 id NEW_GROUP
 id NEW_SCENARIO
-id PanelSwitch
 id Pass
 id Refresh
 id SCENARIO
@@ -1101,6 +1101,7 @@ id beginning
 id blocking
 id bottom
 id box
+id box2
 id buttonPanel
 id center
 id center_horizontal
@@ -1139,7 +1140,6 @@ id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
 id f
-id fab
 id fill
 id fill_horizontal
 id fill_vertical
@@ -1148,10 +1148,6 @@ id fixed
 id forever
 id ghost_view
 id gone
-id groupButton
-id groupDescription
-id groupIds
-id groupName
 id group_divider
 id groups
 id guideline
@@ -1207,10 +1203,6 @@ id radio
 id right
 id right_icon
 id right_side
-id sButton
-id sDescription
-id sIds
-id sName
 id save_image_matrix
 id save_non_transition_alpha
 id save_scale_type
@@ -1274,7 +1266,6 @@ id time
 id title
 id titleDividerNoCustom
 id title_template
-id toolbar
 id top
 id topPanel
 id touch_outside

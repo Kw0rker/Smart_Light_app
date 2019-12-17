@@ -4,12 +4,12 @@
     android:id="@+id/f"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_background"
+    android:background="@drawable/scenarbg"
+    android:baselineAligned="false"
     android:orientation="horizontal"
     android:scrollbars="vertical"
     android:weightSum="2"
-    tools:context=".Scenarios"
-    android:baselineAligned="false">
+    tools:context=".Scenarios">
 
 
     <ScrollView
@@ -19,41 +19,12 @@
         android:fillViewport="true">
 
         <LinearLayout
-            android:id="@+id/box"
+            android:id="@+id/box2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:baselineAligned="false">
-
-            <LinearLayout
-                android:id="@+id/groupName"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical" />
-
-            <LinearLayout
-                android:id="@+id/groupButton"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical" />
-
-            <LinearLayout
-                android:id="@+id/groupDescription"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical" />
-
-            <LinearLayout
-                android:id="@+id/groupIds"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical" />
-
-        </LinearLayout>
+            android:layout_weight="0"
+            android:baselineAligned="false"
+            android:orientation="vertical" />
     </ScrollView>
 
 
