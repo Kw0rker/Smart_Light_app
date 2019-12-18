@@ -20,7 +20,7 @@ public class udp {
     static InetAddress serverAddr;
     static DatagramPacket[] packets;
     static public int[] brignes;
-    static public int[] id;
+    static public String[] id;
     static private int brighness, ID;
     static int i = 0;
     static String s;
@@ -65,7 +65,7 @@ public class udp {
         }
         colvo = Integer.parseInt(new String(packet.getData()).split("#")[0]);
         brignes = new int[colvo];
-        id = new int[colvo];
+        id = new String[colvo];
         while (mes.size() < colvo) {
             packet = new DatagramPacket(Data, Data.length);
             try {
@@ -79,7 +79,7 @@ public class udp {
         for (String Mess : mes) {
             String[] es = Mess.split("#")[0].split(" ");
             try {
-                id[xxx] = Integer.parseInt(es[0]);
+                id[xxx]=es[0];
                 brignes[xxx++] = Integer.parseInt(es[1]);
 
             } catch (Exception e) {

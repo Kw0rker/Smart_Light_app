@@ -157,7 +157,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         settings.setOnClickListener(this);
         new_group.setOnClickListener(this);
         new_scenario.setOnClickListener(this);
-        initDefaultG_S();
+        //initDefaultG_S();
         file.writeToSDFile("logs.txt","OnCreate completed successfully ",true);
     }
 
@@ -217,9 +217,15 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                 com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
             }
             String str;
-            for (i = 0; i < udp.colvo/2&&((str = reader.readLine()) != null); i++) {
+            for (i = 0; i < udp.colvo/2; i++) {
                 buttons[i] = new Button(this);
                 buttons[i].setId(i);
+                try {
+                    str=reader.readLine();
+                }
+                catch (NullPointerException e){
+                    str="";
+                }
                 int id_ = buttons[i].getId();
                 layout.addView(buttons[i], params);
                 buttons[i] = findViewById(id_);
