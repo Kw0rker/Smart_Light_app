@@ -49,8 +49,8 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
             IDS[1]=udp.id[test++];
             int id1 = Integer.parseInt(IDS[0]);
             int id2 = Integer.parseInt(IDS[1]);
-            bright = udp.brignes[id1-1];
-            bright2 = udp.brignes[id2-1];
+            bright = udp.brignes[id1];
+            bright2 = udp.brignes[id2];
             button.setTranslationX(random.nextInt(1920));
             button.setTranslationY(random.nextInt(1080));
         }

@@ -6,7 +6,7 @@
     density="420dpi"
     format="10"
     plugin-version="3.4.2"
-    timestamp="1576672291337"
+    timestamp="1576672477106"
     token="-4095786180010566308"
     verifier="COLD_SWAP_REQUESTED" >
 
@@ -22,6 +22,10 @@
     <task
         name="verifier"
         duration="0" />
+
+    <artifact
+        location="C:\Users\User\StudioProjects\Smart_Light_app\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
+        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
@@ -78,7 +82,11 @@
     </build>
     <build
         build-mode="COLD"
-        timestamp="1576672291337"
-        verifier="COLD_SWAP_REQUESTED" />
+        timestamp="1576672477106"
+        verifier="COLD_SWAP_REQUESTED" >
+        <artifact
+            location="C:\Users\User\StudioProjects\Smart_Light_app\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
+            type="SPLIT_MAIN" />
+    </build>
 
 </instant-run>
