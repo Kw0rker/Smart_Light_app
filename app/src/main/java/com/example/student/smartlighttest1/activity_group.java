@@ -4,11 +4,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -168,9 +165,9 @@ public class activity_group extends AppCompatActivity {
                             }
                         } catch (Exception e) {
                         }
-                        getter_from_app.writeToFile("", "groups.txt", Context.MODE_PRIVATE);
+                        file.writeToFile("", "groups.txt", Context.MODE_PRIVATE);
                         for (String s : override_scan)
-                            getter_from_app.writeToFile(s, "groups.txt", Context.MODE_APPEND);
+                            file.writeToFile(s, "groups.txt", Context.MODE_APPEND);
                         new multithread().execute("send", "delete_g");
                         new multithread().execute("send", "" + id);
                         Scenarios.confirm = false;

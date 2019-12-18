@@ -1,6 +1,7 @@
 package com.example.student.smartlighttest1;
 
 
+import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,15 +29,14 @@ import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
-
-import static android.os.Environment.getExternalStorageDirectory;
 
 //import android.support.v7.app.AppCompatActivity;
 
@@ -61,6 +61,12 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(permissions,MODE_APPEND);
+            Date currentTime = Calendar.getInstance().getTime();
+            file.writeToSDFile("logs.txt",currentTime.toString(),false);
+        }
         context_g = getApplicationContext();
         brighness = (TextView) findViewById(R.id.text);
         new_group = findViewById(R.id.NEW_GROUP);
@@ -118,7 +124,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                 }
             }
         });
-        getter_from_app.writeToFile("1,2 100#200 1\n" +
+        file.writeToFile("1,2 100#200 1\n" +
                 "3,4 300#400 0\n" +
                 "5,6 500#600 1\n" +
                 "7,8 700#800 0\n" +
@@ -143,23 +149,16 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                break;
             }*/
         }
-        Log.d("Android",Environment.getExternalStorageDirectory()
-                .getAbsolutePath());
         builui();
         if (timer >= 30)
             Toast.makeText(this, "ОЩИБКА!!!\n Проверьте соединение с сервером", Toast.LENGTH_LONG).show();
-        new Thread(new getter_from_app()).start();
-
         scenario.setOnClickListener(this);
         Button settings = findViewById(R.id.SETTINGS);
         settings.setOnClickListener(this);
         new_group.setOnClickListener(this);
         new_scenario.setOnClickListener(this);
         initDefaultG_S();
-
-
-
-        Log.d("onCreate","complite");
+        file.writeToSDFile("logs.txt","OnCreate completed successfully ",true);
     }
 
     public static void delay(int milis) {
@@ -207,6 +206,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                     reader = new BufferedReader(new InputStreamReader(activity.openFileInput("pairs.txt")));
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();
+                    com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
                 }
                 Toast.makeText(this,"Отсутсвует конфигурацыонный фаил pairs.txt\nПо расположение "+Environment.getExternalStorageDirectory()
                         .getAbsolutePath(),Toast.LENGTH_LONG).show();}
@@ -214,31 +214,29 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             try {
                 reader = new BufferedReader(new InputStreamReader(activity.openFileInput("pairs.txt")));
             } catch (FileNotFoundException e) {
-                e.printStackTrace();
+                com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
             }
-            for (i = 0; i < udp.colvo/2; i++) {
+            String str;
+            for (i = 0; i < udp.colvo/2&&((str = reader.readLine()) != null); i++) {
                 buttons[i] = new Button(this);
                 buttons[i].setId(i);
                 int id_ = buttons[i].getId();
                 layout.addView(buttons[i], params);
                 buttons[i] = findViewById(id_);
                 buttons[i].setLayoutParams(new ConstraintLayout.LayoutParams(67, 67));
-
-                try {
-                    lamps[i] = new lamp(buttons[i], reader.readLine());
-                } catch (IOException E) {
-                    Log.e("pairs",E.getLocalizedMessage());
-                }
+                lamps[i] = new lamp(buttons[i], str);
 
             }
+        } catch (IOException e) {
+            file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
         } finally {
             try {
                 if (reader!=null)reader.close();
             } catch (IOException e) {
-                e.printStackTrace();
+                file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
             }
         }
-        Log.d("build","complite");
+        file.writeToSDFile("logs.txt","BuildUI completed successfully",true);
     }
 
     public static void read(String name, int int_max) {
@@ -296,6 +294,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         new_scenario.setOnClickListener(this);
         new_group.setText("Добавить новую группу");
         new_group.setOnClickListener(this);
+        file.writeToSDFile("logs.txt","activity main opened",true);
     }
 
     @Override
@@ -371,7 +370,6 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                             Log.d("z",s[0]);
                             n+=2;
                         }
-                        Log.d("lamp",l.iterator+"");
                     }
                 }
                 if (n == 0) break;
@@ -400,10 +398,11 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                         .setCancelable(false).setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        getter_from_app.writeToFile(inputName.getText().toString() + "-" + input_description.getText() + "-" + selectedLamps + "\n", "groups.txt", Context.MODE_APPEND);
+                        file.writeToFile(inputName.getText().toString() + "-" + input_description.getText() + "-" + selectedLamps + "\n", "groups.txt", Context.MODE_APPEND);
                     }
                 });
                 alertDialog.show();
+                file.writeToSDFile("logs.txt","new group created",true);
 
                 break;
             case R.id.NEW_SCENARIO:
@@ -480,13 +479,14 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                                 .setCancelable(false).setPositiveButton("Сохранить", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                getter_from_app.writeToFile(inputName.getText().toString() + "-" + input_description.getText() + "-" + lampInScenario + "\n", "scenarios.txt", Context.MODE_APPEND);
+                                file.writeToFile(inputName.getText().toString() + "-" + input_description.getText() + "-" + lampInScenario + "\n", "scenarios.txt", Context.MODE_APPEND);
                                 new_scenario.setOnClickListener(MainActivity.this);
                             }
                         });
                         alertDialog.show();
                         new_scenario.setText("ДОБАВИТЬ НОВЫЙ СЦЕНАРИЙ");
                         new_scenario.setOnClickListener(MainActivity.this);
+                        file.writeToSDFile("logs.txt","new script created",true);
 
                     }
                 });
@@ -516,7 +516,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                     new multithread().execute("send",ids[1]+254);
                     new multithread().execute("send",ids[0]+254);
                 }
-                getter_from_app.writeToFile("Включить все" + "-" + "Включает все светильники на максимум" + "-" + "Все" + "\n", "scenarios.txt", Context.MODE_APPEND);
+                file.writeToFile("Включить все" + "-" + "Включает все светильники на максимум" + "-" + "Все" + "\n", "scenarios.txt", Context.MODE_APPEND);
 
                 new multithread().execute("send","new");
                 new multithread().execute("send",String.valueOf(udp.colvo));
@@ -525,7 +525,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                     new multithread().execute("send",ids[1]+"000");
                     new multithread().execute("send",ids[0]+"000");
                 }
-                getter_from_app.writeToFile("Выключит все" + "-" + "Выключает все светильники " + "-" + "Все" + "\n", "scenarios.txt", Context.MODE_APPEND);
+                file.writeToFile("Выключит все" + "-" + "Выключает все светильники " + "-" + "Все" + "\n", "scenarios.txt", Context.MODE_APPEND);
 
                 new multithread().execute("send","setgroup");
                 new multithread().execute("send",String.valueOf(udp.colvo));
@@ -534,7 +534,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                     new multithread().execute("send",ids[1]+254);
                     new multithread().execute("send",ids[0]+254);
                 }
-                getter_from_app.writeToFile("Все светильники" + "-" + "" +
+                file.writeToFile("Все светильники" + "-" + "" +
                         "Регулирует все светильники" + "-" + "Все" + "\n", "groups.txt", Context.MODE_APPEND);
 
                 new multithread().execute("send","setgroup");
@@ -545,7 +545,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                     new multithread().execute("send",ids[0]);
 
                 }
-                getter_from_app.writeToFile("Половина свитиликов" + "-" + "" +
+                file.writeToFile("Половина свитиликов" + "-" + "" +
                         "Регулирует половину" + "-" + 1+"..."+udp.colvo/2 + "\n", "groups.txt", Context.MODE_APPEND);
 
                 new multithread().execute("send","setgroup");
@@ -557,7 +557,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                     new multithread().execute("send",ids[0]);
 
                 }
-                getter_from_app.writeToFile("Половина свитиликов" + "-" + "" +
+                file.writeToFile("Половина свитиликов" + "-" + "" +
                         "Регулирует половину" + "-" + 1+udp.colvo/2+"..."+udp.colvo + "\n", "groups.txt", Context.MODE_APPEND);
 
 
@@ -567,5 +567,6 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         } catch (IOException e) {
         }
     }
+
 
 }

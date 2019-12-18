@@ -123,7 +123,7 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
                 ID = IDS[0] + "," + IDS[1];
                 break;
         }
-        Log.d("iterator",String.valueOf(iterator));
+        file.writeToSDFile("logs.txt","lamp mode changed",true);
         MainActivity.vibrate(300 * (iterator+1));
         return false;
     }

@@ -31,13 +31,13 @@ public class udp {
             servSock.setReuseAddress(true);
             //servSock.bind(address);
         } catch (IOException e) {
-            Log.e("udp", e.getMessage());
+            file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
         }
 
         try {
             serverAddr = InetAddress.getByName("10.17.0.1");
         } catch (IOException e) {
-            Log.e("udp", e.getMessage());
+            file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
         }
     }
 
@@ -49,9 +49,9 @@ public class udp {
         pkt = new DatagramPacket(buf, buf.length, serverAddr, port);
         try {
             servSock.send(pkt);
-            Log.e("udp", sendmsg);
         } catch (IOException e) {
-            Log.e("udp", e.getMessage());
+            file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
+            Log.e("udp",e.getMessage());
         }
     }
 
@@ -82,9 +82,8 @@ public class udp {
                 id[xxx] = Integer.parseInt(es[0]);
                 brignes[xxx++] = Integer.parseInt(es[1]);
 
-                Log.e("udp", ID + " " + brighness);
             } catch (Exception e) {
-                Log.e("Button " + Mess, "error");
+                file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
             }
         }
 

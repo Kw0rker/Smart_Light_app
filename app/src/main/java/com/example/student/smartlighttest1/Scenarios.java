@@ -3,19 +3,14 @@ package com.example.student.smartlighttest1;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.SeekBar;
-import android.widget.Space;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 import java.io.BufferedReader;
@@ -29,7 +24,7 @@ class scenar {
     scenar(final String s2, final int id, LinearLayout layout,final Context c) {
         Button button = new Button(c);
         String[] scen = s2.split("-");
-        Log.d("Read", Arrays.toString(scen));
+
         final String mes = "*" + id;
         TextView ids=new TextView(c),name=new TextView(c),des=new TextView(c);
         name.setText(scen[0]);
@@ -50,7 +45,7 @@ class scenar {
         layout.addView(ids);
         button.setLayoutParams(new LinearLayout.LayoutParams(67,67));
         layout.addView(button);
-        button.setBackgroundResource(R.drawable.lamp_on);
+        button.setBackgroundResource(R.drawable.scenario);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +63,7 @@ class scenar {
                     try {
                         br = new BufferedReader(new InputStreamReader(MainActivity.activity.openFileInput("scenarios.txt")));
                     } catch (Exception e) {
-                        Log.e("Write", e.getMessage());
+                        file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
                     }
                     String str = "";
                     try {
@@ -79,9 +74,9 @@ class scenar {
                         }
                     } catch (Exception e) {
                     }
-                    getter_from_app.writeToFile("", "scenarios.txt", Context.MODE_PRIVATE);
+                    file.writeToFile("", "scenarios.txt", Context.MODE_PRIVATE);
                     for (String s : override_scan)
-                        getter_from_app.writeToFile(s, "scenarios.txt", Context.MODE_APPEND);
+                        file.writeToFile(s, "scenarios.txt", Context.MODE_APPEND);
                     new multithread().execute("send", "delete_s");
                     new multithread().execute("send", "" + id);
                     Scenarios.confirm = false;
@@ -120,7 +115,7 @@ public class Scenarios extends AppCompatActivity {
         try {
             br = new BufferedReader(new InputStreamReader(MainActivity.activity.openFileInput("scenarios.txt")));
         } catch (Exception e) {
-            Log.e("Write", e.getMessage());
+            file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
         }
         String str = "";
 
@@ -175,10 +170,8 @@ public class Scenarios extends AppCompatActivity {
     public static void sortByHeight(View...arc){
         View result=arc[0];
         for(View v:arc){
-            Log.d("view", "sortByHeight: "+v.getHeight());
             if (v.getTranslationY()>result.getTranslationY())result=v;
         }
-        //Log.d("View",result.getMeasuredHeight()+"");
         for (View v:arc)v.setTranslationY(result.getTranslationY()+v.getMeasuredHeight());
     }
 

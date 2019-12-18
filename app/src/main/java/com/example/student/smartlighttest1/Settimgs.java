@@ -211,7 +211,7 @@ public class Settimgs extends AppCompatActivity implements Button.OnClickListene
                 if (Settimgs.confirm) {
                     new multithread().execute("send", "delete_s");
                     new multithread().execute("send", "all");
-                    getter_from_app.writeToFile("", "scenarios.txt", MODE_PRIVATE);
+                    file.writeToFile("", "scenarios.txt", MODE_PRIVATE);
                     from_setings = false;
                     Settimgs.confirm = false;
                 }
@@ -227,7 +227,7 @@ public class Settimgs extends AppCompatActivity implements Button.OnClickListene
                     from_setings = false;
                     Settimgs.confirm = false;
 
-                    getter_from_app.writeToFile("", "groups.txt", MODE_PRIVATE);
+                    file.writeToFile("", "groups.txt", MODE_PRIVATE);
                 }
 
                 break;
