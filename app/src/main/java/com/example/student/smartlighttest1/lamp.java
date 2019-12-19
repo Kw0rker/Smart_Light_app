@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 
+import java.util.HashMap;
 import java.util.Random;
 
 public class lamp implements View.OnClickListener, View.OnLongClickListener,selectable {
@@ -18,6 +19,8 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
     private int bright, bright2;
     private boolean[] booleans = {false, false, false};
     static int test=0;
+    static int numberOfLamps;
+    static HashMap <String,Integer> brigness=new HashMap<>();
     //private Resources privResurces;
 
     //    private String[] modes = {"FIRST", "SECOND", "BOTH"};
@@ -47,10 +50,12 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
 
             IDS[0]=udp.id[test++];
             IDS[1]=udp.id[test++];
-            int id1 = Integer.parseInt(IDS[0]);
-            int id2 = Integer.parseInt(IDS[1]);
-            bright = udp.brignes[id1];
-            bright2 = udp.brignes[id2];
+
+            try {
+                bright = brigness.get(IDS[0]);
+                bright2 =brigness.get(IDS[1]);
+            }
+            catch (NullPointerException e){file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);return;}
             button.setTranslationX(random.nextInt(1920));
             button.setTranslationY(random.nextInt(1080));
         }
@@ -58,14 +63,10 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
         String[] params = line.split(" ");
         boolean turned = params[2].contains("1");
         String[] ids = params[0].split(",");
-        int id1, id2;
-        id1 = Integer.parseInt(ids[0]);
-        id2 = Integer.parseInt(ids[1]);
+
         String[] coordinates = params[1].split("#");
-        bright = udp.brignes[id1-1];
-        bright2 = udp.brignes[id2-1];
-        IDS[0] = normId(id1);
-        IDS[1] = normId(id2);
+        IDS[0] = ids[0];
+        IDS[1] = ids[1];
         ID=IDS[0]+","+IDS[1];
         button.setTranslationX(Integer.parseInt(coordinates[0]));
         button.setTranslationY(Integer.parseInt(coordinates[1]));

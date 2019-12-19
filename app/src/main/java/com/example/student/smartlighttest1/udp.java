@@ -10,20 +10,13 @@ import java.net.InetAddress;
 import java.util.ArrayList;
 
 public class udp {
-    public static int colvo = 2;
     static int port = 13013;
     private static byte[] buf = new byte[1024];
-    // public static byte[] reciveData = new byte[1024];
     public static byte[] Data = new byte[1024];
-    static DatagramSocket servSock;
-    static DatagramSocket skt;
-    static InetAddress serverAddr;
-    static DatagramPacket[] packets;
-    static public int[] brignes;
+    private static DatagramSocket servSock;
+    private static InetAddress serverAddr;
     static public String[] id;
-    static private int brighness, ID;
-    static int i = 0;
-    static String s;
+
 
     public static void setup() {
         try {
@@ -63,13 +56,16 @@ public class udp {
         } catch (IOException e) {
             Toast.makeText(MainActivity.context_g, e.getMessage() + "\n Ошибка подключения", Toast.LENGTH_LONG).show();
         }
-        colvo = Integer.parseInt(new String(packet.getData()).split("#")[0]);
-        brignes = new int[colvo];
-        id = new String[colvo];
-        while (mes.size() < colvo) {
+        try {
+            lamp.numberOfLamps = Integer.parseInt(new String(packet.getData()).split("#")[0]);
+        }
+        catch (NumberFormatException e){file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);return;}
+        id = new String[lamp.numberOfLamps];
+        while (mes.size() < lamp.numberOfLamps) {
             packet = new DatagramPacket(Data, Data.length);
             try {
                 servSock.receive(packet);
+                Log.d("upd",new String(packet.getData()));
             } catch (IOException e) {
                 Toast.makeText(MainActivity.context_g, e.getMessage() + "\n Ошибка подключения", Toast.LENGTH_LONG).show();
             }
@@ -79,8 +75,12 @@ public class udp {
         for (String Mess : mes) {
             String[] es = Mess.split("#")[0].split(" ");
             try {
-                id[xxx]=es[0];
-                brignes[xxx++] = Integer.parseInt(es[1]);
+                id[xxx++]=es[0];
+                try{
+                    int bigness= Integer.parseInt(es[1]);
+                    lamp.brigness.put(es[0],bigness);
+                }
+                catch (NumberFormatException e){file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);}
 
             } catch (Exception e) {
                 file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);

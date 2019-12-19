@@ -68,6 +68,8 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             file.writeToSDFile("logs.txt",currentTime.toString(),false);
         }
         context_g = getApplicationContext();
+        ExceptionCacher cacher=new ExceptionCacher();
+       // Thread.setDefaultUncaughtExceptionHandler(cacher);
         brighness = (TextView) findViewById(R.id.text);
         new_group = findViewById(R.id.NEW_GROUP);
         new_group.setOnClickListener(this);
@@ -171,8 +173,9 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
 
 
     private void builui() {
-        lamps = new lamp[udp.colvo/2];
-        buttons = new Button[udp.colvo/2];
+        Log.d("BuildUI","started");
+        lamps = new lamp[lamp.numberOfLamps/2];
+        buttons = new Button[lamp.numberOfLamps/2];
         ConstraintLayout layout = findViewById(R.id.Main);
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.WRAP_CONTENT,
@@ -216,8 +219,9 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             } catch (FileNotFoundException e) {
                 com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
             }
-            String str;
-            for (i = 0; i < udp.colvo/2; i++) {
+            Log.d("SS", "builui: started build lamps;");
+            for (i = 0; i <lamp.numberOfLamps/2; i++) {
+                String str;
                 buttons[i] = new Button(this);
                 buttons[i].setId(i);
                 try {
@@ -515,7 +519,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             String br;
             while ((br=vr.readLine())!=null)line++;
             if (line<=1){
-                new multithread().execute("send","new");
+               /* new multithread().execute("send","new");
                 new multithread().execute("send",String.valueOf(udp.colvo));
                 for (lamp l:lamps){
                     String []ids =l.getId().split(",");
@@ -532,9 +536,9 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                     new multithread().execute("send",ids[0]+"000");
                 }
                 file.writeToFile("Выключит все" + "-" + "Выключает все светильники " + "-" + "Все" + "\n", "scenarios.txt", Context.MODE_APPEND);
-
+*/
                 new multithread().execute("send","setgroup");
-                new multithread().execute("send",String.valueOf(udp.colvo));
+                new multithread().execute("send",String.valueOf(lamp.numberOfLamps));
                 for (lamp l:lamps){
                     String []ids =l.getId().split(",");
                     new multithread().execute("send",ids[1]+254);
@@ -544,7 +548,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                         "Регулирует все светильники" + "-" + "Все" + "\n", "groups.txt", Context.MODE_APPEND);
 
                 new multithread().execute("send","setgroup");
-                new multithread().execute("send",String.valueOf(udp.colvo/2));
+                new multithread().execute("send",String.valueOf(lamp.numberOfLamps/2));
                 for (int i = 0; i < lamps.length/2; i++) {
                     String []ids =lamps[i].getId().split(",");
                     new multithread().execute("send",ids[1]);
@@ -552,10 +556,10 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
 
                 }
                 file.writeToFile("Половина свитиликов" + "-" + "" +
-                        "Регулирует половину" + "-" + 1+"..."+udp.colvo/2 + "\n", "groups.txt", Context.MODE_APPEND);
+                        "Регулирует половину" + "-" +"..."+lamp.numberOfLamps/2 + "\n", "groups.txt", Context.MODE_APPEND);
 
                 new multithread().execute("send","setgroup");
-                new multithread().execute("send",String.valueOf(udp.colvo/2));
+                new multithread().execute("send",String.valueOf(lamp.numberOfLamps/2));
 
                 for (int i = lamps.length/2; i < lamps.length; i++) {
                     String []ids =lamps[i].getId().split(",");
@@ -564,7 +568,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
 
                 }
                 file.writeToFile("Половина свитиликов" + "-" + "" +
-                        "Регулирует половину" + "-" + 1+udp.colvo/2+"..."+udp.colvo + "\n", "groups.txt", Context.MODE_APPEND);
+                        "Регулирует половину" + "-" +lamp.numberOfLamps/2+"..."+lamp.numberOfLamps + "\n", "groups.txt", Context.MODE_APPEND);
 
 
             }
@@ -573,6 +577,5 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         } catch (IOException e) {
         }
     }
-
 
 }
