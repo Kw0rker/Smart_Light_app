@@ -4,6 +4,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.Toast;
 
 import java.util.HashMap;
 import java.util.Random;
@@ -48,8 +49,8 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
         button = bt;
         if (line==null){
 
-            IDS[0]=udp.id[test++];
-            IDS[1]=udp.id[test++];
+            IDS[0]=normId(Integer.parseInt(udp.id[test++]));
+            IDS[1]=normId(Integer.parseInt(udp.id[test++]));
 
             try {
                 bright = brigness.get(IDS[0]);
@@ -73,6 +74,15 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
         }
         changeBackground();
         //if (turned) button.setAnimation(rotate);
+        if (bright<0||bright2<0){
+            bt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(MainActivity.context_g,"Данный светильник принадлежит деактивированной ардуино",Toast.LENGTH_SHORT).show();
+                }
+            });
+            return;
+        }
         bt.setOnClickListener(this);
         bt.setOnLongClickListener(this);
     }

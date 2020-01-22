@@ -205,21 +205,20 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             try {
                 reader = new BufferedReader(new FileReader(file));
             }catch (FileNotFoundException e){
-                try {
+                /*try {
                     reader = new BufferedReader(new InputStreamReader(activity.openFileInput("pairs.txt")));
                 } catch (FileNotFoundException e1) {
                     e1.printStackTrace();
                     com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
-                }
+                }*/
                 Toast.makeText(this,"Отсутсвует конфигурацыонный фаил pairs.txt\nПо расположение "+Environment.getExternalStorageDirectory()
                         .getAbsolutePath(),Toast.LENGTH_LONG).show();}
 
-            try {
+            /*try {
                 reader = new BufferedReader(new InputStreamReader(activity.openFileInput("pairs.txt")));
             } catch (FileNotFoundException e) {
                 com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
-            }
-            Log.d("SS", "builui: started build lamps;");
+            }*/
             for (i = 0; i <lamp.numberOfLamps/2; i++) {
                 String str;
                 buttons[i] = new Button(this);
