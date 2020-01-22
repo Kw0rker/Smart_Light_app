@@ -51,6 +51,7 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
 
             IDS[0]=normId(Integer.parseInt(udp.id[test++]));
             IDS[1]=normId(Integer.parseInt(udp.id[test++]));
+            ID=IDS[0]+","+IDS[1];
 
             try {
                 bright = brigness.get(IDS[0]);
