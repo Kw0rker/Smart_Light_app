@@ -197,10 +197,9 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                 return gestureDetector.onTouchEvent(event);
             }
         });
-
-        try {
             final File file = new File(Environment.getExternalStorageDirectory()
                     .getAbsolutePath(), "pairs.txt");
+            com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",file.getAbsolutePath()+"  opened",true);
 
             try {
                 reader = new BufferedReader(new FileReader(file));
@@ -211,6 +210,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                     e1.printStackTrace();
                     com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
                 }*/
+                com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",e.toString(),true);
                 Toast.makeText(this,"Отсутсвует конфигурацыонный фаил pairs.txt\nПо расположение "+Environment.getExternalStorageDirectory()
                         .getAbsolutePath(),Toast.LENGTH_LONG).show();}
 
@@ -220,14 +220,17 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                 com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
             }*/
             for (i = 0; i <lamp.numberOfLamps/2; i++) {
-                String str;
+                String str=null;
                 buttons[i] = new Button(this);
                 buttons[i].setId(i);
                 try {
                     str=reader.readLine();
+                    com.example.student.smartlighttest1.file.writeToSDFile("logs.txt","lamp created with params: "+str,true);
                 }
                 catch (NullPointerException e){
-                    str="";
+                    com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",e.toString(),true);
+                } catch (IOException e) {
+                    com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",e.toString(),true);
                 }
                 int id_ = buttons[i].getId();
                 layout.addView(buttons[i], params);
@@ -236,16 +239,6 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                 lamps[i] = new lamp(buttons[i], str);
 
             }
-        } catch (IOException e) {
-            file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
-        } finally {
-            try {
-                if (reader!=null)reader.close();
-            } catch (IOException e) {
-                file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
-            }
-        }
-        file.writeToSDFile("logs.txt","BuildUI completed successfully",true);
     }
 
     public static void read(String name, int int_max) {
