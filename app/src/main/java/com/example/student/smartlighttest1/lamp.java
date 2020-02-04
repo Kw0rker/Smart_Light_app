@@ -2,7 +2,9 @@ package com.example.student.smartlighttest1;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.TouchDelegate;
 import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.Toast;
@@ -59,23 +61,41 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
                 bright2 =brigness.get(IDS[1]);
             }
             catch (NullPointerException e){file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);return;}
-            button.setTranslationX(random.nextInt(1920));
-            button.setTranslationY(random.nextInt(1080));
+            int x=random.nextInt(1920);
+            int y=random.nextInt(1080);
+            button.setTranslationX(x);
+            button.setTranslationY(y);
+            if (true) {
+                Animation animation=new RotateAnimation(90,90,x,y);
+                animation.setFillAfter(true);
+                animation.setDuration(0);
+                button.setAnimation(animation);
+            }
+          Log.e("buttton"," created");
+
         }
         else {
         String[] params = line.split(" ");
         boolean turned = params[2].contains("1");
         String[] ids = params[0].split(",");
-
         String[] coordinates = params[1].split("#");
         IDS[0] = ids[0];
         IDS[1] = ids[1];
         ID=IDS[0]+","+IDS[1];
-        button.setTranslationX(Integer.parseInt(coordinates[0]));
-        button.setTranslationY(Integer.parseInt(coordinates[1]));
+        int x=Integer.parseInt(coordinates[0]);
+        int y=Integer.parseInt(coordinates[1]);
+        button.setTranslationX(x);
+        button.setTranslationY(y);
+        Log.e("button created with",line);
+        if (turned) {
+            Animation animation=new RotateAnimation(90,90,x,y);
+            animation.setFillAfter(true);
+            animation.setDuration(0);
+            button.setAnimation(animation);
+        }
         }
         changeBackground();
-        //if (turned) button.setAnimation(rotate);
+
         if (bright<0||bright2<0){
             bt.setOnClickListener(new View.OnClickListener() {
                 @Override
