@@ -15,17 +15,16 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
     public Button button;
     static Random random=new Random();
     private String ID;
-    private int bright, bright2;
+    private int bright1, bright2;
     private boolean[] booleans = {false, false, false};
     static int test=0;
     static int numberOfLamps;
-    static HashMap <String,Integer> brigness=new HashMap<>();
 
 
     public int iterator = 2;
 
     public int getBright1() {
-        return bright;
+        return bright1;
     }
 
     public int getBright2() {
@@ -35,8 +34,8 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
     public void setBright2(int bright2) {
         this.bright2 = bright2;
     }
-    public void setBright(int bright){
-        this.bright=bright;
+    public void setBright1(int bright){
+        this.bright1=bright;
     }
 
     lamp(Button bt, String line) throws RuntimeException {
@@ -48,9 +47,9 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
             ID=IDS[0]+","+IDS[1];
 
             try {
-                synchronized (brigness) {
-                    bright = brigness.get(IDS[0]);
-                    bright2 = brigness.get(IDS[1]);
+                synchronized (MainActivity.lampList) {
+                    bright1 = MainActivity.lampList.get(IDS[0]);
+                    bright2 = MainActivity.lampList.get(IDS[1]);
                 }
             }
             catch (NullPointerException e){file.writeLog(e.getLocalizedMessage());return;}
@@ -89,7 +88,7 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
         }
         changeBackground();
 
-        if (bright<0||bright2<0){
+        if (bright1<0||bright2<0){
             bt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -146,7 +145,7 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
 
                 break;
         }
-        //privResurces=button.getResources();
+
     }
 
     @Override
@@ -173,7 +172,7 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
     public void changeBackground() {
         if (booleans[0]) {
             if (booleans[1]) {
-                if (bright > 0) {
+                if (bright1 > 0) {
                     if (bright2 > 0) {
                         button.setBackgroundResource(R.drawable.both_selected);
                     } else {
@@ -188,7 +187,7 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
                     }
                 }
             } else {
-                if (bright > 0) {
+                if (bright1 > 0) {
                     if (bright2 > 0) {
                         button.setBackgroundResource(R.drawable.first_on_selected0second_on);
 
@@ -207,7 +206,7 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
             }
         } else {
             if (booleans[1]) {
-                if (bright > 0) {
+                if (bright1 > 0) {
                     if (bright2 > 0) {
                         button.setBackgroundResource(R.drawable.first_on0second_onselected);
                     } else {
@@ -223,7 +222,7 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
                     }
                 }
             } else {
-                if (bright > 0) {
+                if (bright1 > 0) {
                     if (bright2 > 0) {
                         button.setBackgroundResource(R.drawable.both_on);
                     } else {
@@ -238,20 +237,12 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
                 }
             }
         }
-       /* if (booleans[2]&&(!booleans[1]||booleans[0])){
-            if (bright>0&&bright2>0)button.setBackgroundResource(R.drawable.both_selected);
-            else button.setBackgroundResource(R.drawable.both_off_selected);
-
-        }
-        else if (!booleans[2]&&(!booleans[1]||booleans[0])) {
-            if (bright>0&&bright2>0)button.setBackgroundResource(R.drawable.both_on);
-        else button.setBackgroundResource(R.drawable.both_off);}*/
        if (iterator==2) {
            if (booleans[2]) {
-               if (bright > 0 && bright2 > 0) button.setBackgroundResource(R.drawable.both_selected);
+               if (bright1 > 0 && bright2 > 0) button.setBackgroundResource(R.drawable.both_selected);
                else button.setBackgroundResource(R.drawable.both_off_selected);
            } else {
-               if (bright>0&&bright2>0) button.setBackgroundResource(R.drawable.both_on);
+               if (bright1>0&&bright2>0) button.setBackgroundResource(R.drawable.both_on);
               else button.setBackgroundResource(R.drawable.both_off);
            }
        }

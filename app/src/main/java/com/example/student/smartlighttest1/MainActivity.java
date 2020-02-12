@@ -35,6 +35,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -58,6 +59,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
     LinearLayout buttonPanel;
     static int width,height;
     static boolean inScenMode = false;
+    public static HashMap<String, Integer> lampList = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,14 +113,14 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                         lamp l=(lamp)s;
                         switch (l.iterator){
                         case 0:
-                            l.setBright(Integer.parseInt(br));
+                            l.setBright1(Integer.parseInt(br));
                             break;
 
                         case 1:
                             l.setBright2(Integer.parseInt(br));
                             break;
                         case 2:
-                            l.setBright(Integer.parseInt(br));
+                            l.setBright1(Integer.parseInt(br));
                             l.setBright2(Integer.parseInt(br));
                             break;
                     }
@@ -138,8 +140,8 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             statusUpdater.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
-                    synchronized (lamp.brigness){
-                        lamp.brigness = udp.status();
+                    synchronized (lampList){
+                        lampList = udp.status();
                     }
                 }
             },0, 15000);
@@ -314,14 +316,15 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                         Lamp.setBright2(seekBar.getProgress());
                         break;
                     case 0:
-                        Lamp.setBright(seekBar.getProgress());
+                        Lamp.setBright1(seekBar.getProgress());
                         break;
                 }
             } else {
                 if (!inScenMode){String[] s = Selected.getId().split(",");
                 new multithread().execute("send", s[0] + brighnes);
                 new multithread().execute("send", s[1] + brighnes);}
-                Lamp.setBright(seekBar.getProgress());
+                Lamp.setBright1(seekBar.getProgress());
+                Lamp.setBright1(seekBar.getProgress());
                 Lamp.setBright2(seekBar.getProgress());
             }
             Lamp.changeBackground();
