@@ -5,15 +5,15 @@ public class ExceptionCacher implements Thread.UncaughtExceptionHandler {
     public void uncaughtException(Thread thread, Throwable throwable) {
         StackTraceElement arr[]=throwable.getStackTrace();
         for (int i = 0; i < arr.length; i++) {
-            file.writeToSDFile("logs.txt",arr[i].toString(),true);
+            file.writeLog(arr[i].toString());
 
         }
         Throwable cause = throwable.getCause();
         if(cause != null) {
-            file.writeToSDFile("logs.txt", cause.toString(), true);
+            file.writeLog(cause.toString());
             arr = cause.getStackTrace();
             for (int i = 0; i < arr.length; i++) {
-                file.writeToSDFile("logs.txt", "    " + arr[i].toString(), true);
+                file.writeLog("--"+arr[i].toString());
             }
         }
 

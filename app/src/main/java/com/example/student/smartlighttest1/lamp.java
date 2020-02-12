@@ -1,20 +1,15 @@
 package com.example.student.smartlighttest1;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.TouchDelegate;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.Toast;
-
 import java.util.HashMap;
 import java.util.Random;
 
 public class lamp implements View.OnClickListener, View.OnLongClickListener,selectable {
-    //private boolean is_active;
-    //private int firstLampMode;
     static RotateAnimation rotate;
     private final String[] IDS = new String[2];
     public Button button;
@@ -25,9 +20,8 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
     static int test=0;
     static int numberOfLamps;
     static HashMap <String,Integer> brigness=new HashMap<>();
-    //private Resources privResurces;
 
-    //    private String[] modes = {"FIRST", "SECOND", "BOTH"};
+
     public int iterator = 2;
 
     public int getBright1() {
@@ -46,9 +40,6 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
     }
 
     lamp(Button bt, String line) throws RuntimeException {
-        //if (rotate == null) {
-         //   rotate = (RotateAnimation) AnimationUtils.loadAnimation(MainActivity.context_g, R.anim.rotate);
-        //}
         button = bt;
         if (line==null){
 
@@ -60,7 +51,7 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
                 bright = brigness.get(IDS[0]);
                 bright2 =brigness.get(IDS[1]);
             }
-            catch (NullPointerException e){file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);return;}
+            catch (NullPointerException e){file.writeLog(e.getLocalizedMessage());return;}
             int x=random.nextInt(1920);
             int y=random.nextInt(1080);
             button.setTranslationX(x);
@@ -172,7 +163,7 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
                 ID = IDS[0] + "," + IDS[1];
                 break;
         }
-        file.writeToSDFile("logs.txt","lamp mode changed",true);
+        file.writeLog("lamp mode changed");
         MainActivity.vibrate(300 * (iterator+1));
         return false;
     }
