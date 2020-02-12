@@ -48,8 +48,10 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
             ID=IDS[0]+","+IDS[1];
 
             try {
-                bright = brigness.get(IDS[0]);
-                bright2 =brigness.get(IDS[1]);
+                synchronized (brigness) {
+                    bright = brigness.get(IDS[0]);
+                    bright2 = brigness.get(IDS[1]);
+                }
             }
             catch (NullPointerException e){file.writeLog(e.getLocalizedMessage());return;}
             int x=random.nextInt(1920);
