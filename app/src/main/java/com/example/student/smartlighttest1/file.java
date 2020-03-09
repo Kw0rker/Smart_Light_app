@@ -1,8 +1,7 @@
 package com.example.student.smartlighttest1;
 
-import android.content.Context;
-import android.util.Log;
 
+import android.util.Log;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -13,11 +12,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.util.Arrays;
 
 public class file  {
+
+    public static final String LOG_PATH = "SmartLight/logs.txt", PAIRS_PATH = "SmartLight/pairs.txt";
 
     static void writeToFile(String[] data, String file_name, int mode) {
         try {
@@ -93,4 +91,8 @@ public class file  {
             e.printStackTrace();
         }
     }
+
+    public static void writeLog(String log){
+        writeToSDFile(LOG_PATH, log,true);
+    };
 }
