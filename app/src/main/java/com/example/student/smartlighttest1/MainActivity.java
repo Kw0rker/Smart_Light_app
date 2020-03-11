@@ -39,6 +39,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.TreeMap;
 
 
 public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarChangeListener, Button.OnClickListener {
@@ -59,7 +60,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
     LinearLayout buttonPanel;
     static int width,height;
     static boolean inScenMode = false;
-    public static HashMap<String, Integer> lampList = new HashMap<>();
+    public static TreeMap<String, Integer> lampList = new TreeMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

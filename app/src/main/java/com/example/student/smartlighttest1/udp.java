@@ -8,6 +8,7 @@ import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeMap;
 
 public class udp {
     static final int port = 13013;
@@ -50,8 +51,8 @@ public class udp {
         }
     }
 
-    public static HashMap<String,Integer> status(){
-        HashMap<String,Integer> lampList = new HashMap<>();
+    public static TreeMap<String,Integer> status(){
+        TreeMap<String,Integer> lampList = new TreeMap<>();
         sender("status");
         DatagramPacket packet = new DatagramPacket(Data, Data.length);
         int numberOfLamps = 0;
