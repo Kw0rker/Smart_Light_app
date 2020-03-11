@@ -26,7 +26,6 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -36,12 +35,15 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
-
-//import android.support.v7.app.AppCompatActivity;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarChangeListener, Button.OnClickListener {
+    //Const
+    Timer statusUpdater;
     static HashSet<selectable> selected = new HashSet<>();
     static Button[] buttons;
     static lamp[] lamps;
@@ -53,9 +55,11 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
     static MainActivity activity;
     static Button new_scenario;
     static Button new_group;
+    public static int numberOfLamps;
     LinearLayout buttonPanel;
     static int width,height;
-    static boolean inScenMode =false;
+    static boolean inScenMode = false;
+    public static HashMap<String, Integer> lampList = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,11 +69,10 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(permissions,MODE_APPEND);
             Date currentTime = Calendar.getInstance().getTime();
-            file.writeToSDFile("logs.txt",currentTime.toString(),false);
+            file.writeToSDFile(com.example.student.smartlighttest1.file.LOG_PATH, currentTime.toString(),false);
         }
         context_g = getApplicationContext();
         ExceptionCacher cacher=new ExceptionCacher();
-       // Thread.setDefaultUncaughtExceptionHandler(cacher);
         brighness = (TextView) findViewById(R.id.text);
         new_group = findViewById(R.id.NEW_GROUP);
         new_group.setOnClickListener(this);
@@ -91,14 +94,14 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 String br;
-                if (b){br="254";}
+                if (b) br="254";
 
-                else {br="000";}
+                else br="000";
                 for (selectable s:selected){
                     if (s instanceof  lamp&&((lamp)s).iterator<2)
-                    {
                         new multithread().execute("send",s.getId()+br);
-                    }else if (s instanceof group) new multithread().execute("send",s.getId()+br);
+                    else if (s instanceof group)
+                        new multithread().execute("send",s.getId()+br);
                     else {
                         String []ss=s.getId().split(",");
                         new multithread().execute("send",ss[0]+br);
@@ -110,14 +113,14 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                         lamp l=(lamp)s;
                         switch (l.iterator){
                         case 0:
-                            l.setBright(Integer.parseInt(br));
+                            l.setBright1(Integer.parseInt(br));
                             break;
 
                         case 1:
                             l.setBright2(Integer.parseInt(br));
                             break;
                         case 2:
-                            l.setBright(Integer.parseInt(br));
+                            l.setBright1(Integer.parseInt(br));
                             l.setBright2(Integer.parseInt(br));
                             break;
                     }
@@ -130,37 +133,34 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                 "3,4 300#400 0\n" +
                 "5,6 500#600 1\n" +
                 "7,8 700#800 0\n" +
-                "9,10 900#1000 1","pairs.txt",MODE_PRIVATE);
+                "9,10 900#1000 1", file.PAIRS_PATH,MODE_PRIVATE);
         try {
             savedInstanceState.getBoolean("null");
         } catch (Exception e) {
-            udp.setup();
-            //new multithread().execute("send", "refresh");
-            new multithread().execute("send", "status");
-            new multithread().execute("start");
+            statusUpdater.scheduleAtFixedRate(new TimerTask() {
+                @Override
+                public void run() {
+                    synchronized (lampList){
+                        lampList = udp.status();
+                    }
+                }
+            },0, 15000);
+
         }
         Button scenario = findViewById(R.id.SCENARIO);
         int timer = 0;
         while (!multithread.isFinished()) {
 
-            /*timer++;
-            delay(500);
-            if (timer>=30)
-            {
-               udp.colvo=0;
-               break;
-            }*/
         }
         builui();
         if (timer >= 30)
-            Toast.makeText(this, "ОЩИБКА!!!\n Проверьте соединение с сервером", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Ошибка!\n Проверьте соединение с сервером", Toast.LENGTH_LONG).show();
         scenario.setOnClickListener(this);
         Button settings = findViewById(R.id.SETTINGS);
         settings.setOnClickListener(this);
         new_group.setOnClickListener(this);
-        new_scenario.setOnClickListener(this);
-        //initDefaultG_S();
-        file.writeToSDFile("logs.txt","OnCreate completed successfully ",true);
+        new_scenario.setOnClickListener(this);;
+        file.writeLog("OnCreate completed successfully ");
     }
 
     public static void delay(int milis) {
@@ -198,39 +198,25 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             }
         });
             final File file = new File(Environment.getExternalStorageDirectory()
-                    .getAbsolutePath(), "pairs.txt");
-            com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",file.getAbsolutePath()+"  opened",true);
+                    .getAbsolutePath(), com.example.student.smartlighttest1.file.PAIRS_PATH);
+            com.example.student.smartlighttest1.file.writeLog(file.getAbsolutePath()+"  opened");
 
             try {
                 reader = new BufferedReader(new FileReader(file));
             }catch (FileNotFoundException e){
-                /*try {
-                    reader = new BufferedReader(new InputStreamReader(activity.openFileInput("pairs.txt")));
-                } catch (FileNotFoundException e1) {
-                    e1.printStackTrace();
-                    com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
-                }*/
-                com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",e.toString(),true);
-                Toast.makeText(this,"Отсутсвует конфигурацыонный фаил pairs.txt\nПо расположение "+Environment.getExternalStorageDirectory()
-                        .getAbsolutePath(),Toast.LENGTH_LONG).show();}
-
-            /*try {
-                reader = new BufferedReader(new InputStreamReader(activity.openFileInput("pairs.txt")));
-            } catch (FileNotFoundException e) {
-                com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
-            }*/
+                com.example.student.smartlighttest1.file.writeLog(e.toString());
+                Toast.makeText(this,"Отсутствует файл расположения ламп (" + com.example.student.smartlighttest1.file.PAIRS_PATH + ")",Toast.LENGTH_LONG).show();}
             for (i = 0; i <lamp.numberOfLamps/2; i++) {
                 String str=null;
                 buttons[i] = new Button(this);
                 buttons[i].setId(i);
                 try {
                     str=reader.readLine();
-                    com.example.student.smartlighttest1.file.writeToSDFile("logs.txt","lamp created with params: "+str,true);
-                }
-                catch (NullPointerException e){
-                    com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",e.toString(),true);
+                    com.example.student.smartlighttest1.file.writeLog("Lamp created with params: "+str);
+                } catch (NullPointerException e){
+                    com.example.student.smartlighttest1.file.writeLog(e.toString());
                 } catch (IOException e) {
-                    com.example.student.smartlighttest1.file.writeToSDFile("logs.txt",e.toString(),true);
+                    com.example.student.smartlighttest1.file.writeLog(e.toString());
                 }
                 int id_ = buttons[i].getId();
                 layout.addView(buttons[i], params);
@@ -246,7 +232,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         try {
             // открываем поток для чтения
             final File file = new File(Environment.getExternalStorageDirectory()
-                    .getAbsolutePath(), "pairs.txt");
+                    .getAbsolutePath(), com.example.student.smartlighttest1.file.PAIRS_PATH);
             br = new BufferedReader(new FileReader(file));
             String str = "";
             // читаем содержимое
@@ -296,7 +282,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         new_scenario.setOnClickListener(this);
         new_group.setText("Добавить новую группу");
         new_group.setOnClickListener(this);
-        file.writeToSDFile("logs.txt","activity main opened",true);
+        file.writeLog("activity main opened");
     }
 
     @Override
@@ -330,14 +316,15 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                         Lamp.setBright2(seekBar.getProgress());
                         break;
                     case 0:
-                        Lamp.setBright(seekBar.getProgress());
+                        Lamp.setBright1(seekBar.getProgress());
                         break;
                 }
             } else {
                 if (!inScenMode){String[] s = Selected.getId().split(",");
                 new multithread().execute("send", s[0] + brighnes);
                 new multithread().execute("send", s[1] + brighnes);}
-                Lamp.setBright(seekBar.getProgress());
+                Lamp.setBright1(seekBar.getProgress());
+                Lamp.setBright1(seekBar.getProgress());
                 Lamp.setBright2(seekBar.getProgress());
             }
             Lamp.changeBackground();
@@ -404,7 +391,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                     }
                 });
                 alertDialog.show();
-                file.writeToSDFile("logs.txt","new group created",true);
+                file.writeLog("New group created");
 
                 break;
             case R.id.NEW_SCENARIO:
@@ -488,7 +475,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                         alertDialog.show();
                         new_scenario.setText("ДОБАВИТЬ НОВЫЙ СЦЕНАРИЙ");
                         new_scenario.setOnClickListener(MainActivity.this);
-                        file.writeToSDFile("logs.txt","new script created",true);
+                        file.writeLog("new script created");
 
                     }
                 });
@@ -511,24 +498,6 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             String br;
             while ((br=vr.readLine())!=null)line++;
             if (line<=1){
-               /* new multithread().execute("send","new");
-                new multithread().execute("send",String.valueOf(udp.colvo));
-                for (lamp l:lamps){
-                    String []ids =l.getId().split(",");
-                    new multithread().execute("send",ids[1]+254);
-                    new multithread().execute("send",ids[0]+254);
-                }
-                file.writeToFile("Включить все" + "-" + "Включает все светильники на максимум" + "-" + "Все" + "\n", "scenarios.txt", Context.MODE_APPEND);
-
-                new multithread().execute("send","new");
-                new multithread().execute("send",String.valueOf(udp.colvo));
-                for (lamp l:lamps){
-                    String []ids =l.getId().split(",");
-                    new multithread().execute("send",ids[1]+"000");
-                    new multithread().execute("send",ids[0]+"000");
-                }
-                file.writeToFile("Выключит все" + "-" + "Выключает все светильники " + "-" + "Все" + "\n", "scenarios.txt", Context.MODE_APPEND);
-*/
                 new multithread().execute("send","setgroup");
                 new multithread().execute("send",String.valueOf(lamp.numberOfLamps));
                 for (lamp l:lamps){

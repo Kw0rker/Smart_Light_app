@@ -13,9 +13,9 @@ public class multithread extends AsyncTask<String, Void, Boolean> {
                 udp.sender(params[1]);
                 Log.d("udp", "called");
                 break;
-            case "start":
+            /*case "start":
                 udp.start();
-                break;
+                break; */
         }
 
         return true;

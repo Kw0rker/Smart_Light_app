@@ -63,7 +63,7 @@ class scenar {
                     try {
                         br = new BufferedReader(new InputStreamReader(MainActivity.activity.openFileInput("scenarios.txt")));
                     } catch (Exception e) {
-                        file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
+                        file.writeLog(e.getLocalizedMessage());
                     }
                     String str = "";
                     try {
@@ -183,7 +183,7 @@ public class Scenarios extends AppCompatActivity {
         try {
             br = new BufferedReader(new InputStreamReader(MainActivity.activity.openFileInput("scenarios.txt")));
         } catch (Exception e) {
-            file.writeToSDFile("logs.txt",e.getLocalizedMessage(),true);
+            file.writeLog(e.getLocalizedMessage());
         }
         String str = "";
 
