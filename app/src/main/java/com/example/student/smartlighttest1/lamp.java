@@ -68,6 +68,7 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
             if (true) {
                 Animation animation=new RotateAnimation(90,90,x,y);
                 animation.setFillAfter(true);
+                TouchDelegate delegate =button.getTouchDelegate();
                 animation.setDuration(0);
                 button.setAnimation(animation);
             }

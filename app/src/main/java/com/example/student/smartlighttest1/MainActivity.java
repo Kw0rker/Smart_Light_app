@@ -569,5 +569,10 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         } catch (IOException e) {
         }
     }
+    public void udateById(String ...keys){
+        for (int j = 0; j < keys.length; j++) {
+
+        }
+    }
 
 }
