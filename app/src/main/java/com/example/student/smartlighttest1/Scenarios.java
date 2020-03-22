@@ -1,74 +1,101 @@
 package com.example.student.smartlighttest1;
 
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 class scenar {
-    boolean focused = false;
-    scenar(final String s2, final int id, LinearLayout layout,final Context c) {
-        Button button = new Button(c);
-        String[] scen = s2.split("-");
+    String name, description;
+    LinkedList<Triple<String, Short, Integer>> idAndBrightness;
+    int scenarId;
 
-        final String mes = "*" + id;
-        TextView ids=new TextView(c),name=new TextView(c),des=new TextView(c);
-        name.setText(scen[0]);
-        name.setTextColor(Color.BLACK);
+    public scenar(String name, String description, LinkedList<Triple<String, Short, Integer>> lampParam) {
+        this.name = name;
+        this.description = description;
+        this.idAndBrightness = lampParam;
+        scenarId = Scenarios.getScenarListSize();
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    void add(LinearLayout layout, Context c) {
+        TextView ids = new TextView(c), textViewName = new TextView(c), des = new TextView(c);
+        Button button = new Button(c);
+        textViewName.setText(name);
+        textViewName.setTextColor(Color.BLACK);
         des.setTextColor(Color.GRAY);
         ids.setTextColor(Color.LTGRAY);
-        des.setText(scen[1]);
-        ids.setText(scen[2]);
-        name.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height-67)/3,1f));
+        des.setText(description);
+        StringBuffer buffer = new StringBuffer();
+        idAndBrightness.forEach(p -> buffer.append(p.first).append(","));
+        ids.setText(buffer.toString());
+        textViewName.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height - 67) / 3, 1f));
         des.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height-67)/3, 1f));
         //button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, Scenarios.height/3, 1f));
         ids.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height-67)/3, 1f));
-        button.setId(id);
+        button.setId(scenarId);
         final int id_ = button.getId();
         button.findViewById(id_);
-        layout.addView(name);
+        layout.addView(textViewName);
         layout.addView(des);
         layout.addView(ids);
         button.setLayoutParams(new LinearLayout.LayoutParams(67,67));
         layout.addView(button);
         button.setBackgroundResource(R.drawable.scenario);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new multithread().execute("send", mes);
+        button.setOnClickListener(v -> {
+            new multithread().execute("send", String.valueOf(scenarId));
+            for (Triple<String, Short, Integer> selectedPair : idAndBrightness) {
+
+                lamp l = MainActivity.lampMap.get(selectedPair.first);
+                if (l == null) return;
+                switch (selectedPair.third) {
+                    case 0:
+                        l.setBright1(selectedPair.second);
+                        break;
+                    case 1:
+                        l.setBright2(selectedPair.second);
+                        break;
+
+                    case 2:
+                        l.setBright2(selectedPair.second);
+                        l.setBright1(selectedPair.second);
+                        break;
+                }
+                l.changeBackground();
             }
         });
-        button.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-                if (Scenarios.from_setings)
-                    //sc.confirmation_alert("Вы действительно собираетесь удалить данный сценарии?", c, view);
+        button.setOnLongClickListener(view -> {
+           /* if (Scenarios.from_setings)
+                //sc.confirmation_alert("Вы действительно собираетесь удалить данный сценарии?", c, view);
                 if (Scenarios.confirm) {
                     BufferedReader br = null;
                     ArrayList<String> override_scan = new ArrayList<>();
                     try {
-                        br = new BufferedReader(new InputStreamReader(MainActivity.activity.openFileInput("scenarios.txt")));
+                        br = new BufferedReader(new InputStreamReader(c.openFileInput("scenarios.txt")));
                     } catch (Exception e) {
                         file.writeLog(e.getLocalizedMessage());
                     }
                     String str = "";
+                    Gson gson=new Gson();
                     try {
                         while ((str = br.readLine()) != null) {
-                            if (str.equals(s2)) override_scan.add("DELETED");
+                            if (str.equals(gson.toJson(this))) override_scan.add("DELETED");
                             else override_scan.add(str);
 
                         }
@@ -81,10 +108,9 @@ class scenar {
                     new multithread().execute("send", "" + id);
                     Scenarios.confirm = false;
                     Scenarios.from_setings = false;
-                }
+                }*/
 
-                return false;
-            }
+            return false;
         });
     }
 }
@@ -92,23 +118,28 @@ class scenar {
 
 public class Scenarios extends AppCompatActivity {
 
-    public static LinearLayout layout1;
 
     private static BufferedReader br;
     static public ArrayList<String> selected;
     static boolean from_setings;
     static boolean confirm;
     LinearLayout scroll;
+    private static List<scenar> scenarList = new LinkedList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scenarios);
-        layout1 = findViewById(R.id.box);
-        selected = new ArrayList<String>();
+        selected = new ArrayList<>();
         scroll=findViewById(R.id.box);
         initDefault();
 
+
     }
+
+    public static int getScenarListSize() {
+        return scenarList.size();
+    }
+
 
     private void initDefault() {
         TextView ids=new TextView(this),name=new TextView(this),des=new TextView(this);
@@ -136,11 +167,13 @@ public class Scenarios extends AppCompatActivity {
         button.setLayoutParams(new LinearLayout.LayoutParams(67,67));
         layout.addView(button);
         button.setBackgroundResource(R.drawable.scenario);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new multithread().execute("send", "on");
-                new multithread().execute("send", "all");
+        button.setOnClickListener(v -> {
+            new multithread().execute("send", "on");
+            new multithread().execute("send", "all");
+            for (lamp l : MainActivity.lamps) {
+                l.setBright1(255);
+                l.setBright2(255);
+                l.changeBackground();
             }
         });
         Button button1=new Button(this);
@@ -168,38 +201,45 @@ public class Scenarios extends AppCompatActivity {
         button1.setLayoutParams(new LinearLayout.LayoutParams(67,67));
         layout1.addView(button1);
         button1.setBackgroundResource(R.drawable.scenario);
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new multithread().execute("send", "off");
-                new multithread().execute("send", "all");
+        button1.setOnClickListener(v -> {
+            new multithread().execute("send", "off");
+            new multithread().execute("send", "all");
+            for (lamp l : MainActivity.lamps) {
+                l.setBright1(0);
+                l.setBright2(0);
+                l.changeBackground();
             }
         });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onStart() {
         super.onStart();
+        scenarList.clear();
         try {
-            br = new BufferedReader(new InputStreamReader(MainActivity.activity.openFileInput("scenarios.txt")));
+            br = new BufferedReader(new InputStreamReader(this.openFileInput("scenarios.txt")));
         } catch (Exception e) {
             file.writeLog(e.getLocalizedMessage());
         }
-        String str = "";
+        String str;
 
         // читаем содержимое
-        int id = 0;
+        Gson gson = new Gson();
         try {
             while ((str = br.readLine()) != null) {
                 if (!str.equals("DELETED")) {
                     LinearLayout layout=new LinearLayout(this);
-                   //layout.setWeightSum(4);
+                    //layout.setWeightSum(4);
                     layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                     this.scroll.addView(layout);
-                    new scenar(str, id++,layout,this);
-                } else id++;
+                    scenar scenario = gson.fromJson(str, scenar.class);
+                    scenario.add(layout, this);
+                    scenarList.add(scenario);
+                }
             }
         } catch (Exception e) {
+            file.writeLog(e.toString());
         } finally {
             try {
                 br.close();
@@ -210,7 +250,7 @@ public class Scenarios extends AppCompatActivity {
 
     }
 
-    public void confirmation_alert(String measedge, Context context, final View v) {
+   /* public void confirmation_alert(String measedge, Context context, final View v) {
         from_setings = false;
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
         alertDialog.setTitle("ВНИМАНИЕ!!!");
@@ -241,7 +281,7 @@ public class Scenarios extends AppCompatActivity {
             if (v.getTranslationY()>result.getTranslationY())result=v;
         }
         for (View v:arc)v.setTranslationY(result.getTranslationY()+v.getMeasuredHeight());
-    }
+    }*/
 
 
 }

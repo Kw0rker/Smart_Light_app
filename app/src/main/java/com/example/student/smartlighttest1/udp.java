@@ -1,20 +1,19 @@
 package com.example.student.smartlighttest1;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.TreeMap;
 
 public class udp {
-    static final int port = 13013;
-    static final String addr = "10.17.0.1";
-    private static byte[] buf = new byte[1024];
-    public static byte[] Data = new byte[1024];
+    private static final int port = 13013;
+    private static final String addr = "10.17.0.1";
+    private static byte[] Data = new byte[1024];
     private static DatagramSocket servSock = null;
     private static InetAddress serverAddr;
     static public String[] id;
@@ -36,10 +35,10 @@ public class udp {
     }
 
 
-    public static void sender(String sendmsg) {
+    static void sender(String sendmsg) {
         if(servSock == null) setup();
 
-        buf = sendmsg.getBytes();
+        byte[] buf = sendmsg.getBytes();
         DatagramPacket pkt;
 
         pkt = new DatagramPacket(buf, buf.length, serverAddr, port);
@@ -51,7 +50,7 @@ public class udp {
         }
     }
 
-    public static TreeMap<String,Integer> status(){
+    static TreeMap<String, Integer> status(Context c) {
         TreeMap<String,Integer> lampList = new TreeMap<>();
         sender("status");
         DatagramPacket packet = new DatagramPacket(Data, Data.length);
@@ -59,11 +58,12 @@ public class udp {
         try {
             servSock.receive(packet);
         } catch (IOException e) {
-            Toast.makeText(MainActivity.context_g, e.getMessage() + "\n Ошибка подключения", Toast.LENGTH_LONG).show();
+            Toast.makeText(c, e.getMessage() + "\n Ошибка подключения", Toast.LENGTH_LONG).show();
         }
         try {
             numberOfLamps = Integer.parseInt(new String(packet.getData()).split("#")[0]);
             MainActivity.numberOfLamps = numberOfLamps;
+            id = new String[numberOfLamps];
         } catch (NumberFormatException e){
             file.writeLog(e.getLocalizedMessage());
         }
@@ -74,9 +74,11 @@ public class udp {
                 servSock.receive(packet);
                 Log.d("upd",new String(packet.getData()));
             } catch (IOException e) {
-                Toast.makeText(MainActivity.context_g, e.getMessage() + "\n Ошибка подключения", Toast.LENGTH_LONG).show();
+                Toast.makeText(c, e.getMessage() + "\n Ошибка подключения", Toast.LENGTH_LONG).show();
             }
             String[] msg = new String(packet.getData()).split("#")[0].split(" ");
+            id[i] = msg[0];
+
             try {
                 lampList.put(msg[0], Integer.parseInt(msg[1]));
             } catch(NumberFormatException e){
