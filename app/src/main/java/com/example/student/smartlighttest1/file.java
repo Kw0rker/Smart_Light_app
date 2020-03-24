@@ -1,7 +1,10 @@
 package com.example.student.smartlighttest1;
 
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,12 +17,14 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 
 public class file  {
+    @SuppressLint("StaticFieldLeak")
+    static Context context;
 
-    public static final String LOG_PATH = "SmartLight/logs.txt", PAIRS_PATH = "SmartLight/pairs.txt";
+    public static final String LOG_PATH = "logs.txt", PAIRS_PATH = "pairs.txt";
 
     static void writeToFile(String[] data, String file_name, int mode) {
         try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(MainActivity.context_g.openFileOutput(file_name, mode));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file_name, mode));
             for (String ms : data) {
                 if (ms != null) outputStreamWriter.write(ms);
             }
@@ -32,7 +37,7 @@ public class file  {
 
     static void writeToFile(String data, String file_name, int mode) {
         try {
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(MainActivity.context_g.openFileOutput(file_name, mode));
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file_name, mode));
             outputStreamWriter.write(data);
             outputStreamWriter.close();
         } catch (IOException e) {
@@ -46,7 +51,7 @@ public class file  {
         boolean result = false;
         BufferedReader br = null;
         try {
-            br = new BufferedReader(new InputStreamReader(MainActivity.activity.openFileInput("scenarios.txt")));
+            br = new BufferedReader(new InputStreamReader(context.openFileInput("scenarios.txt")));
         } catch (Exception e) {
             Log.e("Write", e.getMessage());
         }

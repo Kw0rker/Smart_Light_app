@@ -1,29 +1,34 @@
 package com.example.student.smartlighttest1;
 
 import android.util.Log;
+import android.view.TouchDelegate;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.Toast;
-import java.util.HashMap;
+
 import java.util.Random;
 
-public class lamp implements View.OnClickListener, View.OnLongClickListener,selectable {
+public class lamp extends selectable implements View.OnClickListener, View.OnLongClickListener {
     static RotateAnimation rotate;
-    private final String[] IDS = new String[2];
-    public Button button;
+    final String[] IDS = new String[2];
+    private Button button;
     static Random random=new Random();
     private String ID;
     private int bright1, bright2;
     private boolean[] booleans = {false, false, false};
-    static int test=0;
+    static private int test = 0;
     static int numberOfLamps;
 
 
-    public int iterator = 2;
+    int iterator = 2;
 
-    public int getBright1() {
+    public Button getButton() {
+        return button;
+    }
+
+    int getBright1() {
         return bright1;
     }
 
@@ -31,38 +36,36 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
         return bright2;
     }
 
-    public void setBright2(int bright2) {
+    void setBright2(int bright2) {
         this.bright2 = bright2;
     }
-    public void setBright1(int bright){
+
+    void setBright1(int bright) {
         this.bright1=bright;
     }
 
-    lamp(Button bt, String line) throws RuntimeException {
+    lamp(Button bt, String line) {
         button = bt;
         if (line==null){
 
-            IDS[0]=normId(Integer.parseInt(udp.id[test++]));
-            IDS[1]=normId(Integer.parseInt(udp.id[test++]));
+            IDS[0] = udp.id[test++];
+            IDS[1] = udp.id[test++];
             ID=IDS[0]+","+IDS[1];
 
             try {
-                synchronized (MainActivity.lampList) {
-                    bright1 = MainActivity.lampList.get(IDS[0]);
-                    bright2 = MainActivity.lampList.get(IDS[1]);
-                }
+                bright1 = MainActivity.brightnessMap.get(IDS[0]);
+                bright2 = MainActivity.brightnessMap.get(IDS[1]);
             }
             catch (NullPointerException e){file.writeLog(e.getLocalizedMessage());return;}
             int x=random.nextInt(1920);
             int y=random.nextInt(1080);
             button.setTranslationX(x);
             button.setTranslationY(y);
-            if (true) {
                 Animation animation=new RotateAnimation(90,90,x,y);
                 animation.setFillAfter(true);
+                TouchDelegate delegate =button.getTouchDelegate();
                 animation.setDuration(0);
                 button.setAnimation(animation);
-            }
           Log.e("buttton"," created");
 
         }
@@ -75,6 +78,8 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
         IDS[1] = ids[1];
         ID=IDS[0]+","+IDS[1];
         int x=Integer.parseInt(coordinates[0]);
+            bright1 = MainActivity.brightnessMap.get(ids[0]);
+            bright2 = MainActivity.brightnessMap.get(ids[1]);
         int y=Integer.parseInt(coordinates[1]);
         button.setTranslationX(x);
         button.setTranslationY(y);
@@ -89,56 +94,41 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
         changeBackground();
 
         if (bright1<0||bright2<0){
-            bt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(MainActivity.context_g,"Данный светильник принадлежит деактивированной ардуино",Toast.LENGTH_SHORT).show();
-                }
-            });
+            bt.setOnClickListener(view -> Toast.makeText(bt.getContext(), "Данный светильник принадлежит деактивированной ардуино", Toast.LENGTH_SHORT).show());
             return;
         }
+        MainActivity.lampMap.put(IDS[0], this);
+        MainActivity.lampMap.put(IDS[1], this);
         bt.setOnClickListener(this);
         bt.setOnLongClickListener(this);
     }
 
-    private static String normId(int id_) {
-        String ID;
-        ID = "" + id_;
-        if (id_ < 10) ID = "000" + id_;
-        else if (id_ < 100) ID = "00" + id_;
-        else if (id_ < 1000) ID = "0" + id_;
-        return ID;
-    }
-
-    void set_priv_img() {
-        changeBackground();
-    }
-
-    public boolean[] getBooleans() {
+    boolean[] getBooleans() {
         return booleans;
     }
 
     @Override
     public void onClick(View view) {
+        Pair<selectable, Integer> pair = new Pair<>(this, bright1);
         switch (iterator) {
             case 0:
-                if (!booleans[0]) MainActivity.selected.add(this);
-                else MainActivity.selected.remove(this);
+                if (!booleans[0]) MainActivity.selected.add(pair);
+                else MainActivity.selected.remove(pair);
                 booleans[0] = !booleans[0];
                 changeBackground();
                 break;
             case 1:
-                if (!booleans[1]) MainActivity.selected.add(this);
-                else MainActivity.selected.remove(this);
+                if (!booleans[1]) MainActivity.selected.add(pair);
+                else MainActivity.selected.remove(pair);
                 booleans[1] = !booleans[1];
                 changeBackground();
                 break;
 
             case 2:
                 if (!booleans[2]) {
-                    MainActivity.selected.add(this);
+                    MainActivity.selected.add(pair);
                 } else {
-                    MainActivity.selected.remove(this);
+                    MainActivity.selected.remove(pair);
                 }
                 booleans[2] = !booleans[2];
                 changeBackground();
@@ -169,7 +159,7 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
         return false;
     }
 
-    public void changeBackground() {
+    void changeBackground() {
         if (booleans[0]) {
             if (booleans[1]) {
                 if (bright1 > 0) {
@@ -251,8 +241,24 @@ public class lamp implements View.OnClickListener, View.OnLongClickListener,sele
 
     @Override
     public String getId() {
-        if (iterator == 3) throw new RuntimeException("Id var contains 2 ids");
         return ID;
+    }
+
+
+    @Override
+    public int compareTo(selectable selectable) {
+        try {
+            if (selectable instanceof lamp) {
+                lamp l = (lamp) selectable;
+                return Integer.parseInt(IDS[0]) - Integer.parseInt(l.IDS[0]);
+
+            } else {
+                return Integer.parseInt(IDS[0]) - Integer.parseInt(selectable.getId());
+            }
+        } catch (NumberFormatException e) {
+            file.writeLog(e.toString());
+            return 0;
+        }
     }
 }
 
