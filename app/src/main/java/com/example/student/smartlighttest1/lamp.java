@@ -57,8 +57,8 @@ public class lamp extends selectable implements View.OnClickListener, View.OnLon
                 bright2 = MainActivity.brightnessMap.get(IDS[1]);
             }
             catch (NullPointerException e){file.writeLog(e.getLocalizedMessage());return;}
-            int x=random.nextInt(1920);
-            int y=random.nextInt(1080);
+            int x = random.nextInt(1280);
+            int y = random.nextInt(800);
             button.setTranslationX(x);
             button.setTranslationY(y);
                 Animation animation=new RotateAnimation(90,90,x,y);
