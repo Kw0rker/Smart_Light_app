@@ -40,7 +40,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Timer;
-import java.util.TimerTask;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -157,30 +156,24 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                 "5,6 500#600 1\n" +
                 "7,8 700#800 0\n" +
                 "9,10 900#1000 1", file.PAIRS_PATH, MODE_PRIVATE);
+        int timer = 0;
         try {
             savedInstanceState.getBoolean("null");
         } catch (Exception e) {
-            final Context context = this;
-            statusUpdater.scheduleAtFixedRate(new TimerTask() {
-                @Override
-                public void run() {
-                    brightnessMap = udp.status(context);
-
+            while (brightnessMap == null) {
+                brightnessMap = udp.status(this);
+                Toast.makeText(this, "Подключение к серверу,\n Пожалуйста подождите", Toast.LENGTH_SHORT).show();
+                timer++;
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
                 }
-            }, 0, 15000);
+            }
 
         }
         Button scenario = findViewById(R.id.SCENARIO);
-        int timer = 0;
-        while (brightnessMap == null) {
-            Toast.makeText(this, "Подключение к серверу,\n Пожалуйста подождите", Toast.LENGTH_SHORT).show();
-            timer++;
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+
         builui();
         if (timer >= 60)
             Toast.makeText(this, "Ошибка!\n Проверьте соединение с сервером", Toast.LENGTH_LONG).show();

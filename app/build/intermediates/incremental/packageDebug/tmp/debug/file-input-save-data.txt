@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Mar 25 16:40:45 ChST 2020
+#Wed Mar 25 18:51:16 ChST 2020
 0.baseType=DIRECTORY
 0.base=C\:\\Users\\User\\StudioProjects\\Smart_Light_app\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
 0.path=classes.dex
