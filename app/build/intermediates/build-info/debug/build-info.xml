@@ -7,22 +7,22 @@
     format="10"
     ir-eligibility="COMPATIBLE"
     plugin-version="3.4.2"
-    timestamp="1585118228768"
+    timestamp="1585118321326"
     token="-4095786180010566308"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="1553" />
+        duration="1063" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="39" />
+        duration="126" />
     <task
         name="verifier"
-        duration="19" />
+        duration="29" />
 
     <artifact
         location="C:\Users\User\StudioProjects\Smart_Light_app\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
@@ -75,7 +75,7 @@
     <build
         build-mode="COLD"
         ir-eligibility="COMPATIBLE"
-        timestamp="1585118228768"
+        timestamp="1585118321326"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\User\StudioProjects\Smart_Light_app\app\build\intermediates\split-apk\debug\slices\slice_3.apk"

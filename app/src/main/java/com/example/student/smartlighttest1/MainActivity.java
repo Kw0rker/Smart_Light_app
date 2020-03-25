@@ -182,7 +182,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             }
         }
         builui();
-        if (timer >= 30)
+        if (timer >= 60)
             Toast.makeText(this, "Ошибка!\n Проверьте соединение с сервером", Toast.LENGTH_LONG).show();
         scenario.setOnClickListener(this);
         Button settings = findViewById(R.id.SETTINGS);
