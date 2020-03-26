@@ -14,7 +14,7 @@ public class udp {
     private static final int port = 13013;
     private static final String addr = "10.17.0.1";
     private static byte[] Data = new byte[1024];
-    private static DatagramSocket servSock = null;
+    private static DatagramSocket servSock;
     private static InetAddress serverAddr;
     static public String[] id;
 
@@ -44,6 +44,7 @@ public class udp {
         pkt = new DatagramPacket(buf, buf.length, serverAddr, port);
         try {
             servSock.send(pkt);
+            Log.d("udp_m", sendmsg);
         } catch (IOException e) {
             file.writeLog(e.getLocalizedMessage());
             Log.e("udp",e.getMessage());
@@ -59,6 +60,7 @@ public class udp {
             servSock.receive(packet);
         } catch (IOException e) {
             Toast.makeText(c, e.getMessage() + "\n Ошибка подключения", Toast.LENGTH_LONG).show();
+            file.writeLog(e.toString());
         }
         try {
             numberOfLamps = Integer.parseInt(new String(packet.getData()).split("#")[0]);
@@ -72,9 +74,9 @@ public class udp {
             packet = new DatagramPacket(Data, Data.length);
             try {
                 servSock.receive(packet);
-                Log.d("upd",new String(packet.getData()));
             } catch (IOException e) {
                 Toast.makeText(c, e.getMessage() + "\n Ошибка подключения", Toast.LENGTH_LONG).show();
+                file.writeLog(e.toString());
             }
             String[] msg = new String(packet.getData()).split("#")[0].split(" ");
             id[i] = msg[0];

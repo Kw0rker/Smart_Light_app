@@ -40,7 +40,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Timer;
-import java.util.TimerTask;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -161,13 +160,15 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             savedInstanceState.getBoolean("null");
         } catch (Exception e) {
             final Context context = this;
-            statusUpdater.scheduleAtFixedRate(new TimerTask() {
+            new multithread().execute("send", "status");
+            new Thread(() -> brightnessMap = udp.status(context)).start();
+           /* statusUpdater.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
-                    brightnessMap = udp.status(context);
+                    if (b)
 
                 }
-            }, 0, 15000);
+            }, 0, 15000);*/
 
         }
         Button scenario = findViewById(R.id.SCENARIO);
