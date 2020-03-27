@@ -2,9 +2,7 @@ package com.example.student.smartlighttest1;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -42,7 +40,7 @@ public class activity_group extends AppCompatActivity {
         return groups.size();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    //@RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onStart() {
         super.onStart();
@@ -123,7 +121,7 @@ class group extends selectable {
         }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    //@RequiresApi(api = Build.VERSION_CODES.N)
     void add(activity_group sc, LinearLayout layout, Context c) {
         Button button;
             button = new Button(c);
@@ -135,8 +133,10 @@ class group extends selectable {
             des.setTextColor(Color.GRAY);
             ids.setTextColor(Color.LTGRAY);
         des.setText(description);
-        StringBuffer buffer = new StringBuffer();
-        id.forEach(p -> buffer.append(p.first).append(","));
+        StringBuilder buffer = new StringBuilder();
+        for (Pair<String, Integer> p : id) {
+            buffer.append(p.first).append(",");
+        }
         ids.setText(buffer.toString());
         textViewName.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height - 67) / 3, 1f));
             des.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height-67)/3, 1f));

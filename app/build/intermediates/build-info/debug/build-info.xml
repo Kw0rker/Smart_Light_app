@@ -5,35 +5,32 @@
     build-mode="COLD"
     density="mdpi"
     format="10"
-    ir-eligibility="FIELD_TYPE_CHANGE"
+    ir-eligibility="COMPATIBLE"
     plugin-version="3.4.2"
-    timestamp="1585199317874"
+    timestamp="1585277415371"
     token="-4095786180010566308"
     verifier="COLD_SWAP_REQUESTED" >
 
     <task
         name="javac"
-        duration="0" />
+        duration="588" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="25" />
+        duration="21" />
     <task
         name="verifier"
-        duration="5" />
+        duration="8" />
 
     <artifact
         location="C:\Users\User\StudioProjects\Smart_Light_app\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
         type="SPLIT" />
-    <artifact
-        location="C:\Users\User\StudioProjects\Smart_Light_app\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
-        type="SPLIT_MAIN" />
 
     <build
         build-mode="FULL"
-        timestamp="1585197213519"
+        timestamp="1585276488067"
         verifier="FULL_BUILD_REQUESTED" >
         <artifact
             location="C:\Users\User\StudioProjects\Smart_Light_app\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
@@ -77,15 +74,12 @@
     </build>
     <build
         build-mode="COLD"
-        ir-eligibility="FIELD_TYPE_CHANGE"
-        timestamp="1585199317874"
+        ir-eligibility="COMPATIBLE"
+        timestamp="1585277415371"
         verifier="COLD_SWAP_REQUESTED" >
         <artifact
             location="C:\Users\User\StudioProjects\Smart_Light_app\app\build\intermediates\split-apk\debug\slices\slice_3.apk"
             type="SPLIT" />
-        <artifact
-            location="C:\Users\User\StudioProjects\Smart_Light_app\app\build\intermediates\instant-run-apk\debug\app-debug.apk"
-            type="SPLIT_MAIN" />
     </build>
 
 </instant-run>

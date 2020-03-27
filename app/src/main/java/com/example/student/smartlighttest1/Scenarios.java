@@ -2,9 +2,7 @@ package com.example.student.smartlighttest1;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -33,7 +31,7 @@ class scenar {
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    //@RequiresApi(api = Build.VERSION_CODES.N)
     void add(LinearLayout layout, Context c) {
         TextView ids = new TextView(c), textViewName = new TextView(c), des = new TextView(c);
         Button button = new Button(c);
@@ -43,7 +41,9 @@ class scenar {
         ids.setTextColor(Color.LTGRAY);
         des.setText(description);
         StringBuffer buffer = new StringBuffer();
-        idAndBrightness.forEach(p -> buffer.append(p.first).append(","));
+        for (Triple<String, Short, Integer> p : idAndBrightness) {
+            buffer.append(p.first).append(",");
+        }
         ids.setText(buffer.toString());
         textViewName.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height - 67) / 3, 1f));
         des.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height-67)/3, 1f));
@@ -59,7 +59,7 @@ class scenar {
         layout.addView(button);
         button.setBackgroundResource(R.drawable.scenario);
         button.setOnClickListener(v -> {
-            new multithread().execute("send", String.valueOf(scenarId));
+            new multithread().execute("send", "*" + scenarId);
             for (Triple<String, Short, Integer> selectedPair : idAndBrightness) {
 
                 lamp l = MainActivity.lampMap.get(selectedPair.first);
@@ -212,7 +212,7 @@ public class Scenarios extends AppCompatActivity {
         });
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    //@RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onStart() {
         super.onStart();

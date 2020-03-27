@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
@@ -40,6 +39,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Timer;
+import java.util.TimerTask;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
@@ -60,11 +60,12 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
     public static int numberOfLamps;
     LinearLayout buttonPanel;
     static int width, height;
+    static ConstraintLayout layout;
     static boolean inScenMode = false;
     public static volatile TreeMap<String, Integer> brightnessMap;
     public static volatile HashMap<String, lamp> lampMap = new HashMap<>();
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    //@RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -162,13 +163,13 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
             final Context context = this;
             new multithread().execute("send", "status");
             new Thread(() -> brightnessMap = udp.status(context)).start();
-           /* statusUpdater.scheduleAtFixedRate(new TimerTask() {
+            statusUpdater.scheduleAtFixedRate(new TimerTask() {
                 @Override
                 public void run() {
-                    if (b)
+                    if (brightnessMap == null) new multithread().execute("send", "status");
 
                 }
-            }, 0, 15000);*/
+            }, 0, 15000);
 
         }
         Button scenario = findViewById(R.id.SCENARIO);
@@ -206,7 +207,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
     private void builui() {
         Log.d("BuildUI", "started");
         lamps = new lamp[numberOfLamps / 2];
-        ConstraintLayout layout = findViewById(R.id.Main);
+        layout = findViewById(R.id.Main);
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.WRAP_CONTENT,
                 ConstraintLayout.LayoutParams.WRAP_CONTENT);
@@ -288,7 +289,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    //@RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     synchronized public void onStopTrackingTouch(final SeekBar seekBar) {
         final int progress = seekBar.getProgress();
@@ -352,7 +353,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    //@RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

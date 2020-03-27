@@ -1,11 +1,13 @@
 package com.example.student.smartlighttest1;
 
+import android.graphics.Color;
+import android.support.constraint.ConstraintLayout;
 import android.util.Log;
-import android.view.TouchDelegate;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.util.Random;
@@ -13,7 +15,7 @@ import java.util.Random;
 public class lamp extends selectable implements View.OnClickListener, View.OnLongClickListener {
     static RotateAnimation rotate;
     final String[] IDS = new String[2];
-    private Button button;
+    private View button;
     static Random random=new Random();
     private String ID;
     private int bright1, bright2;
@@ -24,7 +26,7 @@ public class lamp extends selectable implements View.OnClickListener, View.OnLon
 
     int iterator = 2;
 
-    public Button getButton() {
+    public View getButton() {
         return button;
     }
 
@@ -45,9 +47,9 @@ public class lamp extends selectable implements View.OnClickListener, View.OnLon
     }
 
     lamp(Button bt, String line) {
-        button = bt;
+        //button = bt;
         if (line==null){
-
+            button = bt;
             IDS[0] = udp.id[test++];
             IDS[1] = udp.id[test++];
             ID=IDS[0]+","+IDS[1];
@@ -61,11 +63,24 @@ public class lamp extends selectable implements View.OnClickListener, View.OnLon
             int y = random.nextInt(800);
             button.setTranslationX(x);
             button.setTranslationY(y);
-                Animation animation=new RotateAnimation(90,90,x,y);
+                /*Animation animation=new RotateAnimation(90,90,x,y);
                 animation.setFillAfter(true);
                 TouchDelegate delegate =button.getTouchDelegate();
                 animation.setDuration(0);
-                button.setAnimation(animation);
+                button.setAnimation(animation);*/
+            if (x - 17 >= 0) bt.setTranslationX(x - 17);
+            else bt.setTranslationX(0);
+            bt.setTranslationY(y);
+            Animation animation = new RotateAnimation(90, 90, x, y);
+            bt.setBackgroundColor(Color.TRANSPARENT);
+            button = new ImageView(bt.getContext());
+            MainActivity.layout.addView(button);
+            button.setTranslationY(y);
+            button.setTranslationX(x);
+            bt.setLayoutParams(new ConstraintLayout.LayoutParams(17, 37));
+            animation.setFillAfter(true);
+            animation.setDuration(0);
+            button.setAnimation(animation);
           Log.e("buttton"," created");
 
         }
@@ -81,14 +96,26 @@ public class lamp extends selectable implements View.OnClickListener, View.OnLon
             bright1 = MainActivity.brightnessMap.get(ids[0]);
             bright2 = MainActivity.brightnessMap.get(ids[1]);
         int y=Integer.parseInt(coordinates[1]);
-        button.setTranslationX(x);
-        button.setTranslationY(y);
         Log.e("button created with",line);
         if (turned) {
+            if (x - 17 >= 0) bt.setTranslationX(x - 17);
+            else bt.setTranslationX(0);
+            bt.setTranslationY(y);
             Animation animation=new RotateAnimation(90,90,x,y);
+            bt.setBackgroundColor(Color.TRANSPARENT);
+            button = new ImageView(bt.getContext());
+            MainActivity.layout.addView(button);
+            button.setTranslationY(y);
+            button.setTranslationX(x);
+            bt.setLayoutParams(new ConstraintLayout.LayoutParams(17, 37));
             animation.setFillAfter(true);
             animation.setDuration(0);
             button.setAnimation(animation);
+
+        } else {
+            button = bt;
+            button.setTranslationX(x);
+            button.setTranslationY(y);
         }
         }
         changeBackground();
