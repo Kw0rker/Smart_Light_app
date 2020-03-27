@@ -373,7 +373,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                     boolean[] b = l.getBooleans();
                     if (b[0] || b[1] || b[2]) {
                         if (l.iterator < 2) {
-                            selectedLamps.add(l.getId());
+                            if (!l.getId().contains(",")) selectedLamps.add(l.getId());
                             list.add(new Pair<>(l.getId(), l.iterator));
                             n++;
                         } else {
@@ -456,7 +456,6 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                                 if (l.getBright1() < 10) BR = "00" + l.getBright1();
                                 else if (l.getBright1() < 100)
                                     BR = "0" + l.getBright1();
-                                lampInScenario.add((new Pair<>(l.getId(), BR)));
                                 String S = "" + l.getBright1();
                                 if (l.getBright1() < 10) S = "00" + l.getBright1();
                                 else if (l.getBright1() < 100)
