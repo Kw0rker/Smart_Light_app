@@ -49,7 +49,6 @@ public class lamp extends selectable implements View.OnClickListener, View.OnLon
     lamp(Button bt, String line) {
         //button = bt;
         if (line==null){
-            button = bt;
             IDS[0] = udp.id[test++];
             IDS[1] = udp.id[test++];
             ID=IDS[0]+","+IDS[1];
@@ -61,8 +60,7 @@ public class lamp extends selectable implements View.OnClickListener, View.OnLon
             catch (NullPointerException e){file.writeLog(e.getLocalizedMessage());return;}
             int x = random.nextInt(1280);
             int y = random.nextInt(800);
-            button.setTranslationX(x);
-            button.setTranslationY(y);
+
                 /*Animation animation=new RotateAnimation(90,90,x,y);
                 animation.setFillAfter(true);
                 TouchDelegate delegate =button.getTouchDelegate();
@@ -73,13 +71,17 @@ public class lamp extends selectable implements View.OnClickListener, View.OnLon
             bt.setTranslationY(y);
             Animation animation = new RotateAnimation(90, 90, x, y);
             bt.setBackgroundColor(Color.TRANSPARENT);
+            bt.setLayoutParams(new ConstraintLayout.LayoutParams(17, 37));
             button = new ImageView(bt.getContext());
+            button.setTranslationX(x);
+            button.setTranslationY(y);
+            button.setLayoutParams(new ConstraintLayout.LayoutParams(37, 17));
             MainActivity.layout.addView(button);
             button.setTranslationY(y);
             button.setTranslationX(x);
-            bt.setLayoutParams(new ConstraintLayout.LayoutParams(17, 37));
             animation.setFillAfter(true);
             animation.setDuration(0);
+
             button.setAnimation(animation);
           Log.e("buttton"," created");
 
@@ -93,8 +95,13 @@ public class lamp extends selectable implements View.OnClickListener, View.OnLon
         IDS[1] = ids[1];
         ID=IDS[0]+","+IDS[1];
         int x=Integer.parseInt(coordinates[0]);
-            bright1 = MainActivity.brightnessMap.get(ids[0]);
-            bright2 = MainActivity.brightnessMap.get(ids[1]);
+            try {
+                bright1 = MainActivity.brightnessMap.get(ids[0]);
+                bright2 = MainActivity.brightnessMap.get(ids[1]);
+            } catch (NullPointerException e) {
+                file.writeLog("incorrect id in config or no such id in status received\n id is:" + ids[0]);
+                return;
+            }
         int y=Integer.parseInt(coordinates[1]);
         Log.e("button created with",line);
         if (turned) {
@@ -107,7 +114,7 @@ public class lamp extends selectable implements View.OnClickListener, View.OnLon
             MainActivity.layout.addView(button);
             button.setTranslationY(y);
             button.setTranslationX(x);
-            bt.setLayoutParams(new ConstraintLayout.LayoutParams(17, 37));
+            button.setLayoutParams(new ConstraintLayout.LayoutParams(17, 37));
             animation.setFillAfter(true);
             animation.setDuration(0);
             button.setAnimation(animation);
@@ -121,7 +128,7 @@ public class lamp extends selectable implements View.OnClickListener, View.OnLon
         changeBackground();
 
         if (bright1<0||bright2<0){
-            bt.setOnClickListener(view -> Toast.makeText(bt.getContext(), "Данный светильник принадлежит деактивированной ардуино", Toast.LENGTH_SHORT).show());
+            bt.setOnClickListener(view -> Toast.makeText(bt.getContext(), "Данный светильник отключен", Toast.LENGTH_SHORT).show());
             return;
         }
         MainActivity.lampMap.put(IDS[0], this);

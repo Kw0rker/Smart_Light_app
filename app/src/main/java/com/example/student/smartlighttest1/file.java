@@ -98,6 +98,7 @@ public class file  {
     }
 
     public static void writeLog(String log){
+        Log.e("ee", log);
         writeToSDFile(LOG_PATH, log,true);
     };
 }

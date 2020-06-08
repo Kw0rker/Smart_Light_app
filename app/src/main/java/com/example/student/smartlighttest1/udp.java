@@ -12,7 +12,7 @@ import java.util.TreeMap;
 
 public class udp {
     private static final int port = 13013;
-    private static final String addr = "10.17.0.1";
+    private static final String addr = "192.168.43.107";
     private static byte[] Data = new byte[1024];
     private static DatagramSocket servSock;
     private static InetAddress serverAddr;
@@ -34,6 +34,13 @@ public class udp {
         }
     }
 
+    public static DatagramSocket getServSock() {
+        return servSock;
+    }
+
+    public static InetAddress getServerAddr() {
+        return serverAddr;
+    }
 
     static void sender(String sendmsg) {
         if(servSock == null) setup();

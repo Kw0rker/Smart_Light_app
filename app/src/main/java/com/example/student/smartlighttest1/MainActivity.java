@@ -66,6 +66,14 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
     public static volatile HashMap<String, lamp> lampMap = new HashMap<>();
 
     //@RequiresApi(api = Build.VERSION_CODES.N)
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        udp.getServSock().disconnect();
+        udp.getServSock().close();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -169,7 +177,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                     if (brightnessMap == null) new multithread().execute("send", "status");
 
                 }
-            }, 0, 15000);
+            }, 100, 15000);
 
         }
         Button scenario = findViewById(R.id.SCENARIO);
@@ -473,8 +481,8 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
                     Log.d("Lamp", lampInScenario.toString());
                     new multithread().execute("send", "new");
                     new multithread().execute("send", String.valueOf(n1));
-                    for (int i = 0; i < lampInScenario.size(); i++) {
-                        new multithread().execute("send", lampInScenario.get(i).first + lampInScenario.get(i).second);
+                    for (Pair<String, String> p : lampInScenario) {
+                        new multithread().execute("send", p.first + p.second);
                     }
 
                     AlertDialog.Builder alertDialog1 = new AlertDialog.Builder(MainActivity.this);
