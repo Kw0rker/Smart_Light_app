@@ -102,11 +102,10 @@ public class lamp extends selectable implements View.OnClickListener, View.OnLon
                 file.writeLog("incorrect id in config or no such id in status received\n id is:" + ids[0]);
                 return;
             }
-        int y=Integer.parseInt(coordinates[1]);
+            int y = Integer.parseInt(coordinates[1]) - 18; //
         Log.e("button created with",line);
         if (turned) {
-            if (x - 17 >= 0) bt.setTranslationX(x - 17);
-            else bt.setTranslationX(0);
+            bt.setTranslationX(x);
             bt.setTranslationY(y);
             Animation animation=new RotateAnimation(90,90,x,y);
             bt.setBackgroundColor(Color.TRANSPARENT);
@@ -114,9 +113,11 @@ public class lamp extends selectable implements View.OnClickListener, View.OnLon
             MainActivity.layout.addView(button);
             button.setTranslationY(y);
             button.setTranslationX(x);
-            button.setLayoutParams(new ConstraintLayout.LayoutParams(17, 37));
+            bt.setLayoutParams(new ConstraintLayout.LayoutParams(17, 37));
+            button.setLayoutParams(new ConstraintLayout.LayoutParams(37, 17));
             animation.setFillAfter(true);
             animation.setDuration(0);
+            button.setTranslationY(y - 17);//change to the button position to   height because of turn
             button.setAnimation(animation);
 
         } else {

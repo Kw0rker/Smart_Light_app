@@ -125,12 +125,13 @@ public class Scenarios extends AppCompatActivity {
     static boolean confirm;
     LinearLayout scroll;
     private static List<scenar> scenarList = new LinkedList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scenarios);
         selected = new ArrayList<>();
-        scroll=findViewById(R.id.box);
+        scroll = findViewById(R.id.box);
         initDefault();
 
 
@@ -142,29 +143,29 @@ public class Scenarios extends AppCompatActivity {
 
 
     private void initDefault() {
-        TextView ids=new TextView(this),name=new TextView(this),des=new TextView(this);
+        TextView ids = new TextView(this), name = new TextView(this), des = new TextView(this);
         name.setText("Включить все");
-        Button button=new Button(this);
+        Button button = new Button(this);
         name.setTextColor(Color.BLACK);
         des.setTextColor(Color.GRAY);
         ids.setTextColor(Color.LTGRAY);
         des.setText("Включает все светильники");
         ids.setText("Все");
-        name.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height-67)/3,1f));
-        des.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height-67)/3, 1f));
+        name.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height - 67) / 3, 1f));
+        des.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height - 67) / 3, 1f));
         //button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, Scenarios.height/3, 1f));
-        ids.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height-67)/3, 1f));
+        ids.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height - 67) / 3, 1f));
         button.setId(lamp.random.nextInt());
         final int id_ = button.getId();
         button.findViewById(id_);
-        LinearLayout layout=new LinearLayout(this);
+        LinearLayout layout = new LinearLayout(this);
         //layout.setWeightSum(4);
         layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         this.scroll.addView(layout);
         layout.addView(name);
         layout.addView(des);
         layout.addView(ids);
-        button.setLayoutParams(new LinearLayout.LayoutParams(67,67));
+        button.setLayoutParams(new LinearLayout.LayoutParams(67, 67));
         layout.addView(button);
         button.setBackgroundResource(R.drawable.scenario);
         button.setOnClickListener(v -> {
@@ -176,29 +177,29 @@ public class Scenarios extends AppCompatActivity {
                 l.changeBackground();
             }
         });
-        Button button1=new Button(this);
-        TextView ids1=new TextView(this),name1=new TextView(this),des1=new TextView(this);
+        Button button1 = new Button(this);
+        TextView ids1 = new TextView(this), name1 = new TextView(this), des1 = new TextView(this);
         name1.setText("Выключить все");
         name1.setTextColor(Color.BLACK);
         des1.setTextColor(Color.GRAY);
         ids1.setTextColor(Color.LTGRAY);
         des1.setText("Выключает все светильники");
         ids1.setText("Все");
-        name1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height-67)/3,1f));
-        des1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height-67)/3, 1f));
+        name1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height - 67) / 3, 1f));
+        des1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height - 67) / 3, 1f));
         //button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, Scenarios.height/3, 1f));
-        ids1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height-67)/3, 1f));
+        ids1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, (MainActivity.height - 67) / 3, 1f));
         button1.setId(lamp.random.nextInt());
         final int id = button1.getId();
         button1.findViewById(id);
-        LinearLayout layout1=new LinearLayout(this);
+        LinearLayout layout1 = new LinearLayout(this);
         //layout.setWeightSum(4);
         layout1.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         this.scroll.addView(layout1);
         layout1.addView(name1);
         layout1.addView(des1);
         layout1.addView(ids1);
-        button1.setLayoutParams(new LinearLayout.LayoutParams(67,67));
+        button1.setLayoutParams(new LinearLayout.LayoutParams(67, 67));
         layout1.addView(button1);
         button1.setBackgroundResource(R.drawable.scenario);
         button1.setOnClickListener(v -> {
@@ -229,7 +230,7 @@ public class Scenarios extends AppCompatActivity {
         try {
             while ((str = br.readLine()) != null) {
                 if (!str.equals("DELETED")) {
-                    LinearLayout layout=new LinearLayout(this);
+                    LinearLayout layout = new LinearLayout(this);
                     //layout.setWeightSum(4);
                     layout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                     this.scroll.addView(layout);

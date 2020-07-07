@@ -508,7 +508,7 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
 
                     alertDialog1.setView(layout1).setIcon(R.drawable.lamp_on)
                             .setCancelable(false).setPositiveButton("Сохранить", (dialog, which) -> {
-                        file.writeToFile(gson1.toJson(new scenar(inputName1.getText().toString(), input_description1.getText().toString(), lampParams), scenar.class), "scenarios.txt", Context.MODE_APPEND);
+                        file.writeToFile(gson1.toJson(new scenar(inputName1.getText().toString(), input_description1.getText().toString(), lampParams), scenar.class) + "\n", "scenarios.txt", Context.MODE_APPEND);
                         new_scenario.setOnClickListener(MainActivity.this);
                     });
                     alertDialog1.show();

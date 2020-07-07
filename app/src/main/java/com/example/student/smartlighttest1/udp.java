@@ -12,7 +12,7 @@ import java.util.TreeMap;
 
 public class udp {
     private static final int port = 13013;
-    private static final String addr = "192.168.43.107";
+    private static final String addr = "192.168.1.7";
     private static byte[] Data = new byte[1024];
     private static DatagramSocket servSock;
     private static InetAddress serverAddr;
@@ -89,8 +89,10 @@ public class udp {
             id[i] = msg[0];
 
             try {
-                lampList.put(msg[0], Integer.parseInt(msg[1]));
+                int brightness = Integer.parseInt(msg[1]);
+                lampList.put(msg[0], brightness);
             } catch(NumberFormatException e){
+                e.printStackTrace();
                 file.writeLog(e.getLocalizedMessage());
             }
         }

@@ -39,6 +39,7 @@ public class file  {
         try {
             OutputStreamWriter outputStreamWriter = new OutputStreamWriter(context.openFileOutput(file_name, mode));
             outputStreamWriter.write(data);
+            outputStreamWriter.flush();
             outputStreamWriter.close();
         } catch (IOException e) {
             Log.e("Exception", "File write failed: " + e.toString());
