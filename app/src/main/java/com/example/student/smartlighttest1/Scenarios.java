@@ -226,7 +226,8 @@ public class Scenarios extends AppCompatActivity {
             try {
                 FileOutputStream fOut = openFileOutput("scenarios.txt",
                         MODE_APPEND);
-                fOut.write(0);
+                fOut.write("".getBytes());
+                fOut.close();
                 onStart();
                 //if no file create a new one and restart
             } catch (FileNotFoundException e1) {
