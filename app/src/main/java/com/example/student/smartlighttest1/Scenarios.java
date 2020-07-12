@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -221,6 +223,17 @@ public class Scenarios extends AppCompatActivity {
         try {
             br = new BufferedReader(new InputStreamReader(this.openFileInput("scenarios.txt")));
         } catch (Exception e) {
+            try {
+                FileOutputStream fOut = openFileOutput("scenarios.txt",
+                        MODE_APPEND);
+                fOut.write(0);
+                onStart();
+                //if no file create a new one and restart
+            } catch (FileNotFoundException e1) {
+                e1.printStackTrace();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
             file.writeLog(e.getLocalizedMessage());
         }
         String str;
