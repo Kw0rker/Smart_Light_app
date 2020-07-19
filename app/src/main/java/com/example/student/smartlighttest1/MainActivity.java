@@ -181,8 +181,10 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
 
         }
         Button scenario = findViewById(R.id.SCENARIO);
+        layout = findViewById(R.id.Main);
         int timer = 0;
         while (brightnessMap == null) {
+            layout.setBackgroundResource(R.drawable.smart_light);
             Toast.makeText(this, "Подключение к серверу,\n Пожалуйста подождите", Toast.LENGTH_SHORT).show();
             timer++;
             try {
@@ -214,8 +216,8 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
     @SuppressLint("ClickableViewAccessibility")
     private void builui() {
         Log.d("BuildUI", "started");
+        layout.setBackgroundResource(R.drawable.background);
         lamps = new lamp[numberOfLamps / 2];
-        layout = findViewById(R.id.Main);
         ConstraintLayout.LayoutParams params = new ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.WRAP_CONTENT,
                 ConstraintLayout.LayoutParams.WRAP_CONTENT);
