@@ -183,8 +183,9 @@ public class MainActivity extends FragmentActivity implements SeekBar.OnSeekBarC
         Button scenario = findViewById(R.id.SCENARIO);
         layout = findViewById(R.id.Main);
         int timer = 0;
+        layout.setBackgroundResource(R.drawable.smart_light);
         while (brightnessMap == null) {
-            layout.setBackgroundResource(R.drawable.smart_light);
+
             Toast.makeText(this, "Подключение к серверу,\n Пожалуйста подождите", Toast.LENGTH_SHORT).show();
             timer++;
             try {
